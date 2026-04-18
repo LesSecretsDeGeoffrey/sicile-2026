@@ -882,6 +882,245 @@
   .planB-alt:first-child { border-top: none; padding-top: 0; }
   .planB-alt strong { color: #FF9F43; font-weight: 700; }
 
+  /* HEADER ACTION BUTTONS */
+  .header-actions {
+    display: flex;
+    gap: 8px;
+    margin-right: 14px;
+  }
+  .header-action-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(200, 160, 74, 0.12);
+    border: 1px solid var(--border);
+    color: var(--gold-bright);
+    font-size: 17px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .header-action-btn:hover {
+    background: rgba(200, 160, 74, 0.25);
+    transform: translateY(-1px);
+  }
+  @media (max-width: 480px) {
+    .header-actions { margin-right: 8px; gap: 4px; }
+    .header-action-btn { width: 34px; height: 34px; font-size: 15px; }
+  }
+
+  /* MODAL */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 8, 14, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 5000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+  }
+  .modal-backdrop.open { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .modal {
+    background: var(--bg-2);
+    border: 1px solid var(--border-strong);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(15px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-header {
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: -0.3px;
+  }
+  .modal-close {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.15s;
+  }
+  .modal-close:hover { background: var(--bg-3); color: var(--cream); }
+
+  .modal-body {
+    padding: 22px 24px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  /* SURVIVAL KIT */
+  .kit-section { margin-bottom: 24px; }
+  .kit-section:last-child { margin-bottom: 0; }
+  .kit-section-title {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .kit-section-title::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .kit-emergency {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--bg-3);
+    border-radius: 10px;
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .kit-emergency-label { color: var(--text-dim); flex: 1; }
+  .kit-emergency-value {
+    font-family: 'Courier New', monospace;
+    color: var(--gold-bright);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .kit-emergency-value:hover { text-decoration: underline; }
+
+  .kit-phrases-group { margin-bottom: 16px; }
+  .kit-phrases-subtitle {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--cream);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .kit-phrase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 12.5px;
+  }
+  .kit-phrase:last-child { border-bottom: none; }
+  .kit-phrase-fr { color: var(--text-dim); }
+  .kit-phrase-it { color: var(--gold-bright); font-weight: 500; font-style: italic; }
+
+  .kit-tip {
+    font-size: 12.5px;
+    color: var(--text);
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    line-height: 1.5;
+  }
+  .kit-tip:last-child { border-bottom: none; }
+
+  /* QR SHARE */
+  .qr-wrap {
+    text-align: center;
+    padding: 10px;
+  }
+  .qr-code {
+    display: inline-block;
+    padding: 20px;
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+  .qr-code img { display: block; width: 240px; height: 240px; }
+  .qr-url {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    word-break: break-all;
+    padding: 10px 14px;
+    background: var(--bg-3);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-family: monospace;
+  }
+  .qr-help {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .qr-help strong { color: var(--gold-bright); }
+
+  /* MODE AUJOURD'HUI */
+  .spot.current-now {
+    border-color: var(--gold-bright) !important;
+    background: rgba(200, 160, 74, 0.15) !important;
+    box-shadow: 0 0 0 2px rgba(200, 160, 74, 0.25);
+  }
+  .spot-now-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 5px;
+    margin-left: 6px;
+    letter-spacing: 0.4px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  .today-indicator {
+    background: linear-gradient(135deg, rgba(200, 160, 74, 0.25), rgba(200, 160, 74, 0.08));
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: var(--gold-bright);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .today-indicator::before {
+    content: '●';
+    color: var(--gold);
+    animation: pulse 2s infinite;
+  }
+
   .leaflet-control-zoom a {
     background: rgba(18, 25, 41, 0.92) !important;
     backdrop-filter: blur(20px);
@@ -1018,6 +1257,10 @@
     </div>
   </div>
   <div class="header-right">
+    <div class="header-actions">
+      <button class="header-action-btn" onclick="openSurvivalKit()" title="Kit de survie italien">🆘</button>
+      <button class="header-action-btn" onclick="openShareQR()" title="Partager l'app">📤</button>
+    </div>
     <div class="week-budget">
       <div class="week-budget-label">Budget/pers</div>
       <div class="week-budget-value" id="week-budget-value">—</div>
@@ -1028,6 +1271,16 @@
     </div>
   </div>
 </header>
+
+<div class="modal-backdrop" id="modal-backdrop" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">—</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
 
 <div class="main">
   <aside class="sidebar" id="sidebar">
@@ -1528,6 +1781,205 @@
     return { visited, total, pct: total > 0 ? Math.round((visited / total) * 100) : 0 };
   }
 
+  // ======== MODAL SYSTEM ========
+  function openModal(title, html) {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-body').innerHTML = html;
+    document.getElementById('modal-backdrop').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  window.closeModal = function() {
+    document.getElementById('modal-backdrop').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') window.closeModal(); });
+
+  // ======== KIT DE SURVIE ========
+  const SURVIVAL_KIT = {
+    urgences: [
+      { label: "Numéro unique européen", value: "112" },
+      { label: "Ambulance (Emergenza sanitaria)", value: "118" },
+      { label: "Pompiers (Vigili del Fuoco)", value: "115" },
+      { label: "Carabinieri", value: "112" },
+      { label: "Hôpital San Vincenzo Taormina", value: "+39 0942 579 1111" },
+      { label: "Police municipale Taormina", value: "+39 0942 610 111" },
+      { label: "Ambassade France Rome", value: "+39 06 686 011" },
+      { label: "Consulat France Naples", value: "+39 081 598 0711" },
+      { label: "Urgence AVS France (depuis Italie)", value: "+33 9 70 82 17 84" }
+    ],
+    phrases: [
+      { section: "Général", items: [
+        { fr: "Bonjour", it: "Buongiorno" },
+        { fr: "Bonsoir", it: "Buonasera" },
+        { fr: "Merci beaucoup", it: "Grazie mille" },
+        { fr: "S'il vous plaît", it: "Per favore" },
+        { fr: "Excusez-moi", it: "Mi scusi" },
+        { fr: "Je ne parle pas italien", it: "Non parlo italiano" },
+        { fr: "Parlez-vous anglais ?", it: "Parla inglese ?" },
+        { fr: "Je ne comprends pas", it: "Non capisco" }
+      ]},
+      { section: "Au restaurant", items: [
+        { fr: "Une table pour 2 personnes", it: "Un tavolo per due persone" },
+        { fr: "J'ai une réservation au nom de…", it: "Ho una prenotazione a nome di…" },
+        { fr: "La carte s'il vous plaît", it: "Il menu per favore" },
+        { fr: "Je voudrais…", it: "Vorrei…" },
+        { fr: "Qu'est-ce que vous recommandez ?", it: "Cosa mi consiglia ?" },
+        { fr: "Eau plate / gazeuse", it: "Acqua naturale / frizzante" },
+        { fr: "C'est délicieux !", it: "È delizioso !" },
+        { fr: "L'addition s'il vous plaît", it: "Il conto per favore" },
+        { fr: "Je suis allergique à…", it: "Sono allergico a…" },
+        { fr: "Sans gluten", it: "Senza glutine" }
+      ]},
+      { section: "Shopping", items: [
+        { fr: "Combien ça coûte ?", it: "Quanto costa ?" },
+        { fr: "C'est trop cher", it: "È troppo caro" },
+        { fr: "Vous acceptez la carte ?", it: "Accettate la carta ?" },
+        { fr: "Je vais réfléchir, merci", it: "Ci penserò, grazie" },
+        { fr: "Où sont les toilettes ?", it: "Dove sono i bagni ?" }
+      ]},
+      { section: "Plage / Voiture / Transport", items: [
+        { fr: "Où est la plage ?", it: "Dov'è la spiaggia ?" },
+        { fr: "Un transat + un parasol", it: "Un lettino e un ombrellone" },
+        { fr: "Station essence", it: "Distributore / benzinaio" },
+        { fr: "Le plein s'il vous plaît", it: "Il pieno, per favore" },
+        { fr: "Où est le parking ?", it: "Dov'è il parcheggio ?" },
+        { fr: "L'autoroute", it: "L'autostrada" }
+      ]},
+      { section: "Urgence", items: [
+        { fr: "À l'aide !", it: "Aiuto !" },
+        { fr: "Appelez la police", it: "Chiami la polizia" },
+        { fr: "Appelez une ambulance", it: "Chiami un'ambulanza" },
+        { fr: "Je ne me sens pas bien", it: "Non mi sento bene" },
+        { fr: "Où est l'hôpital ?", it: "Dov'è l'ospedale ?" }
+      ]}
+    ],
+    tipping: [
+      "Pourboire JAMAIS obligatoire en Italie.",
+      "Le « coperto » (2-5€) ou « servizio » est souvent déjà inclus dans l'addition.",
+      "Au resto : 5 à 10% si service exceptionnel (mais pas du tout attendu).",
+      "Café au bar : laisser la monnaie, max 1€.",
+      "Taxi : arrondir à l'euro supérieur, pas plus.",
+      "Hôtel : 1-2€ au porteur, 1€/jour au ménage (optionnel)."
+    ],
+    culture: [
+      "Restos fermés entre 15h et 19h30 (pause sieste).",
+      "Lundi = beaucoup de restos fermés (jour de repos du chef).",
+      "Dimanche après-midi = magasins souvent fermés.",
+      "Tenue correcte obligatoire dans les églises (épaules + genoux couverts).",
+      "Apéro = 18h-20h, souvent avec tapas offerts au comptoir.",
+      "Déjeuner : 12h30-14h, dîner : 19h30-22h30.",
+      "Le café « caffè » = espresso. Cappuccino = interdit après 11h sauf touriste assumé."
+    ]
+  };
+
+  window.openSurvivalKit = function() {
+    let html = `<div class="kit-section">
+      <div class="kit-section-title">Numéros d'urgence</div>`;
+    SURVIVAL_KIT.urgences.forEach(u => {
+      html += `<div class="kit-emergency">
+        <span class="kit-emergency-label">${u.label}</span>
+        <a class="kit-emergency-value" href="tel:${u.value.replace(/\s/g, '')}">${u.value}</a>
+      </div>`;
+    });
+    html += `</div>`;
+
+    html += `<div class="kit-section">
+      <div class="kit-section-title">Phrases italiennes essentielles</div>`;
+    SURVIVAL_KIT.phrases.forEach(group => {
+      html += `<div class="kit-phrases-group">
+        <div class="kit-phrases-subtitle">${group.section}</div>`;
+      group.items.forEach(p => {
+        html += `<div class="kit-phrase">
+          <span class="kit-phrase-fr">${p.fr}</span>
+          <span class="kit-phrase-it">${p.it}</span>
+        </div>`;
+      });
+      html += `</div>`;
+    });
+    html += `</div>`;
+
+    html += `<div class="kit-section">
+      <div class="kit-section-title">Pourboire / Tipping</div>`;
+    SURVIVAL_KIT.tipping.forEach(t => { html += `<div class="kit-tip">${t}</div>`; });
+    html += `</div>`;
+
+    html += `<div class="kit-section">
+      <div class="kit-section-title">Culture à savoir</div>`;
+    SURVIVAL_KIT.culture.forEach(t => { html += `<div class="kit-tip">${t}</div>`; });
+    html += `</div>`;
+
+    openModal("🆘 Kit de survie italien", html);
+  };
+
+  // ======== QR CODE PARTAGE ========
+  window.openShareQR = function() {
+    const url = 'https://lessecretsdegeoffrey.github.io/sicile-2026/';
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(url)}&margin=10&color=0B0F1A&bgcolor=FFFFFF`;
+    const html = `
+      <div class="qr-wrap">
+        <div class="qr-code"><img src="${qrUrl}" alt="QR code Sicile 2026"></div>
+        <div class="qr-url">${url}</div>
+        <div class="qr-help">
+          <strong>Sur l'iPhone de ta copine</strong> : ouvre l'appareil photo, vise ce QR code, tape sur la notification qui apparaît. L'app s'ouvre direct.<br><br>
+          Ensuite : <strong>Safari → Partage → Sur l'écran d'accueil</strong> pour l'installer comme une vraie app.
+        </div>
+      </div>
+    `;
+    openModal("📤 Partager avec ta copine", html);
+  };
+
+  // ======== MODE AUJOURD'HUI ========
+  function getCurrentTripDayIdx() {
+    const tripStart = new Date('2026-08-23T00:00:00');
+    const now = new Date();
+    const diffMs = now - tripStart;
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    if (diffDays < 0) return -1;
+    if (diffDays > 7) return -1;
+    return diffDays;
+  }
+
+  function parseSpotTime(timeStr) {
+    const match = timeStr.match(/(\d{1,2})h(\d{0,2})/);
+    if (!match) return null;
+    return parseInt(match[1]) * 60 + parseInt(match[2] || '0');
+  }
+
+  function getCurrentSpotIdx(day) {
+    const now = new Date();
+    const nowMin = now.getHours() * 60 + now.getMinutes();
+    let currentIdx = -1;
+    day.spots.forEach((s, i) => {
+      const t = parseSpotTime(s.time);
+      if (t !== null && t <= nowMin) currentIdx = i;
+    });
+    return currentIdx;
+  }
+
+  // ======== EMAIL RÉSA ITALIEN ========
+  window.copyItalianEmail = function(spotName) {
+    const resv = getReservations()[spotName];
+    const date = resv?.date || '[DATE]';
+    const time = resv?.time || '[HEURE]';
+    const name = resv?.name || 'Masson';
+    const subject = encodeURIComponent(`Richiesta prenotazione - ${spotName}`);
+    const body = encodeURIComponent(
+`Buongiorno,
+
+vorrei prenotare un tavolo per 2 persone da ${spotName} per il giorno ${date} alle ore ${time}.
+
+Siamo una coppia francese in visita a Taormina dal 23 al 30 agosto 2026.
+
+Può confermarmi la disponibilità ?
+
+La ringrazio in anticipo.
+
+Cordiali saluti,
+${name}`);
+    const mailto = `mailto:?subject=${subject}&body=${body}`;
+    window.location.href = mailto;
+  };
+
   function dayBudget(day) {
     return day.budget || { low: 0, typical: 0, high: 0 };
   }
@@ -1615,6 +2067,7 @@
       } else if (info?.booking === 'required' || info?.booking === 'recommended') {
         html += `<button class="popup-action-btn" onclick="promptReservation('${spot.name.replace(/'/g, "\\'")}')">📝 J'ai réservé</button>`;
         if (info?.bookingUrl) html += `<a class="popup-action-btn" target="_blank" href="${info.bookingUrl}">🔗 Réserver en ligne</a>`;
+        html += `<button class="popup-action-btn" onclick="copyItalianEmail('${spot.name.replace(/'/g, "\\'")}')">📧 Email en italien</button>`;
       }
     }
     return html;
@@ -1799,7 +2252,12 @@
       </div>
     ` : '';
 
+    const tripDayIdx = getCurrentTripDayIdx();
+    const isToday = tripDayIdx === currentDay;
+    const todayHtml = isToday ? `<div class="today-indicator">AUJOURD'HUI · Tu es en Sicile 🇮🇹</div>` : '';
+
     document.getElementById('day-header').innerHTML = `
+      ${todayHtml}
       <div class="day-header-overline">Jour ${d.number} sur 8</div>
       <div class="day-header-title">${d.title}</div>
       <div class="day-header-date">${d.fullDate}</div>
@@ -1839,19 +2297,24 @@
     const list = document.getElementById('spots-list');
     const reservations = getReservations();
     const journal = getJournal();
+    const tripDayIdx = getCurrentTripDayIdx();
+    const isToday = tripDayIdx === currentDay;
+    const currentSpotIdx = isToday ? getCurrentSpotIdx(d) : -1;
     list.innerHTML = d.spots.map((s, i) => {
       const meta = categoryMeta[s.category];
       const info = SPOT_METADATA[s.name];
       const booked = reservations[s.name];
       const entry = journal[s.name];
       const isVisited = entry?.visited;
+      const isCurrent = i === currentSpotIdx;
       const badges = [];
+      if (isCurrent) badges.push('<span class="spot-now-badge">MAINTENANT</span>');
       if (isVisited) badges.push('<span class="spot-badge visited">✓ Vu</span>');
       if (booked) badges.push('<span class="spot-badge booked">✓ Réservé</span>');
       else if (info?.booking === 'required' && !isVisited) badges.push('<span class="spot-badge required">À réserver</span>');
       const badgesHtml = badges.length ? `<span class="spot-badges">${badges.join('')}</span>` : '';
       return `
-        <div class="spot ${isVisited ? 'visited' : ''}" onclick="focusSpot(${i})" data-idx="${i}">
+        <div class="spot ${isVisited ? 'visited' : ''} ${isCurrent ? 'current-now' : ''}" onclick="focusSpot(${i})" data-idx="${i}">
           <div class="spot-icon" style="background:${meta.color}">${meta.icon}</div>
           <div class="spot-content">
             <div class="spot-time">${s.time}</div>
@@ -1863,7 +2326,12 @@
         </div>
       `;
     }).join('');
-    list.scrollTop = 0;
+    if (currentSpotIdx >= 0) {
+      const el = list.querySelector(`.spot[data-idx="${currentSpotIdx}"]`);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    } else {
+      list.scrollTop = 0;
+    }
   }
 
   function renderMapMarkers() {
@@ -1975,21 +2443,29 @@
   }
 
   // ========= INIT =========
+  // Mode Aujourd'hui : si on est pendant le voyage, auto-select le jour courant
+  const todayIdx = getCurrentTripDayIdx();
+  if (todayIdx >= 0) currentDay = todayIdx;
+
   updateCountdown();
   updateWeekBudget();
   renderTabs();
   renderDayHeader();
   renderSpots();
-  // Initial state: show route by default
   document.getElementById('btn-route').classList.add('active');
   renderMapMarkers();
 
-  // Fetch weather (will only fill in dates within 16-day forecast window)
   fetchWeather();
 
-  // Refresh countdown every hour + weather every 6h
+  // Refresh countdown every hour + weather every 6h + "MAINTENANT" every 10 min
   setInterval(updateCountdown, 1000 * 60 * 60);
   setInterval(fetchWeather, 1000 * 60 * 60 * 6);
+  setInterval(() => {
+    if (getCurrentTripDayIdx() === currentDay) {
+      renderSpots();
+      renderDayHeader();
+    }
+  }, 1000 * 60 * 10);
 
   // Service worker for offline support
   if ('serviceWorker' in navigator) {
