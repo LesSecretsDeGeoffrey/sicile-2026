@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#0B0F1A">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Sicile · 23 au 30 août 2026</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -891,8 +894,28 @@
     const meta = spot.meta || '';
     const firstPart = meta.split('·')[0].trim();
     const isAddress = /^(Via|Viale|Piazza|Corso|Vico|Vicolo|Strada|Lungomare|Molo|Contrada)/i.test(firstPart);
-    const locationStr = isAddress ? firstPart : '';
-    const query = `${spot.name} ${locationStr} Sicilia Italy`.replace(/\s+/g, ' ').trim();
+    const address = isAddress ? firstPart : '';
+
+    const combined = (spot.name + ' ' + meta + ' ' + (spot.description || '')).toLowerCase();
+    let city = 'Taormina';
+    if (combined.includes('noto') && !combined.includes('nero')) city = 'Noto';
+    else if (combined.includes('ortigia') || combined.includes('siracusa') || combined.includes('syracuse') || combined.includes('aréthuse') || combined.includes('apollon')) city = 'Ortigia Siracusa';
+    else if (combined.includes('cave ox') || combined.includes('solicchiata')) city = 'Solicchiata Catania';
+    else if (combined.includes('planeta') || combined.includes('feudo di mezzo')) city = 'Passopisciaro Etna';
+    else if (combined.includes('rifugio sapienza') || combined.includes('cratère') || combined.includes('etna')) city = 'Etna Catania';
+    else if (combined.includes('stromboli') || combined.includes('ritrovo ingrid') || combined.includes('sciara') || combined.includes('labronzo')) city = 'Stromboli';
+    else if (combined.includes('savoca')) city = 'Savoca Messina';
+    else if (combined.includes("forza d'agr") || combined.includes('gianni')) city = "Forza d'Agrò";
+    else if (combined.includes('castelmola') || combined.includes('turrisi')) city = 'Castelmola';
+    else if (combined.includes('calamosche') || combined.includes('vendicari')) city = 'Vendicari Noto';
+    else if (combined.includes('alcantara')) city = 'Motta Camastra';
+    else if (combined.includes('letojanni') || combined.includes('perla rosa')) city = 'Letojanni';
+    else if (combined.includes('mazzeo')) city = 'Mazzeo Taormina';
+    else if (combined.includes('spisone')) city = 'Spisone Taormina';
+    else if (combined.includes('giardini-naxos') || combined.includes('giardini naxos') || combined.includes('naxos')) city = 'Giardini Naxos';
+    else if (combined.includes('catane') || combined.includes('catania')) city = 'Catania';
+
+    const query = `${spot.name} ${address} ${city} Sicilia`.replace(/\s+/g, ' ').trim();
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
   }
 
