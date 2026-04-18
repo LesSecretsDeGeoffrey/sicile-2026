@@ -784,6 +784,103 @@
     color: var(--terracotta);
     border: 1px solid rgba(224, 120, 86, 0.3);
   }
+  .spot-badge.visited {
+    background: rgba(46, 196, 182, 0.2);
+    color: #2EC4B6;
+    border: 1px solid rgba(46, 196, 182, 0.4);
+  }
+
+  .spot.visited .spot-icon { opacity: 0.5; }
+  .spot.visited .spot-name { text-decoration: line-through; text-decoration-color: rgba(46, 196, 182, 0.4); text-decoration-thickness: 1px; }
+
+  .journal-progress {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(46, 196, 182, 0.08);
+    border: 1px solid rgba(46, 196, 182, 0.25);
+    border-radius: 10px;
+    font-size: 11px;
+    color: #2EC4B6;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .journal-progress-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(46, 196, 182, 0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .journal-progress-fill {
+    height: 100%;
+    background: #2EC4B6;
+    transition: width 0.3s;
+  }
+
+  .popup-journal {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .popup-journal-note {
+    font-size: 12px;
+    color: var(--cream);
+    background: rgba(200, 160, 74, 0.08);
+    border-left: 3px solid var(--gold);
+    padding: 8px 10px;
+    border-radius: 0 8px 8px 0;
+    margin: 8px 0;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .planB-toggle {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255, 159, 67, 0.08);
+    border: 1px solid rgba(255, 159, 67, 0.3);
+    border-radius: 10px;
+    color: #FF9F43;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s;
+  }
+  .planB-toggle:hover { background: rgba(255, 159, 67, 0.15); }
+  .planB-toggle-icon { transition: transform 0.3s; }
+  .planB-toggle.open .planB-toggle-icon { transform: rotate(180deg); }
+
+  .planB-content {
+    margin-top: 8px;
+    padding: 12px 14px;
+    background: rgba(255, 159, 67, 0.05);
+    border: 1px solid rgba(255, 159, 67, 0.2);
+    border-radius: 10px;
+    display: none;
+  }
+  .planB-content.open { display: block; }
+  .planB-intro {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    line-height: 1.45;
+    font-style: italic;
+  }
+  .planB-alt {
+    padding: 8px 0;
+    border-top: 1px dashed rgba(255, 159, 67, 0.2);
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.45;
+  }
+  .planB-alt:first-child { border-top: none; padding-top: 0; }
+  .planB-alt strong { color: #FF9F43; font-weight: 700; }
 
   .leaflet-control-zoom a {
     background: rgba(18, 25, 41, 0.92) !important;
@@ -973,6 +1070,15 @@
       fullDate: "Dimanche 23 août 2026",
       title: "Arrivée et découverte de Taormina",
       budget: { low: 55, typical: 85, high: 125 },
+      planB: {
+        intro: "Orage en août à Taormina c'est rare mais possible. Les alternatives couvertes sont nombreuses en centre-ville.",
+        alternatives: [
+          { name: "Palazzo Corvaja + Musée", desc: "14e siècle, petit musée d'art populaire sicilien, indoor. Entrée 4€." },
+          { name: "Cathédrale de Taormina (Duomo San Nicolò)", desc: "Église fortifiée du 13e siècle, visite gratuite couverte, 10 min à visiter" },
+          { name: "Shopping sous les arcades du Corso Umberto", desc: "Céramiques Caltagirone, bottarga, cuir, cannoli sous vide à ramener" },
+          { name: "Dîner maintenu chez Osteria Rossodivino", desc: "Salle intérieure confortable, c'est posé même sous la pluie" }
+        ]
+      },
       spots: [
         { name: "Aéroport de Catane", category: "transport", time: "08h45", coords: [37.4668, 15.0664], description: "Atterrissage du vol. Récupération de la voiture de location puis route directe vers Taormina via l'autoroute A18 (50 min, péage 5€).", meta: "Terminal arrivée international" },
         { name: "Eurostars Monte Tauro", category: "hotel", time: "10h30", coords: [37.8518, 15.2894], description: "Dépôt des bagages à la bagagerie. Check-in officiel à 14h mais tu peux laisser les valises et partir découvrir.", meta: "Via Madonna delle Grazie 3" },
@@ -991,6 +1097,15 @@
       fullDate: "Lundi 24 août 2026",
       title: "Isola Bella et criques sauvages",
       budget: { low: 50, typical: 80, high: 120 },
+      planB: {
+        intro: "Si la mer est agitée ou orage, on zappe la plage et on fait Taormina indoor + expériences culinaires.",
+        alternatives: [
+          { name: "Teatro Antico en version pluie", desc: "Grande partie abritée sous les arcades, vue sur l'Etna reste visible, 14€" },
+          { name: "Cours de cuisine sicilienne", desc: "Cannoli ou pasta alla norma, 30 à 50€/pers. Dispo sur Airbnb Experiences ou Taormina Cooking Class" },
+          { name: "Spa Grand Hotel Timeo (Belmond)", desc: "Accès spa aux non-résidents, massage aux agrumes, ~80€ la séance" },
+          { name: "Musée Archéologique de Giardini-Naxos", desc: "20 min en voiture, vestiges colonie grecque du 8e siècle av J.-C., 4€" }
+        ]
+      },
       spots: [
         { name: "Petit-déj hôtel", category: "hotel", time: "09h00", coords: [37.8518, 15.2894], description: "Tranquille sur la terrasse de l'hôtel. Piscine si l'envie prend avant la descente plage.", meta: "" },
         { name: "Téléphérique", category: "transport", time: "10h00", coords: [37.8502, 15.2923], description: "3€ aller, toutes les 15 min, 3 min de trajet. Évite les 280 marches pour descendre.", meta: "Station Taormina" },
@@ -1007,6 +1122,15 @@
       fullDate: "Mardi 25 août 2026",
       title: "Le Parrain et Castelmola",
       budget: { low: 60, typical: 95, high: 140 },
+      planB: {
+        intro: "Les villages (Savoca, Forza d'Agrò, Castelmola) se visitent bien sous la pluie grâce à leurs églises, cafés et terrasses couvertes. Plan B si vraiment orage carabiné :",
+        alternatives: [
+          { name: "Bar Vitelli intérieur", desc: "L'intérieur du bar du Parrain est cosy, photos de tournage au mur, parfait sous la pluie" },
+          { name: "Cooking class cannoli à Taormina", desc: "3h, ~50€/pers, tu fais tes propres cannoli siciliens de A à Z" },
+          { name: "Dégustation indoor chez Planeta Etna", desc: "Salle de dégustation couverte, remplace bien une journée Godfather pluvieuse, 35€/pers" },
+          { name: "Musée Godfather à Savoca", desc: "Petit musée dans l'ancienne maison communale, photos et accessoires du tournage, 3€" }
+        ]
+      },
       spots: [
         { name: "Départ Taormina", category: "transport", time: "09h30", coords: [37.8518, 15.2894], description: "Journée chill après les plages d'hier. Direction Savoca, 25 min de route par la SS114.", meta: "" },
         { name: "Savoca", category: "culture", time: "10h00", coords: [37.9706, 15.3680], description: "Village perché où Francis Ford Coppola a tourné les scènes siciliennes du Parrain. Église San Nicolò (scène du mariage de Michael), ruelles tranquilles, vue sur la mer Ionienne.", meta: "Tourne très tôt pour éviter la foule" },
@@ -1025,6 +1149,15 @@
       fullDate: "Mercredi 26 août 2026",
       title: "Ortigia, Vendicari et Noto",
       budget: { low: 40, typical: 60, high: 90 },
+      planB: {
+        intro: "Si orage, on zappe Vendicari (plage inutile sous la pluie) et on double Ortigia + Noto avec plus de temps sur les intérieurs baroques.",
+        alternatives: [
+          { name: "Musée archéologique Paolo Orsi (Syracuse)", desc: "Un des meilleurs musées grecs d'Italie, 1h30 de visite, 10€" },
+          { name: "Catacombes de San Giovanni (Syracuse)", desc: "30 min en visite guidée, 8€, totalement indoor, impressionnant" },
+          { name: "Cathédrale de Noto intérieur", desc: "Basilique minor baroque, nef colossale, gratuit. Remplace la promenade baroque extérieure" },
+          { name: "Palazzo Nicolaci de Villadorata (Noto)", desc: "Balcons sculptés de figures grotesques, visite intérieure avec salons, 4€" }
+        ]
+      },
       spots: [
         { name: "Départ Taormina", category: "transport", time: "08h00", coords: [37.8518, 15.2894], description: "Départ tôt, journée XXL : baroque + plus belle plage de Sicile Est + baroque. Prends un petit-déj consistant, pique-nique en option.", meta: "" },
         { name: "Parking Talete", category: "transport", time: "09h15", coords: [37.0637, 15.2951], description: "Parking souterrain d'Ortigia, 15€/jour. Ensuite tout à pied.", meta: "Via von Platen" },
@@ -1045,6 +1178,15 @@
       fullDate: "Jeudi 27 août 2026",
       title: "L'Etna, le volcan mythique",
       budget: { low: 110, typical: 170, high: 230 },
+      planB: {
+        intro: "CRITIQUE : l'excursion Etna est souvent annulée en cas de pluie, vent fort ou mauvaise visibilité. Les compagnies remboursent ou reprogramment. Plan B solide obligatoire :",
+        alternatives: [
+          { name: "Dégustation Planeta Feudo di Mezzo indoor", desc: "Même winery que prévu, salle de dégustation couverte, 4 vins + olive oil, 35€/pers. Réserve d'avance" },
+          { name: "Visite Catane centre historique UNESCO", desc: "Piazza del Duomo noir et blanc, marché aux poissons La Pescheria (couvert), Via Etnea shopping. 1h de route" },
+          { name: "Castello Ursino (Catane)", desc: "Château de Frédéric II en pierre volcanique, musée civique à l'intérieur, 10€" },
+          { name: "Terme di Acireale (bains thermes)", desc: "Thermes historiques depuis 1873, eaux sulfureuses chauffées. 45 min de route. Parfait sous la pluie" }
+        ]
+      },
       spots: [
         { name: "Départ Taormina", category: "transport", time: "07h30", coords: [37.8518, 15.2894], description: "Petit-déj léger en terrasse. Direction le versant sud de l'Etna, 1h15 de route par la SS114 et la SP92.", meta: "" },
         { name: "Rifugio Sapienza", category: "nature", time: "09h00", coords: [37.6992, 15.0047], description: "Base de départ pour l'excursion au sommet. Parking, boutiques, billetterie du téléphérique, cratères Silvestri juste à côté.", meta: "1920m d'altitude" },
@@ -1061,6 +1203,15 @@
       fullDate: "Vendredi 28 août 2026",
       title: "Gorges d'Alcantara et plages sauvages",
       budget: { low: 65, typical: 100, high: 145 },
+      planB: {
+        intro: "Les Gole d'Alcantara FERMENT en cas de fortes pluies (risque de crue soudaine dans les gorges). Le dîner Al Paladino reste en intérieur, lui.",
+        alternatives: [
+          { name: "Villa Comunale Taormina", desc: "Jardin historique créé par Lady Florence Trevelyan, plusieurs pavillons victoriens couverts, serre, vue Etna. Gratuit" },
+          { name: "Spa Grand Hotel San Pietro ou Villa Ducale", desc: "Ouverts aux non-résidents sur résa. Massage aux huiles siciliennes, hammam. 70 à 120€" },
+          { name: "Cooking class caponata + arancini", desc: "3h, 60€/pers, tu cuisines + tu manges. Plus consistant qu'un simple cannoli workshop" },
+          { name: "Sicilia Outlet Village", desc: "35 min de route (sortie A18). Shopping marques italiennes prix réduits : Gucci, Prada, Versace, Dolce & Gabbana" }
+        ]
+      },
       spots: [
         { name: "Départ Taormina", category: "transport", time: "09h00", coords: [37.8518, 15.2894], description: "Direction les gorges, 30 min de route par la SS185.", meta: "" },
         { name: "Gole Alcantara", category: "nature", time: "09h30", coords: [37.8866, 15.1735], description: "Gorges de basalte noir creusées par la rivière depuis 8000 ans. Eau glaciale à 13°C toute l'année. Location combi néoprène obligatoire. Colonnes basaltiques turquoise, spot insta fou.", meta: "Entrée 15€ + combi 10€" },
@@ -1076,6 +1227,15 @@
       fullDate: "Samedi 29 août 2026",
       title: "Stromboli, le volcan actif des Éoliennes",
       budget: { low: 120, typical: 195, high: 280 },
+      planB: {
+        intro: "CRITIQUE : le tour Stromboli est annulé si mer agitée (>2m de houle) ou vent fort. Remboursement automatique par la compagnie. Plan B pour une journée sans Stromboli :",
+        alternatives: [
+          { name: "Journée spa + piscine à l'hôtel", desc: "Dernière journée, gros chill avant le vol de demain. Option la plus sage si énergie basse" },
+          { name: "Messina centre historique", desc: "1h de route. Duomo avec horloge astronomique géante, tirage à midi, Fontaine d'Orion, Museo Regionale avec Caravages" },
+          { name: "Cefalù (2h30 de route)", desc: "Si la météo s'améliore en journée. Ville médiévale bord de mer, cathédrale arabo-normande UNESCO, plage urbaine. Possible retour dans la journée" },
+          { name: "Taormina Mare (plages locales)", desc: "La météo côtière peut être OK même si la mer des Éoliennes est grosse. Spisone ou Mazzeo à 15 min" }
+        ]
+      },
       spots: [
         { name: "Grasse matinée + BAM Bar", category: "resto", time: "10h30", coords: [37.8516, 15.2881], description: "Dernière granita au BAM Bar (amande, café, pistache, citron, prends-les toutes). Journée intense qui t'attend, prends des forces.", meta: "Via di Giovanni 45" },
         { name: "Shopping Corso Umberto", category: "culture", time: "11h30", coords: [37.8517, 15.2880], description: "Dernier tour rapide avant la navigation : céramiques Caltagirone, bottarga di tonno, pistaches de Bronte, vins Etna (Passopisciaro, Graci), huile d'olive Nocellara. Rapporte une valise vide à l'aller.", meta: "" },
@@ -1285,12 +1445,87 @@
   }
 
   function getPhotoUrl(spot) {
+    const journal = getJournal()[spot.name];
+    if (journal?.photo) return journal.photo;
     if (spot.photo === false) return null;
     if (spot.photo) return spot.photo;
     const tags = getPhotoTags(spot);
     if (!tags) return null;
     const lock = hashString(spot.name + (spot.meta || ''));
     return `https://loremflickr.com/600/300/${tags}?lock=${lock}`;
+  }
+
+  // ======== JOURNAL DE VOYAGE ========
+  const JOURNAL_KEY = 'sicile-2026-journal';
+
+  function getJournal() {
+    try { return JSON.parse(localStorage.getItem(JOURNAL_KEY) || '{}'); }
+    catch { return {}; }
+  }
+
+  function saveJournalEntry(key, patch) {
+    const all = getJournal();
+    all[key] = { ...(all[key] || {}), ...patch };
+    Object.keys(all[key]).forEach(k => {
+      if (all[key][k] === undefined || all[key][k] === null || all[key][k] === '') delete all[key][k];
+    });
+    if (Object.keys(all[key]).length === 0) delete all[key];
+    try {
+      localStorage.setItem(JOURNAL_KEY, JSON.stringify(all));
+    } catch (e) {
+      alert('Stockage plein. Supprime une photo ou réduis les notes pour faire de la place.');
+    }
+  }
+
+  window.toggleVisited = function(spotName) {
+    const current = getJournal()[spotName]?.visited;
+    saveJournalEntry(spotName, { visited: !current });
+    renderMapMarkers();
+    renderSpots();
+    renderDayHeader();
+  };
+
+  window.editSpotNote = function(spotName) {
+    const current = getJournal()[spotName]?.note || '';
+    const note = prompt(`Note perso pour "${spotName}" :\n(vide pour supprimer)`, current);
+    if (note === null) return;
+    saveJournalEntry(spotName, { note: note.trim() || undefined });
+    renderMapMarkers();
+  };
+
+  window.uploadSpotPhoto = function(spotName) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 2.5 * 1024 * 1024) {
+        alert('Photo trop grande (max 2.5 MB). Compresse-la avant d\'uploader.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        saveJournalEntry(spotName, { photo: evt.target.result });
+        renderMapMarkers();
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  };
+
+  window.removeSpotPhoto = function(spotName) {
+    if (confirm('Supprimer ta photo perso de ce spot ?')) {
+      saveJournalEntry(spotName, { photo: undefined });
+      renderMapMarkers();
+    }
+  };
+
+  function getDayJournalStats(day) {
+    const journal = getJournal();
+    const total = day.spots.length;
+    const visited = day.spots.filter(s => journal[s.name]?.visited).length;
+    return { visited, total, pct: total > 0 ? Math.round((visited / total) * 100) : 0 };
   }
 
   function dayBudget(day) {
@@ -1385,12 +1620,28 @@
     return html;
   }
 
+  function buildJournalSection(spot) {
+    const journal = getJournal()[spot.name];
+    const safeName = spot.name.replace(/'/g, "\\'");
+    const visited = journal?.visited;
+    const note = journal?.note;
+    const hasPhoto = !!journal?.photo;
+    let html = '<div class="popup-journal">';
+    html += `<button class="popup-action-btn" onclick="toggleVisited('${safeName}')">${visited ? '✓ Visité' : '○ Marquer visité'}</button>`;
+    html += `<button class="popup-action-btn" onclick="editSpotNote('${safeName}')">${note ? '📝 Éditer note' : '📝 Ajouter note'}</button>`;
+    html += `<button class="popup-action-btn" onclick="${hasPhoto ? `removeSpotPhoto('${safeName}')` : `uploadSpotPhoto('${safeName}')`}">${hasPhoto ? '🗑 Supprimer photo' : '📷 Ma photo'}</button>`;
+    if (note) html += `<div class="popup-journal-note">« ${note} »</div>`;
+    html += '</div>';
+    return html;
+  }
+
   function buildPopup(spot, dayNum) {
     const metaLine = spot.meta ? `<div class="popup-meta">${spot.meta}</div>` : '';
     const gmapsUrl = buildMapsUrl(spot);
     const photoUrl = getPhotoUrl(spot);
     const photoHtml = photoUrl ? `<div class="popup-photo"><img loading="lazy" src="${photoUrl}" alt="${spot.name}" onerror="this.parentElement.style.display='none'"></div>` : '';
     const infoHtml = buildInfoSection(spot);
+    const journalHtml = buildJournalSection(spot);
     return `
       ${photoHtml}
       <div class="popup-overline">${spot.time} · Jour ${dayNum}</div>
@@ -1398,6 +1649,7 @@
       <div class="popup-desc">${spot.description}</div>
       ${metaLine}
       ${infoHtml}
+      ${journalHtml}
       <a class="popup-link" target="_blank" href="${gmapsUrl}">Ouvrir dans Google Maps →</a>
     `;
   }
@@ -1530,6 +1782,23 @@
       ? `<a class="gps-day-btn" href="${gpsUrl}" target="_blank">🗺️ GPS du jour · Itinéraire complet</a>`
       : '';
 
+    const jstats = getDayJournalStats(d);
+    const journalLine = jstats.visited > 0
+      ? `<div class="journal-progress">📖 <span><strong>${jstats.visited}/${jstats.total}</strong> spots visités</span><div class="journal-progress-bar"><div class="journal-progress-fill" style="width:${jstats.pct}%"></div></div></div>`
+      : '';
+
+    const planB = d.planB;
+    const planBHtml = planB ? `
+      <button class="planB-toggle" onclick="togglePlanB()">
+        <span>⛈️ Plan B si météo pourrie</span>
+        <span class="planB-toggle-icon">▼</span>
+      </button>
+      <div class="planB-content" id="planB-content">
+        <div class="planB-intro">${planB.intro}</div>
+        ${planB.alternatives.map(a => `<div class="planB-alt"><strong>${a.name}</strong> · ${a.desc}</div>`).join('')}
+      </div>
+    ` : '';
+
     document.getElementById('day-header').innerHTML = `
       <div class="day-header-overline">Jour ${d.number} sur 8</div>
       <div class="day-header-title">${d.title}</div>
@@ -1541,9 +1810,20 @@
       </div>
       ${budgetLine}
       ${weatherLine}
+      ${journalLine}
       ${gpsBtn}
+      ${planBHtml}
     `;
   }
+
+  window.togglePlanB = function() {
+    const btn = document.querySelector('.planB-toggle');
+    const content = document.getElementById('planB-content');
+    if (btn && content) {
+      btn.classList.toggle('open');
+      content.classList.toggle('open');
+    }
+  };
 
   function updateWeekBudget() {
     const wb = weekBudget();
@@ -1558,22 +1838,27 @@
     const d = days[currentDay];
     const list = document.getElementById('spots-list');
     const reservations = getReservations();
+    const journal = getJournal();
     list.innerHTML = d.spots.map((s, i) => {
       const meta = categoryMeta[s.category];
       const info = SPOT_METADATA[s.name];
       const booked = reservations[s.name];
+      const entry = journal[s.name];
+      const isVisited = entry?.visited;
       const badges = [];
+      if (isVisited) badges.push('<span class="spot-badge visited">✓ Vu</span>');
       if (booked) badges.push('<span class="spot-badge booked">✓ Réservé</span>');
-      else if (info?.booking === 'required') badges.push('<span class="spot-badge required">À réserver</span>');
+      else if (info?.booking === 'required' && !isVisited) badges.push('<span class="spot-badge required">À réserver</span>');
       const badgesHtml = badges.length ? `<span class="spot-badges">${badges.join('')}</span>` : '';
       return `
-        <div class="spot" onclick="focusSpot(${i})" data-idx="${i}">
+        <div class="spot ${isVisited ? 'visited' : ''}" onclick="focusSpot(${i})" data-idx="${i}">
           <div class="spot-icon" style="background:${meta.color}">${meta.icon}</div>
           <div class="spot-content">
             <div class="spot-time">${s.time}</div>
             <div class="spot-name">${s.name}${badgesHtml}</div>
             <div class="spot-desc">${s.description}</div>
             ${s.meta ? `<div class="spot-meta">${s.meta}</div>` : ''}
+            ${entry?.note ? `<div class="spot-meta" style="color:#2EC4B6;font-style:italic;margin-top:6px">« ${entry.note} »</div>` : ''}
           </div>
         </div>
       `;
