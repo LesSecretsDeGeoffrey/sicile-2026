@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0B0F1A">
+<title>Sicile · 23 au 30 août 2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0B0F1A;
+    --bg-2: #121929;
+    --bg-3: #1C2540;
+    --border: rgba(200, 160, 74, 0.18);
+    --border-strong: rgba(200, 160, 74, 0.4);
+    --gold: #C8A04A;
+    --gold-bright: #E0B955;
+    --cream: #F5E6D3;
+    --terracotta: #E07856;
+    --ocean: #1B4965;
+    --text: #EDE6D6;
+    --text-dim: rgba(237, 230, 214, 0.6);
+    --text-faint: rgba(237, 230, 214, 0.35);
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(200,160,74,0.1);
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* HEADER */
+  .header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 68px;
+    background: linear-gradient(180deg, rgba(11,15,26,0.98) 0%, rgba(11,15,26,0.92) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+  }
+
+  .brand { display: flex; align-items: center; gap: 14px; }
+
+  .brand-flag {
+    font-size: 26px;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+  }
+
+  .brand-text { display: flex; flex-direction: column; gap: 2px; }
+
+  .brand-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 0.3px;
+    line-height: 1;
+  }
+
+  .brand-sub {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .countdown { text-align: right; }
+
+  .countdown-num {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--gold-bright);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .countdown-label {
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-top: 3px;
+    font-weight: 500;
+  }
+
+  /* MAIN */
+  .main {
+    position: fixed;
+    top: 68px; left: 0; right: 0; bottom: 0;
+    display: flex;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 440px;
+    min-width: 440px;
+    background: var(--bg-2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .day-tabs {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 12px 12px 0 12px;
+    gap: 2px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+    scrollbar-width: none;
+  }
+  .day-tabs::-webkit-scrollbar { display: none; }
+
+  .day-tab {
+    min-width: 62px;
+    padding: 10px 10px 12px 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .day-tab:hover { color: var(--cream); }
+
+  .day-tab.active {
+    color: var(--gold-bright);
+    border-bottom-color: var(--gold);
+  }
+
+  .day-tab-num {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .day-tab-date {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .day-header {
+    padding: 22px 24px 20px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .day-header-overline {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .day-header-overline::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .day-header-title {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+  }
+
+  .day-header-date {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  .day-stats {
+    display: flex;
+    gap: 14px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .day-stat {
+    font-size: 11px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .day-stat strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .spots-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 14px 40px 14px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .spots-list::-webkit-scrollbar { width: 6px; }
+  .spots-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  .spots-list::-webkit-scrollbar-track { background: transparent; }
+
+  .spot {
+    background: var(--bg-3);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 13px 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 13px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .spot:hover {
+    border-color: var(--border-strong);
+    transform: translateX(2px);
+  }
+
+  .spot.active {
+    border-color: var(--gold);
+    background: rgba(200, 160, 74, 0.08);
+    box-shadow: 0 4px 20px rgba(200, 160, 74, 0.15);
+  }
+
+  .spot-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  }
+
+  .spot-content { flex: 1; min-width: 0; }
+
+  .spot-time {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .spot-name {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 4px;
+    letter-spacing: -0.2px;
+  }
+
+  .spot-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.45;
+  }
+
+  .spot-meta {
+    font-size: 10.5px;
+    color: var(--text-faint);
+    margin-top: 6px;
+    letter-spacing: 0.3px;
+    font-style: italic;
+  }
+
+  /* MAP */
+  .map-container { flex: 1; position: relative; }
+
+  #map {
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+  }
+
+  .map-legend {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(18, 25, 41, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    z-index: 500;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 6px 16px;
+    font-size: 11px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.2);
+  }
+
+  /* MAP CONTROLS */
+  .map-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .map-btn {
+    background: rgba(18, 25, 41, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+  }
+
+  .map-btn:hover {
+    background: rgba(200, 160, 74, 0.15);
+    border-color: var(--gold);
+    color: var(--gold-bright);
+  }
+
+  .map-btn.active {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+  }
+
+  /* CUSTOM MARKER */
+  .marker-wrap {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .custom-marker {
+    width: 36px;
+    height: 36px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--cream);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.5);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .custom-marker:hover {
+    transform: rotate(-45deg) scale(1.1);
+  }
+
+  .custom-marker-icon {
+    transform: rotate(45deg);
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .custom-marker-num {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    transform: rotate(45deg);
+    background: var(--bg);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    font-family: var(--sans);
+  }
+
+  /* LEAFLET OVERRIDES */
+  .leaflet-popup-content-wrapper {
+    background: var(--bg-2) !important;
+    color: var(--text) !important;
+    border-radius: 14px !important;
+    border: 1px solid var(--border-strong) !important;
+    box-shadow: var(--shadow-lg) !important;
+    padding: 0 !important;
+  }
+
+  .leaflet-popup-content {
+    margin: 16px 18px !important;
+    min-width: 240px !important;
+    line-height: 1.4 !important;
+  }
+
+  .leaflet-popup-tip {
+    background: var(--bg-2) !important;
+    border: 1px solid var(--border-strong) !important;
+  }
+
+  .leaflet-popup-close-button {
+    color: var(--text-dim) !important;
+    font-size: 22px !important;
+    padding: 6px 10px !important;
+  }
+
+  .popup-overline {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .popup-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+
+  .popup-desc {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .popup-meta {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-bottom: 12px;
+    font-style: italic;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .popup-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--gold);
+    color: var(--bg) !important;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+
+  .popup-link:hover {
+    background: var(--gold-bright);
+    transform: translateY(-1px);
+  }
+
+  .leaflet-control-zoom a {
+    background: rgba(18, 25, 41, 0.92) !important;
+    backdrop-filter: blur(20px);
+    color: var(--cream) !important;
+    border: 1px solid var(--border) !important;
+    font-family: var(--serif) !important;
+  }
+
+  .leaflet-control-zoom a:hover {
+    background: rgba(200, 160, 74, 0.15) !important;
+    color: var(--gold-bright) !important;
+  }
+
+  .leaflet-control-attribution {
+    background: rgba(11,15,26,0.8) !important;
+    color: var(--text-faint) !important;
+    font-size: 9px !important;
+    padding: 2px 8px !important;
+  }
+
+  .leaflet-control-attribution a { color: var(--gold) !important; }
+
+  .leaflet-tile {
+    filter: brightness(0.65) contrast(1.1) saturate(0.75) hue-rotate(-8deg);
+  }
+
+  /* MOBILE TOGGLE */
+  .mobile-toggle {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 2000;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    cursor: pointer;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .sidebar {
+      width: 100%;
+      min-width: 0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 900;
+      transform: translateX(0);
+      transition: transform 0.3s ease;
+      background: var(--bg-2);
+    }
+
+    .sidebar.hidden { transform: translateX(-100%); }
+
+    .main { display: block; }
+
+    .map-container {
+      position: absolute;
+      inset: 0;
+    }
+
+    .mobile-toggle { display: block; }
+
+    .map-legend {
+      bottom: 80px;
+      left: 10px;
+      right: 10px;
+      padding: 10px;
+      font-size: 10px;
+    }
+
+    .map-controls { right: 10px; top: 10px; }
+
+    .map-btn { padding: 8px 10px; font-size: 10px; }
+
+    .countdown-num { font-size: 24px; }
+    .brand-title { font-size: 17px; }
+    .brand-sub { font-size: 9px; }
+  }
+
+  @media (max-width: 480px) {
+    .header { padding: 0 14px; height: 60px; }
+    .main { top: 60px; }
+    .day-header { padding: 18px 20px; }
+    .day-header-title { font-size: 22px; }
+    .spots-list { padding: 12px; }
+  }
+
+  /* INTRO ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .spot { animation: fadeUp 0.35s ease backwards; }
+  .spot:nth-child(1) { animation-delay: 0.02s; }
+  .spot:nth-child(2) { animation-delay: 0.06s; }
+  .spot:nth-child(3) { animation-delay: 0.10s; }
+  .spot:nth-child(4) { animation-delay: 0.14s; }
+  .spot:nth-child(5) { animation-delay: 0.18s; }
+  .spot:nth-child(6) { animation-delay: 0.22s; }
+  .spot:nth-child(7) { animation-delay: 0.26s; }
+  .spot:nth-child(8) { animation-delay: 0.30s; }
+  .spot:nth-child(9) { animation-delay: 0.34s; }
+  .spot:nth-child(10) { animation-delay: 0.38s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <span class="brand-flag">🇮🇹</span>
+    <div class="brand-text">
+      <div class="brand-title">Sicile</div>
+      <div class="brand-sub">23 au 30 août 2026</div>
+    </div>
+  </div>
+  <div class="countdown">
+    <div class="countdown-num" id="countdown-num">—</div>
+    <div class="countdown-label" id="countdown-label">jours restants</div>
+  </div>
+</header>
+
+<div class="main">
+  <aside class="sidebar" id="sidebar">
+    <nav class="day-tabs" id="day-tabs"></nav>
+    <div class="day-header" id="day-header"></div>
+    <div class="spots-list" id="spots-list"></div>
+  </aside>
+
+  <div class="map-container">
+    <div id="map"></div>
+
+    <div class="map-controls">
+      <button class="map-btn" id="btn-view-all" onclick="toggleViewAll()">Tout voir</button>
+      <button class="map-btn" id="btn-route" onclick="toggleRoute()">Itinéraire</button>
+    </div>
+
+    <div class="map-legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#C8A04A"></span>Hôtel</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#E07856"></span>Resto</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#4DC3E0"></span>Plage</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#A978E0"></span>Culture</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#FF6B9D"></span>Insta</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#9D4E15"></span>Vin</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#FF9F43"></span>Nature</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#2EC4B6"></span>Bar</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#8A99B5"></span>Transport</div>
+    </div>
+  </div>
+</div>
+
+<button class="mobile-toggle" id="mobile-toggle" onclick="toggleSidebar()">Voir la carte</button>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+  // ========= DATA =========
+  const days = [
+    {
+      number: 1,
+      shortDate: "DIM 23",
+      fullDate: "Dimanche 23 août 2026",
+      title: "Arrivée et découverte de Taormina",
+      spots: [
+        { name: "Aéroport de Catane", category: "transport", time: "08h45", coords: [37.4668, 15.0664], description: "Atterrissage du vol. Récupération de la voiture de location puis route directe vers Taormina via l'autoroute A18 (50 min, péage 5€).", meta: "Terminal arrivée international" },
+        { name: "Eurostars Monte Tauro", category: "hotel", time: "10h30", coords: [37.8518, 15.2894], description: "Dépôt des bagages à la bagagerie. Check-in officiel à 14h mais tu peux laisser les valises et partir découvrir.", meta: "Via Madonna delle Grazie 3" },
+        { name: "BAM Bar", category: "resto", time: "11h15", coords: [37.8516, 15.2881], description: "Le petit-déj sicilien culte. Granita amande ou café avec brioche chaude dedans. Prends-en deux, tu t'en voudras pas.", meta: "Via di Giovanni 45" },
+        { name: "Corso Umberto", category: "culture", time: "12h00", coords: [37.8517, 15.2880], description: "Rue principale piétonne. Céramiques de Caltagirone, linge, boutiques de bottarga. Repère pour le shopping de fin de séjour.", meta: "" },
+        { name: "Piazza IX Aprile", category: "insta", time: "12h30", coords: [37.8519, 15.2882], description: "La place en damier noir et blanc avec vue plongeante sur la baie et l'Etna. Spot insta n°1 de Taormina, la photo obligatoire.", meta: "Meilleure lumière en fin d'aprem" },
+        { name: "Trattoria Don Ciccio", category: "resto", time: "13h30", coords: [37.8513, 15.2879], description: "Authentique trattoria dans une ruelle cachée. Pâtes maison, pas un piège à touristes. Pasta alla norma ou al pistacchio.", meta: "Via Damiano Rosso 3" },
+        { name: "Teatro Antico", category: "culture", time: "17h00", coords: [37.8524, 15.2923], description: "Théâtre grec du IIIe siècle avant J.-C. avec l'Etna en toile de fond. La lumière dorée de fin d'aprem sublime les pierres.", meta: "14€ · ouvert 9h-19h" },
+        { name: "Bar Morgana", category: "bar", time: "19h30", coords: [37.8516, 15.2884], description: "Apéro dans le patio fleuri. Aperol spritz ou negroni, playlist bossa, ambiance chic sans être coincée.", meta: "Scesa Morgana 4" },
+        { name: "Osteria Nero d'Avola", category: "resto", time: "20h30", coords: [37.8510, 15.2871], description: "Chef Turi Siligato. Carte sicilienne précise, vins naturels triés sur le volet. Le meilleur premier dîner possible. Réservation obligatoire.", meta: "Piazza San Domenico 2B" }
+      ]
+    },
+    {
+      number: 2,
+      shortDate: "LUN 24",
+      fullDate: "Lundi 24 août 2026",
+      title: "Isola Bella et La Capinera",
+      spots: [
+        { name: "Petit-déj hôtel", category: "hotel", time: "09h00", coords: [37.8518, 15.2894], description: "Tranquille sur la terrasse de l'hôtel. Piscine si l'envie prend avant la descente plage.", meta: "" },
+        { name: "Téléphérique", category: "transport", time: "10h00", coords: [37.8502, 15.2923], description: "3€ aller, toutes les 15 min, 3 min de trajet. Évite les 280 marches pour descendre.", meta: "Station Taormina" },
+        { name: "Isola Bella", category: "plage", time: "10h15", coords: [37.8517, 15.3049], description: "Petite île reliée par une langue de sable. Eau turquoise sur galets. Transat chez Isola Bella Beach Club (30 à 40€). Arrive avant 11h.", meta: "Réserve volcanique classée" },
+        { name: "Il Barcaiolo", category: "resto", time: "13h00", coords: [37.8510, 15.3043], description: "Terrasse directement sur la mer, 10 tables. Pasta alle vongole, crudo de poisson, spigola au sel. Réserve la veille minimum.", meta: "Via Castelluccio 43" },
+        { name: "Plage Spisone", category: "plage", time: "15h30", coords: [37.8605, 15.3083], description: "15 min de marche le long du littoral. Plage libre de sable et galets, bien moins peuplée qu'Isola Bella.", meta: "" },
+        { name: "Retour hôtel", category: "hotel", time: "18h00", coords: [37.8518, 15.2894], description: "Douche, apéro sur la terrasse panoramique, se préparer pour le dîner étoilé.", meta: "" },
+        { name: "La Capinera", category: "resto", time: "20h30", coords: [37.8619, 15.3100], description: "1 étoile Michelin. Chef Pietro D'Agostino. Cuisine sicilienne contemporaine, poissons d'exception, vue mer. Menu dégustation 120 à 150€. Réserve 3 semaines avant.", meta: "Via Nazionale 177, Spisone" }
+      ]
+    },
+    {
+      number: 3,
+      shortDate: "MAR 25",
+      fullDate: "Mardi 25 août 2026",
+      title: "L'Etna, le volcan mythique",
+      spots: [
+        { name: "Départ Taormina", category: "transport", time: "07h30", coords: [37.8518, 15.2894], description: "Petit-déj léger en terrasse. Direction le versant sud de l'Etna, 1h15 de route par la SS114 et la SP92.", meta: "" },
+        { name: "Rifugio Sapienza", category: "nature", time: "09h00", coords: [37.6992, 15.0047], description: "Base de départ pour l'excursion au sommet. Parking, boutiques, billetterie du téléphérique, cratères Silvestri juste à côté.", meta: "1920m d'altitude" },
+        { name: "Cratères sommitaux", category: "nature", time: "10h00", coords: [37.7510, 14.9934], description: "Excursion guidée téléphérique + 4x4 + guide volcanologue jusqu'à 2900m. Fumerolles, sol noir volcanique, paysage lunaire. 85€/pers, 3h30.", meta: "Etna Experience ou Etna Finder" },
+        { name: "Cave Ox", category: "vin", time: "13h30", coords: [37.8722, 15.0564], description: "Sandro Dibella, une légende du vin naturel. Pizza au feu de bois, carte de vins infinie. Des sommeliers du monde entier passent ici.", meta: "Via Nazionale 159, Solicchiata" },
+        { name: "Planeta Feudo di Mezzo", category: "vin", time: "16h00", coords: [37.8721, 15.0167], description: "Dégustation 4 à 6 vins avec visite des vignes. Etna Rosso DOC, cépage Nerello Mascalese, Etna Bianco Carricante. 25 à 35€.", meta: "Réserve 48h avant" },
+        { name: "Retour Taormina", category: "transport", time: "18h30", coords: [37.8518, 15.2894], description: "1h15 de route. Arrivée hôtel pour douche et repos, jambes en compote après l'Etna.", meta: "" },
+        { name: "Andrea's Pizza", category: "resto", time: "20h30", coords: [37.8516, 15.2872], description: "Pizza napolitaine dans Taormina centre. Après une journée aussi intense, tu veux du chill, du fromage, du houblon.", meta: "Via Bagnoli Croci" }
+      ]
+    },
+    {
+      number: 4,
+      shortDate: "MER 26",
+      fullDate: "Mercredi 26 août 2026",
+      title: "Ortigia et Noto, le baroque sicilien",
+      spots: [
+        { name: "Départ Taormina", category: "transport", time: "08h30", coords: [37.8518, 15.2894], description: "Direction Syracuse par l'A18 puis A18/E45. 1h15 de route jusqu'à Ortigia.", meta: "" },
+        { name: "Parking Talete", category: "transport", time: "09h45", coords: [37.0637, 15.2951], description: "Parking souterrain le plus proche d'Ortigia, 15€/jour. Ensuite tout se fait à pied.", meta: "Via von Platen" },
+        { name: "Temple d'Apollon", category: "culture", time: "10h00", coords: [37.0624, 15.2929], description: "Porte d'entrée de l'île d'Ortigia. Vestiges du VIe siècle avant J.-C., le plus vieux temple dorique de Sicile.", meta: "Gratuit" },
+        { name: "Piazza Duomo Ortigia", category: "insta", time: "10h30", coords: [37.0596, 15.2936], description: "Une des plus belles places baroques d'Italie. Cathédrale construite sur un temple grec, façade dorée à tomber. Spot insta énorme.", meta: "Meilleur angle depuis le Palazzo Beneventano" },
+        { name: "Fontaine d'Aréthuse", category: "culture", time: "11h30", coords: [37.0587, 15.2935], description: "Source d'eau douce en bord de mer, unique en Europe. Papyrus sauvages, légende grecque. Promenade le long de la marina après.", meta: "" },
+        { name: "Caseificio Borderi", category: "resto", time: "13h00", coords: [37.0614, 15.2939], description: "LE sandwich culte d'Ortigia. Queue 30 min obligatoire mais ça vaut le coup. Leur spécial mortadelle-stracciatella-tomates séchées est une claque.", meta: "Via Emanuele de Benedictis 6 · cash only" },
+        { name: "Route vers Noto", category: "transport", time: "14h30", coords: [36.8912, 15.0705], description: "40 min de route à travers la Val di Noto et ses paysages dorés.", meta: "" },
+        { name: "Noto centre", category: "culture", time: "15h15", coords: [36.8912, 15.0705], description: "Capitale du baroque sicilien. Tout est en pierre dorée. Cathédrale, Palazzo Nicolaci, Corso Vittorio Emanuele. Monte sur le toit de l'église San Carlo pour la vue.", meta: "Patrimoine UNESCO" },
+        { name: "Caffè Sicilia", category: "resto", time: "16h30", coords: [36.8911, 15.0704], description: "Corrado Assenza, le pape du gelato italien (son fils aussi). Granita amande + brioche, gelato pistache de Bronte, cassata. Tu dois y aller, point.", meta: "Corso V. Emanuele 125" },
+        { name: "Retour Taormina", category: "transport", time: "18h00", coords: [37.8518, 15.2894], description: "2h15 de route. Dîner léger à l'arrivée.", meta: "" }
+      ]
+    },
+    {
+      number: 5,
+      shortDate: "JEU 27",
+      fullDate: "Jeudi 27 août 2026",
+      title: "Le Parrain et Castelmola",
+      spots: [
+        { name: "Départ Taormina", category: "transport", time: "09h30", coords: [37.8518, 15.2894], description: "Journée chill après deux grosses journées. Direction Savoca, 25 min de route par la SS114.", meta: "" },
+        { name: "Savoca", category: "culture", time: "10h00", coords: [37.9706, 15.3680], description: "Village perché où Francis Ford Coppola a tourné les scènes siciliennes du Parrain. Église San Nicolò (scène du mariage de Michael), ruelles tranquilles, vue sur la mer Ionienne.", meta: "Tourne très tôt pour éviter la foule" },
+        { name: "Bar Vitelli", category: "bar", time: "10h30", coords: [37.9709, 15.3683], description: "Le bar réellement utilisé dans le film. Photos de tournage, scénarios d'origine affichés. Granita amande obligatoire sur la terrasse.", meta: "Piazza Fossia" },
+        { name: "Forza d'Agrò", category: "culture", time: "12h00", coords: [37.9371, 15.3552], description: "Autre village du Parrain, perché à 420m. Vue à 360°, ruelles médiévales, Chiesa Madre Santissima Annunziata.", meta: "" },
+        { name: "Trattoria da Gianni", category: "resto", time: "13h00", coords: [37.9373, 15.3555], description: "Déjeuner en haut du village. Simple, généreux, fait maison. Pasta al ragù, cannoli siciliens. Parle-leur en italien si tu peux.", meta: "Piazza della Chiesa" },
+        { name: "Retour hôtel", category: "hotel", time: "15h00", coords: [37.8518, 15.2894], description: "Sieste obligatoire, piscine, livre à l'ombre. Journée douce.", meta: "" },
+        { name: "Castelmola", category: "insta", time: "17h30", coords: [37.8637, 15.2745], description: "Village perché à 529m au-dessus de Taormina, 15 min de route en lacets. Vue 360° sur la baie, l'Etna, la Calabre au loin. Spot insta de fou au soleil couchant.", meta: "Parking à l'entrée du village" },
+        { name: "Bar Turrisi", category: "bar", time: "18h30", coords: [37.8636, 15.2747], description: "Célèbre pour sa déco phallique assumée kitsch. Vino alla mandorla (vin d'amande), spécialité de Castelmola depuis 1947. Vue incroyable depuis la terrasse.", meta: "Piazza del Duomo 19" },
+        { name: "Osteria Rossodivino", category: "resto", time: "20h30", coords: [37.8513, 15.2876], description: "Trattoria moderne, super rapport qualité-prix. Pasta al ragù di tonno, involtini di pesce spada, tiramisu aux pistaches. Carte courte et juste.", meta: "Vico De Spuches 8" }
+      ]
+    },
+    {
+      number: 6,
+      shortDate: "VEN 28",
+      fullDate: "Vendredi 28 août 2026",
+      title: "Gorges d'Alcantara et Otto Geleng",
+      spots: [
+        { name: "Départ Taormina", category: "transport", time: "09h00", coords: [37.8518, 15.2894], description: "Direction les gorges, 30 min de route par la SS185.", meta: "" },
+        { name: "Gole Alcantara", category: "nature", time: "09h30", coords: [37.8866, 15.1735], description: "Gorges de basalte noir creusées par la rivière depuis 8000 ans. Eau glaciale à 13°C toute l'année. Location combi néoprène obligatoire. Colonnes basaltiques turquoise, spot insta fou.", meta: "Entrée 15€ + combi 10€" },
+        { name: "La Perla Rosa", category: "resto", time: "13h00", coords: [37.8820, 15.3025], description: "Déjeuner les pieds dans la mer à Letojanni. Fritto misto, spaghetti ai ricci di mare (oursins), vin blanc local frais.", meta: "Via Vittorio Emanuele" },
+        { name: "Plage Mazzeo", category: "plage", time: "14h30", coords: [37.8862, 15.3063], description: "Plage de sable, plus calme qu'Isola Bella. Lido avec transats à 25€/pers ou plage libre si tu préfères.", meta: "" },
+        { name: "Retour hôtel", category: "hotel", time: "17h30", coords: [37.8518, 15.2894], description: "Douche, sieste, se préparer pour le dîner de la semaine. Tenue correcte exigée chez Otto Geleng.", meta: "Dress code smart casual" },
+        { name: "Otto Geleng", category: "resto", time: "20h00", coords: [37.8525, 15.2915], description: "⭐⭐ 2 étoiles Michelin au Grand Hotel Timeo (Belmond). Terrasse avec l'Etna et la baie en fond. Menu dégustation 200 à 250€/pers. Le dîner dont tu parleras encore dans 10 ans. Réserve 3 semaines avant minimum.", meta: "Grand Hotel Timeo · Belmond" }
+      ]
+    },
+    {
+      number: 7,
+      shortDate: "SAM 29",
+      fullDate: "Samedi 29 août 2026",
+      title: "Dernière journée et shopping",
+      spots: [
+        { name: "Grasse matinée", category: "hotel", time: "10h00", coords: [37.8518, 15.2894], description: "Petit-déj chill, piscine, se réveiller sans pression. Dernière journée en mode vacances.", meta: "" },
+        { name: "BAM Bar", category: "resto", time: "11h30", coords: [37.8516, 15.2881], description: "Dernière granita de la semaine. Prends-les toutes : amande, café, pistache, citron. Souvenir direct dans le palais.", meta: "Via di Giovanni 45" },
+        { name: "Shopping Corso Umberto", category: "culture", time: "12h00", coords: [37.8517, 15.2880], description: "Céramiques de Caltagirone (Ceramiche D'Art), bottarga di tonno, cannoli sous vide, huile d'olive Nocellara, pistaches de Bronte, vins Etna Passopisciaro ou Graci.", meta: "Emporte une valise vide à l'aller" },
+        { name: "Focacceria La Bottega", category: "resto", time: "13h30", coords: [37.8514, 15.2882], description: "Déjeuner sur le pouce avant la plage. Arancini, focaccia, sfincione. Idéal pour ne pas plomber l'aprem.", meta: "Corso Umberto" },
+        { name: "La Plage Resort", category: "plage", time: "15h00", coords: [37.8526, 15.3046], description: "Beach club luxe à Mazzarò. Piscine à débordement + plage privée avec transats et service à la serviette. 80€/jour. Dernière journée détente 5 étoiles.", meta: "Via Nazionale" },
+        { name: "Morgana Lounge Bar", category: "bar", time: "19h30", coords: [37.8516, 15.2884], description: "Apéro-sunset. Cocktails travaillés, le meilleur spot pour une dernière soirée chic.", meta: "Scesa Morgana 4" },
+        { name: "La Pescheria di Taormina", category: "resto", time: "20h30", coords: [37.8515, 15.2877], description: "Dernier dîner. Poisson + fruits de mer, ambiance vivante et cash. Spaghetti ai ricci, crudo di pesce, gamberi rossi di Mazara.", meta: "Vicolo dei Sammicheli" }
+      ]
+    },
+    {
+      number: 8,
+      shortDate: "DIM 30",
+      fullDate: "Dimanche 30 août 2026",
+      title: "Ciao Sicilia",
+      spots: [
+        { name: "Réveil + départ hôtel", category: "hotel", time: "06h15", coords: [37.8518, 15.2894], description: "Check-out express la veille si possible. Les valises en voiture, adieu Taormina.", meta: "" },
+        { name: "Route aéroport", category: "transport", time: "06h30", coords: [37.5650, 15.1500], description: "50 min par l'A18. Pas de trafic à cette heure le dimanche.", meta: "" },
+        { name: "Rendu voiture + aéroport", category: "transport", time: "07h30", coords: [37.4668, 15.0664], description: "30 min pour rendre la voiture au parking dédié + 45 min avant le vol. Dernier café-brioche à l'aéroport.", meta: "Terminal A départ international" },
+        { name: "Décollage", category: "transport", time: "09h25", coords: [37.4668, 15.0664], description: "Vol retour. Arrivederci. Tu reviendras.", meta: "" }
+      ]
+    }
+  ];
+
+  const categoryMeta = {
+    hotel:     { color: '#C8A04A', icon: '🏨', label: 'Hôtel' },
+    resto:     { color: '#E07856', icon: '🍝', label: 'Restaurant' },
+    plage:     { color: '#4DC3E0', icon: '🏖️', label: 'Plage' },
+    culture:   { color: '#A978E0', icon: '🏛️', label: 'Culture' },
+    insta:     { color: '#FF6B9D', icon: '📸', label: 'Spot insta' },
+    vin:       { color: '#9D4E15', icon: '🍷', label: 'Vin' },
+    nature:    { color: '#FF9F43', icon: '🌋', label: 'Nature' },
+    bar:       { color: '#2EC4B6', icon: '🍸', label: 'Bar' },
+    transport: { color: '#8A99B5', icon: '🚗', label: 'Transport' }
+  };
+
+  // ========= MAP =========
+  const map = L.map('map', {
+    zoomControl: true,
+    attributionControl: true
+  }).setView([37.75, 15.10], 9);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap · © CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  let currentDay = 0;
+  let markers = [];
+  let routeLine = null;
+  let viewAll = false;
+  let showRoute = true;
+
+  function createMarker(spot, idx, showNum = true) {
+    const meta = categoryMeta[spot.category];
+    const html = `
+      <div class="custom-marker" style="background:${meta.color}">
+        <span class="custom-marker-icon">${meta.icon}</span>
+        ${showNum ? `<span class="custom-marker-num">${idx + 1}</span>` : ''}
+      </div>
+    `;
+    return L.divIcon({
+      className: 'marker-wrap',
+      html: html,
+      iconSize: [36, 36],
+      iconAnchor: [18, 36],
+      popupAnchor: [0, -36]
+    });
+  }
+
+  function buildPopup(spot, dayNum) {
+    const metaLine = spot.meta ? `<div class="popup-meta">${spot.meta}</div>` : '';
+    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${spot.coords[0]},${spot.coords[1]}`;
+    return `
+      <div class="popup-overline">${spot.time} · Jour ${dayNum}</div>
+      <div class="popup-title">${spot.name}</div>
+      <div class="popup-desc">${spot.description}</div>
+      ${metaLine}
+      <a class="popup-link" target="_blank" href="${gmapsUrl}">Ouvrir dans Google Maps →</a>
+    `;
+  }
+
+  function renderTabs() {
+    const el = document.getElementById('day-tabs');
+    el.innerHTML = days.map((d, i) =>
+      `<button class="day-tab ${i === currentDay ? 'active' : ''}" onclick="selectDay(${i})">
+        <span class="day-tab-num">J${d.number}</span>
+        <span class="day-tab-date">${d.shortDate}</span>
+      </button>`
+    ).join('');
+  }
+
+  function renderDayHeader() {
+    const d = days[currentDay];
+    const catCount = {};
+    d.spots.forEach(s => { catCount[s.category] = (catCount[s.category] || 0) + 1; });
+
+    const restos = (catCount.resto || 0) + (catCount.bar || 0);
+    const spots = d.spots.length;
+
+    document.getElementById('day-header').innerHTML = `
+      <div class="day-header-overline">Jour ${d.number} sur 8</div>
+      <div class="day-header-title">${d.title}</div>
+      <div class="day-header-date">${d.fullDate}</div>
+      <div class="day-stats">
+        <div class="day-stat"><strong>${spots}</strong> étapes</div>
+        <div class="day-stat"><strong>${restos}</strong> tables</div>
+        ${catCount.insta ? `<div class="day-stat"><strong>${catCount.insta}</strong> spots insta</div>` : ''}
+      </div>
+    `;
+  }
+
+  function renderSpots() {
+    const d = days[currentDay];
+    const list = document.getElementById('spots-list');
+    list.innerHTML = d.spots.map((s, i) => {
+      const meta = categoryMeta[s.category];
+      return `
+        <div class="spot" onclick="focusSpot(${i})" data-idx="${i}">
+          <div class="spot-icon" style="background:${meta.color}">${meta.icon}</div>
+          <div class="spot-content">
+            <div class="spot-time">${s.time}</div>
+            <div class="spot-name">${s.name}</div>
+            <div class="spot-desc">${s.description}</div>
+            ${s.meta ? `<div class="spot-meta">${s.meta}</div>` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+    list.scrollTop = 0;
+  }
+
+  function renderMapMarkers() {
+    markers.forEach(m => map.removeLayer(m));
+    markers = [];
+    if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+
+    if (viewAll) {
+      const allCoords = [];
+      days.forEach((d, di) => {
+        d.spots.forEach((s, i) => {
+          const marker = L.marker(s.coords, { icon: createMarker(s, i, false) }).addTo(map);
+          marker.bindPopup(buildPopup(s, d.number), { maxWidth: 300 });
+          markers.push(marker);
+          allCoords.push(s.coords);
+        });
+      });
+      if (allCoords.length) {
+        map.fitBounds(L.latLngBounds(allCoords).pad(0.15));
+      }
+    } else {
+      const d = days[currentDay];
+      const coords = [];
+      d.spots.forEach((s, i) => {
+        const marker = L.marker(s.coords, { icon: createMarker(s, i, true) }).addTo(map);
+        marker.bindPopup(buildPopup(s, d.number), { maxWidth: 300 });
+        marker.on('click', () => highlightSpot(i));
+        markers.push(marker);
+        coords.push(s.coords);
+      });
+
+      if (showRoute && coords.length > 1) {
+        routeLine = L.polyline(coords, {
+          color: '#C8A04A',
+          weight: 2.5,
+          opacity: 0.6,
+          dashArray: '8, 10'
+        }).addTo(map);
+      }
+
+      if (coords.length) {
+        map.fitBounds(L.latLngBounds(coords).pad(0.25));
+      }
+    }
+  }
+
+  function selectDay(i) {
+    currentDay = i;
+    viewAll = false;
+    document.getElementById('btn-view-all').classList.remove('active');
+    renderTabs();
+    renderDayHeader();
+    renderSpots();
+    renderMapMarkers();
+  }
+
+  function focusSpot(i) {
+    const s = days[currentDay].spots[i];
+    map.flyTo(s.coords, 14, { duration: 1 });
+    setTimeout(() => markers[i] && markers[i].openPopup(), 900);
+    highlightSpot(i);
+  }
+
+  function highlightSpot(i) {
+    document.querySelectorAll('.spot').forEach(el => el.classList.remove('active'));
+    const el = document.querySelector(`.spot[data-idx="${i}"]`);
+    if (el) {
+      el.classList.add('active');
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function toggleViewAll() {
+    viewAll = !viewAll;
+    document.getElementById('btn-view-all').classList.toggle('active', viewAll);
+    renderMapMarkers();
+  }
+
+  function toggleRoute() {
+    showRoute = !showRoute;
+    document.getElementById('btn-route').classList.toggle('active', showRoute);
+    renderMapMarkers();
+  }
+
+  function toggleSidebar() {
+    const sb = document.getElementById('sidebar');
+    const btn = document.getElementById('mobile-toggle');
+    sb.classList.toggle('hidden');
+    btn.textContent = sb.classList.contains('hidden') ? 'Voir le programme' : 'Voir la carte';
+  }
+
+  function updateCountdown() {
+    const target = new Date('2026-08-23T08:45:00');
+    const now = new Date();
+    const diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+    const num = document.getElementById('countdown-num');
+    const label = document.getElementById('countdown-label');
+
+    if (diff > 0) {
+      num.textContent = diff;
+      label.textContent = diff === 1 ? 'jour restant' : 'jours restants';
+    } else if (diff >= -7) {
+      num.textContent = `J${Math.abs(diff) + 1}`;
+      label.textContent = 'en Sicile';
+    } else {
+      num.textContent = '✓';
+      label.textContent = 'terminé';
+    }
+  }
+
+  // ========= INIT =========
+  updateCountdown();
+  renderTabs();
+  renderDayHeader();
+  renderSpots();
+  // Initial state: show route by default
+  document.getElementById('btn-route').classList.add('active');
+  renderMapMarkers();
+
+  // Refresh countdown every hour
+  setInterval(updateCountdown, 1000 * 60 * 60);
+</script>
+</body>
+</html>
