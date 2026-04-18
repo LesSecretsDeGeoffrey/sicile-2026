@@ -886,9 +886,19 @@
     });
   }
 
+  function buildMapsUrl(spot) {
+    if (spot.gmaps) return spot.gmaps;
+    const meta = spot.meta || '';
+    const firstPart = meta.split('·')[0].trim();
+    const isAddress = /^(Via|Viale|Piazza|Corso|Vico|Vicolo|Strada|Lungomare|Molo|Contrada)/i.test(firstPart);
+    const locationStr = isAddress ? firstPart : '';
+    const query = `${spot.name} ${locationStr} Sicilia Italy`.replace(/\s+/g, ' ').trim();
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+  }
+
   function buildPopup(spot, dayNum) {
     const metaLine = spot.meta ? `<div class="popup-meta">${spot.meta}</div>` : '';
-    const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${spot.coords[0]},${spot.coords[1]}`;
+    const gmapsUrl = buildMapsUrl(spot);
     return `
       <div class="popup-overline">${spot.time} · Jour ${dayNum}</div>
       <div class="popup-title">${spot.name}</div>
