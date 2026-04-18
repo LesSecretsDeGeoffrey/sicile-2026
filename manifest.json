@@ -1,0 +1,20 @@
+{
+  "name": "Sicile 2026 - Voyage Geoffrey",
+  "short_name": "Sicile 2026",
+  "description": "Plan complet du voyage en Sicile du 23 au 30 août 2026",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#0B0F1A",
+  "background_color": "#0B0F1A",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

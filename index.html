@@ -7,6 +7,12 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sicile 2026">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="icon.svg">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
 <title>Sicile · 23 au 30 août 2026</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -536,6 +542,76 @@
     transform: translateY(-1px);
   }
 
+  .popup-photo {
+    margin: -16px -18px 14px -18px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 14px 14px 0 0;
+    background: var(--bg-3);
+    position: relative;
+  }
+  .popup-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .popup-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(18,25,41,0.7) 100%);
+    pointer-events: none;
+  }
+
+  .day-budget {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(200, 160, 74, 0.12);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin-top: 12px;
+  }
+
+  .week-budget {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    margin-right: 20px;
+    padding-right: 20px;
+    border-right: 1px solid var(--border);
+  }
+  .week-budget-label {
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .week-budget-value {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1;
+    margin-top: 2px;
+  }
+  @media (max-width: 480px) {
+    .week-budget { display: none; }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
   .leaflet-control-zoom a {
     background: rgba(18, 25, 41, 0.92) !important;
     backdrop-filter: blur(20px);
@@ -671,9 +747,15 @@
       <div class="brand-sub">23 au 30 août 2026</div>
     </div>
   </div>
-  <div class="countdown">
-    <div class="countdown-num" id="countdown-num">—</div>
-    <div class="countdown-label" id="countdown-label">jours restants</div>
+  <div class="header-right">
+    <div class="week-budget">
+      <div class="week-budget-label">Budget/pers</div>
+      <div class="week-budget-value" id="week-budget-value">—</div>
+    </div>
+    <div class="countdown">
+      <div class="countdown-num" id="countdown-num">—</div>
+      <div class="countdown-label" id="countdown-label">jours restants</div>
+    </div>
   </div>
 </header>
 
@@ -717,6 +799,7 @@
       shortDate: "DIM 23",
       fullDate: "Dimanche 23 août 2026",
       title: "Arrivée et découverte de Taormina",
+      budget: { low: 55, typical: 85, high: 125 },
       spots: [
         { name: "Aéroport de Catane", category: "transport", time: "08h45", coords: [37.4668, 15.0664], description: "Atterrissage du vol. Récupération de la voiture de location puis route directe vers Taormina via l'autoroute A18 (50 min, péage 5€).", meta: "Terminal arrivée international" },
         { name: "Eurostars Monte Tauro", category: "hotel", time: "10h30", coords: [37.8518, 15.2894], description: "Dépôt des bagages à la bagagerie. Check-in officiel à 14h mais tu peux laisser les valises et partir découvrir.", meta: "Via Madonna delle Grazie 3" },
@@ -734,6 +817,7 @@
       shortDate: "LUN 24",
       fullDate: "Lundi 24 août 2026",
       title: "Isola Bella et criques sauvages",
+      budget: { low: 50, typical: 80, high: 120 },
       spots: [
         { name: "Petit-déj hôtel", category: "hotel", time: "09h00", coords: [37.8518, 15.2894], description: "Tranquille sur la terrasse de l'hôtel. Piscine si l'envie prend avant la descente plage.", meta: "" },
         { name: "Téléphérique", category: "transport", time: "10h00", coords: [37.8502, 15.2923], description: "3€ aller, toutes les 15 min, 3 min de trajet. Évite les 280 marches pour descendre.", meta: "Station Taormina" },
@@ -749,6 +833,7 @@
       shortDate: "MAR 25",
       fullDate: "Mardi 25 août 2026",
       title: "L'Etna, le volcan mythique",
+      budget: { low: 110, typical: 170, high: 230 },
       spots: [
         { name: "Départ Taormina", category: "transport", time: "07h30", coords: [37.8518, 15.2894], description: "Petit-déj léger en terrasse. Direction le versant sud de l'Etna, 1h15 de route par la SS114 et la SP92.", meta: "" },
         { name: "Rifugio Sapienza", category: "nature", time: "09h00", coords: [37.6992, 15.0047], description: "Base de départ pour l'excursion au sommet. Parking, boutiques, billetterie du téléphérique, cratères Silvestri juste à côté.", meta: "1920m d'altitude" },
@@ -764,6 +849,7 @@
       shortDate: "MER 26",
       fullDate: "Mercredi 26 août 2026",
       title: "Ortigia, Vendicari et Noto",
+      budget: { low: 40, typical: 60, high: 90 },
       spots: [
         { name: "Départ Taormina", category: "transport", time: "08h00", coords: [37.8518, 15.2894], description: "Départ tôt, journée XXL : baroque + plus belle plage de Sicile Est + baroque. Prends un petit-déj consistant, pique-nique en option.", meta: "" },
         { name: "Parking Talete", category: "transport", time: "09h15", coords: [37.0637, 15.2951], description: "Parking souterrain d'Ortigia, 15€/jour. Ensuite tout à pied.", meta: "Via von Platen" },
@@ -783,6 +869,7 @@
       shortDate: "JEU 27",
       fullDate: "Jeudi 27 août 2026",
       title: "Le Parrain et Castelmola",
+      budget: { low: 60, typical: 95, high: 140 },
       spots: [
         { name: "Départ Taormina", category: "transport", time: "09h30", coords: [37.8518, 15.2894], description: "Journée chill après deux grosses journées. Direction Savoca, 25 min de route par la SS114.", meta: "" },
         { name: "Savoca", category: "culture", time: "10h00", coords: [37.9706, 15.3680], description: "Village perché où Francis Ford Coppola a tourné les scènes siciliennes du Parrain. Église San Nicolò (scène du mariage de Michael), ruelles tranquilles, vue sur la mer Ionienne.", meta: "Tourne très tôt pour éviter la foule" },
@@ -800,6 +887,7 @@
       shortDate: "VEN 28",
       fullDate: "Vendredi 28 août 2026",
       title: "Gorges d'Alcantara et plages sauvages",
+      budget: { low: 65, typical: 100, high: 145 },
       spots: [
         { name: "Départ Taormina", category: "transport", time: "09h00", coords: [37.8518, 15.2894], description: "Direction les gorges, 30 min de route par la SS185.", meta: "" },
         { name: "Gole Alcantara", category: "nature", time: "09h30", coords: [37.8866, 15.1735], description: "Gorges de basalte noir creusées par la rivière depuis 8000 ans. Eau glaciale à 13°C toute l'année. Location combi néoprène obligatoire. Colonnes basaltiques turquoise, spot insta fou.", meta: "Entrée 15€ + combi 10€" },
@@ -814,6 +902,7 @@
       shortDate: "SAM 29",
       fullDate: "Samedi 29 août 2026",
       title: "Stromboli, le volcan actif des Éoliennes",
+      budget: { low: 120, typical: 195, high: 280 },
       spots: [
         { name: "Grasse matinée + BAM Bar", category: "resto", time: "10h30", coords: [37.8516, 15.2881], description: "Dernière granita au BAM Bar (amande, café, pistache, citron, prends-les toutes). Journée intense qui t'attend, prends des forces.", meta: "Via di Giovanni 45" },
         { name: "Shopping Corso Umberto", category: "culture", time: "11h30", coords: [37.8517, 15.2880], description: "Dernier tour rapide avant la navigation : céramiques Caltagirone, bottarga di tonno, pistaches de Bronte, vins Etna (Passopisciaro, Graci), huile d'olive Nocellara. Rapporte une valise vide à l'aller.", meta: "" },
@@ -833,6 +922,7 @@
       shortDate: "DIM 30",
       fullDate: "Dimanche 30 août 2026",
       title: "Ciao Sicilia",
+      budget: { low: 10, typical: 20, high: 35 },
       spots: [
         { name: "Réveil + départ hôtel", category: "hotel", time: "06h15", coords: [37.8518, 15.2894], description: "Check-out express la veille si possible. Les valises en voiture, adieu Taormina.", meta: "" },
         { name: "Route aéroport", category: "transport", time: "06h30", coords: [37.5650, 15.1500], description: "50 min par l'A18. Pas de trafic à cette heure le dimanche.", meta: "" },
@@ -919,10 +1009,96 @@
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
   }
 
+  const PHOTO_TAG_MAP = [
+    [/teatro antico/i, 'taormina,theater,ancient'],
+    [/isola bella/i, 'isola+bella,taormina,sea'],
+    [/piazza ix|piazza 9/i, 'taormina,piazza,italy'],
+    [/corso umberto/i, 'taormina,street,italy'],
+    [/bam bar|granita/i, 'granita,sicily,brioche'],
+    [/don ciccio/i, 'sicilian,pasta,trattoria'],
+    [/rossodivino|licchio|al paladino/i, 'sicilian,food,restaurant'],
+    [/da nino/i, 'sicilian,pasta,seafood'],
+    [/il barcaiolo|pescheria/i, 'seafood,italian,sea'],
+    [/andrea.*pizza|pizza/i, 'pizza,italian'],
+    [/morgana|bar turrisi/i, 'cocktail,italian,bar'],
+    [/spisone|mazzeo|letojanni|perla rosa/i, 'sicily,beach,mediterranean'],
+    [/rifugio sapienza|cratère|etna/i, 'etna,volcano,crater'],
+    [/cave ox|planeta|feudo/i, 'sicily,vineyard,wine'],
+    [/ortigia|aréthuse|apollon/i, 'ortigia,syracuse,cathedral'],
+    [/borderi/i, 'sandwich,italian,deli'],
+    [/noto|caffè sicilia/i, 'noto,baroque,sicily'],
+    [/calamosche|vendicari/i, 'vendicari,beach,turquoise'],
+    [/savoca/i, 'sicily,village,hilltop'],
+    [/forza d'agr|trattoria da gianni/i, 'sicily,mountain,village'],
+    [/castelmola/i, 'castelmola,sicily,view'],
+    [/bar vitelli/i, 'sicily,bar,rustic'],
+    [/alcantara/i, 'alcantara,gorges,canyon'],
+    [/stromboli|ritrovo ingrid|labronzo|sciara/i, 'stromboli,volcano,eruption'],
+    [/focacceria|bottega/i, 'focaccia,italian,street+food'],
+    [/giardini-naxos|giardini naxos|embarquement|port/i, 'sicily,harbor,boat'],
+    [/aéroport|catane|catania/i, 'airport,italy'],
+    [/hôtel|eurostars|monte tauro|grasse mat|petit-déj|retour hôtel/i, 'taormina,hotel,terrace']
+  ];
+
+  function getPhotoTags(spot) {
+    const key = spot.name + ' ' + (spot.meta || '');
+    for (const [pattern, tags] of PHOTO_TAG_MAP) {
+      if (pattern.test(key)) return tags;
+    }
+    const fallbacks = {
+      resto: 'sicilian,food,italian',
+      plage: 'sicily,beach,mediterranean',
+      culture: 'sicily,baroque,ancient',
+      nature: 'sicily,landscape,mediterranean',
+      insta: 'taormina,sicily,scenic',
+      vin: 'vineyard,wine,italy',
+      bar: 'cocktail,italian,bar',
+      hotel: 'taormina,hotel',
+      transport: ''
+    };
+    return fallbacks[spot.category] || 'sicily,italy';
+  }
+
+  function hashString(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) {
+      h = ((h << 5) - h) + str.charCodeAt(i);
+      h |= 0;
+    }
+    return Math.abs(h);
+  }
+
+  function getPhotoUrl(spot) {
+    if (spot.photo === false) return null;
+    if (spot.photo) return spot.photo;
+    const tags = getPhotoTags(spot);
+    if (!tags) return null;
+    const lock = hashString(spot.name + (spot.meta || ''));
+    return `https://loremflickr.com/600/300/${tags}?lock=${lock}`;
+  }
+
+  function dayBudget(day) {
+    return day.budget || { low: 0, typical: 0, high: 0 };
+  }
+
+  function weekBudget() {
+    return days.reduce((acc, d) => {
+      const b = dayBudget(d);
+      return { low: acc.low + b.low, typical: acc.typical + b.typical, high: acc.high + b.high };
+    }, { low: 0, typical: 0, high: 0 });
+  }
+
+  function formatEuro(n) {
+    return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+  }
+
   function buildPopup(spot, dayNum) {
     const metaLine = spot.meta ? `<div class="popup-meta">${spot.meta}</div>` : '';
     const gmapsUrl = buildMapsUrl(spot);
+    const photoUrl = getPhotoUrl(spot);
+    const photoHtml = photoUrl ? `<div class="popup-photo"><img loading="lazy" src="${photoUrl}" alt="${spot.name}" onerror="this.parentElement.style.display='none'"></div>` : '';
     return `
+      ${photoHtml}
       <div class="popup-overline">${spot.time} · Jour ${dayNum}</div>
       <div class="popup-title">${spot.name}</div>
       <div class="popup-desc">${spot.description}</div>
@@ -948,6 +1124,10 @@
 
     const restos = (catCount.resto || 0) + (catCount.bar || 0);
     const spots = d.spots.length;
+    const b = dayBudget(d);
+    const budgetLine = b.typical > 0
+      ? `<div class="day-budget">💰 ${formatEuro(b.low)} à ${formatEuro(b.high)} / pers · ~${formatEuro(b.typical)}</div>`
+      : '';
 
     document.getElementById('day-header').innerHTML = `
       <div class="day-header-overline">Jour ${d.number} sur 8</div>
@@ -958,7 +1138,17 @@
         <div class="day-stat"><strong>${restos}</strong> tables</div>
         ${catCount.insta ? `<div class="day-stat"><strong>${catCount.insta}</strong> spots insta</div>` : ''}
       </div>
+      ${budgetLine}
     `;
+  }
+
+  function updateWeekBudget() {
+    const wb = weekBudget();
+    const el = document.getElementById('week-budget-value');
+    if (el && wb.typical > 0) {
+      el.textContent = `~${formatEuro(wb.typical)}`;
+      el.title = `Fourchette : ${formatEuro(wb.low)} (sobre) à ${formatEuro(wb.high)} (large), hors hôtel, vol et location voiture`;
+    }
   }
 
   function renderSpots() {
@@ -1091,6 +1281,7 @@
 
   // ========= INIT =========
   updateCountdown();
+  updateWeekBudget();
   renderTabs();
   renderDayHeader();
   renderSpots();
@@ -1100,6 +1291,13 @@
 
   // Refresh countdown every hour
   setInterval(updateCountdown, 1000 * 60 * 60);
+
+  // Service worker for offline support
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(err => console.warn('SW failed:', err));
+    });
+  }
 </script>
 </body>
 </html>
