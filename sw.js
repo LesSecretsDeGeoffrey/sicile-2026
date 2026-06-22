@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sicile-2026-v3';
+const CACHE_NAME = 'sicile-2026-v5';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -12,6 +12,8 @@ const STATIC_ASSETS = [
 const RUNTIME_PATTERNS = [
   /basemaps\.cartocdn\.com/,
   /loremflickr\.com/,
+  /commons\.wikimedia\.org/,
+  /upload\.wikimedia\.org/,
   /fonts\.gstatic\.com/,
   /unsplash\.com/
 ];
