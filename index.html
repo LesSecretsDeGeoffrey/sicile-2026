@@ -1903,6 +1903,19 @@
   /* hero vivant : le dégradé/tint dérive doucement */
   .day-hero, .day-hero.has-cover::after { background-size: 180% 180%; animation: heroPan 16s ease-in-out infinite alternate; }
   @keyframes heroPan { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+
+  /* ===== CHECKLIST RÉSAS ===== */
+  .bk-help { font-size: 12px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.5; }
+  .bk-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 12px; border: 1px solid var(--hair); border-radius: 12px; margin-bottom: 8px; cursor: pointer; background: var(--bg-3); box-shadow: var(--sh-card); }
+  .bk-row:active { transform: scale(0.99); }
+  .bk-main { min-width: 0; }
+  .bk-name { font-weight: 700; font-size: 13.5px; color: var(--cream); }
+  .bk-meta { font-size: 11.5px; color: var(--text-dim); margin-top: 2px; }
+  .bk-side { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+  .bk-state { font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .bk-state.done { color: #0E7D7D; }
+  .bk-state.todo { color: #C2410C; }
+  .bk-link { font-size: 11px; font-weight: 700; color: var(--gold); text-decoration: none; white-space: nowrap; background: rgba(255,154,61,0.14); padding: 3px 8px; border-radius: 999px; }
 </style>
 </head>
 <body>
@@ -1919,6 +1932,7 @@
     <div class="header-actions">
       <button class="header-action-btn" onclick="openSurvivalKit()" title="Kit de survie italien">🆘</button>
       <button class="header-action-btn" onclick="openShareQR()" title="Partager l'app">📤</button>
+      <button class="header-action-btn" onclick="openBookings()" title="Résas à faire">📋</button>
     </div>
     <div class="week-budget">
       <div class="week-budget-label">Budget/pers</div>
@@ -2051,38 +2065,33 @@
       number: 3,
       shortDate: "MAR 25",
       fullDate: "Mardi 25 août 2026",
-      title: "Le Parrain et Castelmola",
-      budget: { low: 60, typical: 95, high: 140 },
+      title: "L'Etna par les cratères du sommet",
+      budget: { low: 160, typical: 210, high: 260 },
       planB: {
-        intro: "Les villages (Savoca, Forza d'Agrò, Castelmola) se visitent bien sous la pluie grâce à leurs églises, cafés et terrasses couvertes. Plan B si vraiment orage carabiné :",
+        intro: "CRITIQUE : l'ascension peut être modifiée ou annulée en cas de vent fort, de mauvaise visibilité ou d'activité volcanique (le guide bascule parfois sur le versant nord, vécu par des participants en juillet). GetYourGuide rembourse intégralement jusqu'à 24h avant. Plan B :",
         alternatives: [
-          { name: "Bar Vitelli intérieur", desc: "L'intérieur du bar du Parrain est cosy, photos de tournage au mur, parfait sous la pluie" },
-          { name: "Cooking class cannoli à Taormina", desc: "3h, ~50€/pers, tu fais tes propres cannoli siciliens de A à Z" },
-          { name: "Dégustation indoor chez Planeta Etna", desc: "Salle de dégustation couverte, remplace bien une journée Godfather pluvieuse, 35€/pers" },
-          { name: "Musée Godfather à Savoca", desc: "Petit musée dans l'ancienne maison communale, photos et accessoires du tournage, 3€" }
+          { name: "Dégustation Benanti indoor (Viagrande)", desc: "La cave qui a fait renaître les vins de l'Etna, dégustation couverte dans le domaine du 19e siècle, 30 à 60€/pers. Réserve d'avance" },
+          { name: "Visite Catane centre historique UNESCO", desc: "Piazza del Duomo noir et blanc, marché aux poissons La Pescheria (couvert), Via Etnea shopping. 45 min de route" },
+          { name: "Castello Ursino (Catane)", desc: "Château de Frédéric II en pierre volcanique, musée civique à l'intérieur, 10€" },
+          { name: "Terme di Acireale (bains thermes)", desc: "Thermes historiques depuis 1873, eaux sulfureuses chauffées. 45 min de route. Parfait sous la pluie" }
         ]
       },
       spots: [
-        { name: "Départ Taormina", category: "transport", time: "09h30", coords: [37.8518, 15.2894], description: "Journée chill après les plages d'hier. Direction Savoca, 25 min de route par la SS114.", meta: "" },
-        { name: "Savoca", category: "culture", time: "10h00", coords: [37.9706, 15.3680], description: "Village perché où Francis Ford Coppola a tourné les scènes siciliennes du Parrain. Église San Nicolò (scène du mariage de Michael), ruelles tranquilles, vue sur la mer Ionienne.", meta: "Tourne très tôt pour éviter la foule" },
-        { name: "Bar Vitelli", category: "bar", time: "10h30", coords: [37.9709, 15.3683], description: "Le bar réellement utilisé dans le film. Photos de tournage, scénarios d'origine affichés. Granita amande obligatoire sur la terrasse.", meta: "Piazza Fossia" , options: [
-          { name: "Bar San Giorgio Forza d'Agrò", rating: 4.4, hours: "8h-22h", price: "3-6€", flag: "terrasse panoramique · granita", gmaps: "https://www.google.com/maps/search/?api=1&query=Bar+San+Giorgio+Forza+d+Agro+Sicilia" },
-          { name: "Antico Caffè Savoca", rating: 4.3, hours: "8h-20h", price: "3-5€", flag: "au cœur du village du Parrain", gmaps: "https://www.google.com/maps/search/?api=1&query=Antico+Caffe+Savoca+Sicilia" }
+        { name: "Départ Taormina", category: "transport", time: "07h15", coords: [37.8518, 15.2894], description: "Petit-déj léger mais costaud, l'effort arrive. Direction le versant sud de l'Etna par l'A18 puis Nicolosi, 1h20 de route.", meta: "" },
+        { name: "Rifugio Sapienza", category: "nature", time: "08h40", coords: [37.6992, 15.0047], description: "Base de départ à 1920m. RDV au bureau de l'organisateur (Aitne Med), juste en face de la station du téléphérique Etna Sud, 20 min avant l'heure indiquée sur ta confirmation GetYourGuide. Parking sur place, boutiques, cratères Silvestri à côté.", meta: "1920m · RDV en face du téléphérique" },
+        { name: "Cratères sommitaux", category: "nature", time: "09h00", coords: [37.7510, 14.9934], description: "L'activité réservée sur GetYourGuide (Aitne Med, 4,7/5 sur 2100+ avis, petit groupe max 10, guide volcanologue francophone). Téléphérique puis 4x4 jusqu'à 2850m (Torre del Filosofo), montée à pied jusqu'à la Bocca Nuova à 3300m : tunnel de lave, cratères de 2002, descente fun dans le sable volcanique face à la Valle del Bove, caldeira de 8 km. Environ 4h de marche et 500m de dénivelé, faisable en étant sportif. À prévoir : baskets fermées ou chaussures de rando, polaire + coupe-vent (10-15°C là-haut même en août), lunettes de soleil, SPF50, 1,5L d'eau chacun.", meta: "5h · 3300m · ⚠️ 65€/pers téléphérique + 4x4 à régler sur place (non inclus)" },
+        { name: "Déjeuner Etna Sud", category: "resto", time: "14h15", coords: [37.6992, 15.0047], gmaps: "https://www.google.com/maps/search/?api=1&query=Ristorante+del+Rifugio+Sapienza+Etna+Sicilia", description: "Fin du tour vers 14h. Zéro table à 4.5 dans le coin, c'est un spot de montagne : le resto du Rifugio ou le bar des cratères Silvestri font le job, pasta alla Norma, grillades, arancini. On refait le plein de calories avec la vue, la vraie table c'est ce soir.", meta: "Rifugio Sapienza · 15-25€/pers" , options: [
+          { name: "La Terrazza dell'Etna", hours: "12h-16h", price: "12-20€", flag: "self de montagne à la Cantoniera · rapide et copieux", gmaps: "https://www.google.com/maps/search/?api=1&query=La+Terrazza+dell+Etna+Nicolosi+Sicilia" },
+          { name: "Ristorante del Rifugio Sapienza", hours: "12h-15h30", price: "20-30€", flag: "au pied du téléphérique · cuisine de refuge", gmaps: "https://www.google.com/maps/search/?api=1&query=Ristorante+del+Rifugio+Sapienza+Nicolosi+Sicilia" }
         ] },
-        { name: "Forza d'Agrò", category: "culture", time: "12h00", coords: [37.9371, 15.3552], description: "Autre village du Parrain, perché à 420m. Vue à 360°, ruelles médiévales, Chiesa Madre Santissima Annunziata.", meta: "" },
-        { name: "Trattoria Anni 60", category: "resto", time: "13h00", coords: [37.9373, 15.3555], description: "4.5/5 sur 3048 avis. LA trattoria de Forza d'Agrò, ambiance vintage années 60. Pasta al ragù, fruits de mer, cannoli maison. Portions généreuses, prix doux, service chaleureux.", meta: "Via Santissima Annunziata 31" , options: [
-          { name: "Ristorante La Terrazza Forza d'Agrò", rating: 4.4, hours: "12h-15h · 19h-22h", price: "30-45€", flag: "vue 360° · poisson frais", gmaps: "https://www.google.com/maps/search/?api=1&query=La+Terrazza+Forza+d+Agro+Sicilia" },
-          { name: "Osteria Cyclopis", rating: 4.5, hours: "12h30-15h · 19h30-22h30", price: "28-42€", flag: "trattoria de village · pasta maison", gmaps: "https://www.google.com/maps/search/?api=1&query=Osteria+Cyclopis+Forza+d+Agro+Sicilia" }
+        { name: "Benanti Viticoltori", category: "vin", time: "16h30", coords: [37.6106, 15.0964], gmaps: "https://www.google.com/maps/search/?api=1&query=Benanti+Viticoltori+Viagrande+Sicilia", description: "La cave historique qui a fait renaître les vins de l'Etna, au pied du Monte Serra à Viagrande, pile sur la route du retour. Dégustation Etna Rosso (Nerello Mascalese) et Etna Bianco (Carricante), dont le mythique Pietra Marina. Fermé le lundi, ouvert le mardi, uniquement sur réservation : demande un créneau de fin d'après-midi.", meta: "Via Garibaldi 361, Viagrande · réserve 48h avant" , options: [
+          { name: "Cantine Nicosia", rating: 4.5, hours: "sur réservation", price: "20-30€", flag: "Trecastagni · aussi sur la route du retour", gmaps: "https://www.google.com/maps/search/?api=1&query=Cantine+Nicosia+Trecastagni+Sicilia" },
+          { name: "Murgo Tenuta San Michele", rating: 4.6, hours: "sur réservation", price: "25-40€", flag: "Santa Venerina · versant est · bulles de l'Etna", gmaps: "https://www.google.com/maps/search/?api=1&query=Murgo+Tenuta+San+Michele+Santa+Venerina+Sicilia" }
         ] },
-        { name: "Retour hôtel", category: "hotel", time: "15h00", coords: [37.8518, 15.2894], description: "Sieste obligatoire, piscine, livre à l'ombre. Journée douce.", meta: "" },
-        { name: "Castelmola", category: "insta", time: "17h30", coords: [37.8637, 15.2745], description: "Village perché à 529m au-dessus de Taormina, 15 min de route en lacets. Vue 360° sur la baie, l'Etna, la Calabre au loin. Spot insta de fou au soleil couchant.", meta: "Parking à l'entrée du village" },
-        { name: "Bar Turrisi", category: "bar", sunset: true, time: "18h30", coords: [37.8636, 15.2747], description: "Célèbre pour sa déco phallique assumée kitsch. Vino alla mandorla (vin d'amande), spécialité de Castelmola depuis 1947. Vue incroyable depuis la terrasse.", meta: "Piazza del Duomo 19" , options: [
-          { name: "Caffè San Giorgio Castelmola", rating: 4.4, hours: "9h-22h", price: "5-10€", flag: "terrasse vue Etna · vino alla mandorla", gmaps: "https://www.google.com/maps/search/?api=1&query=Caffe+San+Giorgio+Castelmola+Sicilia" },
-          { name: "Bar Turrisi terrasse haute", rating: 4.4, hours: "10h-minuit", price: "6-12€", flag: "monter au dernier étage pour la vue", gmaps: "https://www.google.com/maps/search/?api=1&query=Bar+Turrisi+Castelmola+Sicilia" }
-        ] },
-        { name: "Trattoria da Nino", category: "resto", sunset: true, time: "20h30", coords: [37.8490, 15.2894], description: "Institution familiale depuis 3 générations (années 70). Terrasse panoramique sur la côte nord et la Calabre. Tagliatelle au gambero rosso, pasta fresca maison, pesce del giorno, carte de vins siciliens top. Prix raisonnables (35 à 45€/pers), réservation obligatoire.", meta: "Via Luigi Pirandello 37" , options: [
-          { name: "Ristorante Villa Antonio", rating: 4.5, hours: "19h-23h", price: "35-50€", flag: "terrasse panoramique · poisson", gmaps: "https://www.google.com/maps/search/?api=1&query=Ristorante+Villa+Antonio+Taormina+Sicilia" },
-          { name: "Trattoria Rosmarino", rating: 4.4, hours: "12h-15h · 19h-22h30", price: "28-40€", flag: "cuisine maison · prix doux", gmaps: "https://www.google.com/maps/search/?api=1&query=Trattoria+Rosmarino+Taormina+Sicilia" }
+        { name: "Retour Taormina", category: "transport", time: "17h45", coords: [37.8518, 15.2894], description: "55 min par l'A18 depuis Viagrande. Douche et repos, jambes en compote après les 3300m.", meta: "" },
+        { name: "Pizza Mania", category: "resto", time: "20h30", coords: [37.8519, 15.2888], description: "4.5/5 sur TripAdvisor. Meilleure pizza casual de Taormina. Pâte fine croustillante au bon goût de levain, toppings généreux, ambiance familiale. Après l'Etna, tu veux du chill et du fromage, c'est pile ça.", meta: "Via Francesco Crispi 17" , options: [
+          { name: "Time Out Taormina", rating: 4.4, hours: "12h-23h", price: "12-20€", flag: "pizza + burgers · ambiance jeune", gmaps: "https://www.google.com/maps/search/?api=1&query=Time+Out+Taormina+Sicilia" },
+          { name: "Vecchia Taormina", rating: 4.4, hours: "12h-15h · 18h30-23h", price: "15-25€", flag: "four à bois · institution du Corso", gmaps: "https://www.google.com/maps/search/?api=1&query=Vecchia+Taormina+pizzeria+Sicilia" }
         ] }
       ]
     },
@@ -2125,33 +2134,38 @@
       number: 5,
       shortDate: "JEU 27",
       fullDate: "Jeudi 27 août 2026",
-      title: "L'Etna, le volcan mythique",
-      budget: { low: 110, typical: 170, high: 230 },
+      title: "Le Parrain et Castelmola",
+      budget: { low: 60, typical: 95, high: 140 },
       planB: {
-        intro: "CRITIQUE : l'excursion Etna est souvent annulée en cas de pluie, vent fort ou mauvaise visibilité. Les compagnies remboursent ou reprogramment. Plan B solide obligatoire :",
+        intro: "Les villages (Savoca, Forza d'Agrò, Castelmola) se visitent bien sous la pluie grâce à leurs églises, cafés et terrasses couvertes. Plan B si vraiment orage carabiné :",
         alternatives: [
-          { name: "Dégustation Planeta Feudo di Mezzo indoor", desc: "Même winery que prévu, salle de dégustation couverte, 4 vins + olive oil, 35€/pers. Réserve d'avance" },
-          { name: "Visite Catane centre historique UNESCO", desc: "Piazza del Duomo noir et blanc, marché aux poissons La Pescheria (couvert), Via Etnea shopping. 1h de route" },
-          { name: "Castello Ursino (Catane)", desc: "Château de Frédéric II en pierre volcanique, musée civique à l'intérieur, 10€" },
-          { name: "Terme di Acireale (bains thermes)", desc: "Thermes historiques depuis 1873, eaux sulfureuses chauffées. 45 min de route. Parfait sous la pluie" }
+          { name: "Bar Vitelli intérieur", desc: "L'intérieur du bar du Parrain est cosy, photos de tournage au mur, parfait sous la pluie" },
+          { name: "Cooking class cannoli à Taormina", desc: "3h, ~50€/pers, tu fais tes propres cannoli siciliens de A à Z" },
+          { name: "Dégustation indoor chez Planeta Etna", desc: "Salle de dégustation couverte, remplace bien une journée Godfather pluvieuse, 35€/pers" },
+          { name: "Musée Godfather à Savoca", desc: "Petit musée dans l'ancienne maison communale, photos et accessoires du tournage, 3€" }
         ]
       },
       spots: [
-        { name: "Départ Taormina", category: "transport", time: "07h30", coords: [37.8518, 15.2894], description: "Petit-déj léger en terrasse. Direction le versant sud de l'Etna, 1h15 de route par la SS114 et la SP92.", meta: "" },
-        { name: "Rifugio Sapienza", category: "nature", time: "09h00", coords: [37.6992, 15.0047], description: "Base de départ pour l'excursion au sommet. Parking, boutiques, billetterie du téléphérique, cratères Silvestri juste à côté.", meta: "1920m d'altitude" },
-        { name: "Cratères sommitaux", category: "nature", time: "10h00", coords: [37.7510, 14.9934], description: "Excursion guidée téléphérique + 4x4 + guide volcanologue jusqu'à 2900m. Fumerolles, sol noir volcanique, paysage lunaire. 85€/pers, 3h30.", meta: "Etna Experience ou Etna Finder" },
-        { name: "Cave Ox", category: "vin", time: "13h30", coords: [37.8722, 15.0564], description: "Sandro Dibella, une légende du vin naturel. Pizza au feu de bois, carte de vins infinie. Des sommeliers du monde entier passent ici. Ouvert le jeudi ✓", meta: "Via Nazionale 159, Solicchiata" , options: [
-          { name: "Cantina Malopasso", rating: 4.5, hours: "12h-15h · 19h-22h", price: "30-45€", flag: "cuisine de l'Etna · vins Nerello", gmaps: "https://www.google.com/maps/search/?api=1&query=Cantina+Malopasso+Etna+Sicilia" },
-          { name: "Shalai Linguaglossa", rating: 4.6, hours: "12h30-14h30 · 19h30-22h", price: "55-80€", flag: "étoilé Michelin · Etna nord", gmaps: "https://www.google.com/maps/search/?api=1&query=Shalai+Linguaglossa+Sicilia" }
+        { name: "Départ Taormina", category: "transport", time: "09h30", coords: [37.8518, 15.2894], description: "Journée douce après la grosse journée baroque d'hier. Direction Savoca, 25 min de route par la SS114.", meta: "" },
+        { name: "Savoca", category: "culture", time: "10h00", coords: [37.9706, 15.3680], description: "Village perché où Francis Ford Coppola a tourné les scènes siciliennes du Parrain. Église San Nicolò (scène du mariage de Michael), ruelles tranquilles, vue sur la mer Ionienne.", meta: "Tourne très tôt pour éviter la foule" },
+        { name: "Bar Vitelli", category: "bar", time: "10h30", coords: [37.9709, 15.3683], description: "Le bar réellement utilisé dans le film. Photos de tournage, scénarios d'origine affichés. Granita amande obligatoire sur la terrasse.", meta: "Piazza Fossia" , options: [
+          { name: "Bar San Giorgio Forza d'Agrò", rating: 4.4, hours: "8h-22h", price: "3-6€", flag: "terrasse panoramique · granita", gmaps: "https://www.google.com/maps/search/?api=1&query=Bar+San+Giorgio+Forza+d+Agro+Sicilia" },
+          { name: "Antico Caffè Savoca", rating: 4.3, hours: "8h-20h", price: "3-5€", flag: "au cœur du village du Parrain", gmaps: "https://www.google.com/maps/search/?api=1&query=Antico+Caffe+Savoca+Sicilia" }
         ] },
-        { name: "Planeta Feudo di Mezzo", category: "vin", time: "16h00", coords: [37.8721, 15.0167], description: "Dégustation 4 à 6 vins avec visite des vignes. Etna Rosso DOC, cépage Nerello Mascalese, Etna Bianco Carricante. 25 à 35€.", meta: "Réserve 48h avant" , options: [
-          { name: "Cantine Nicosia Etna", rating: 4.5, hours: "sur réservation", price: "20-30€", flag: "dégustation + visite cave · Trecastagni", gmaps: "https://www.google.com/maps/search/?api=1&query=Cantine+Nicosia+Etna+Sicilia" },
-          { name: "Benanti Viticoltori", rating: 4.6, hours: "sur réservation", price: "30-45€", flag: "domaine historique · Etna Rosso DOC", gmaps: "https://www.google.com/maps/search/?api=1&query=Benanti+Viticoltori+Etna+Sicilia" }
+        { name: "Forza d'Agrò", category: "culture", time: "12h00", coords: [37.9371, 15.3552], description: "Autre village du Parrain, perché à 420m. Vue à 360°, ruelles médiévales, Chiesa Madre Santissima Annunziata.", meta: "" },
+        { name: "Trattoria Anni 60", category: "resto", time: "13h00", coords: [37.9373, 15.3555], description: "4.5/5 sur 3048 avis. LA trattoria de Forza d'Agrò, ambiance vintage années 60. Pasta al ragù, fruits de mer, cannoli maison. Portions généreuses, prix doux, service chaleureux.", meta: "Via Santissima Annunziata 31" , options: [
+          { name: "Ristorante La Terrazza Forza d'Agrò", rating: 4.4, hours: "12h-15h · 19h-22h", price: "30-45€", flag: "vue 360° · poisson frais", gmaps: "https://www.google.com/maps/search/?api=1&query=La+Terrazza+Forza+d+Agro+Sicilia" },
+          { name: "Osteria Cyclopis", rating: 4.5, hours: "12h30-15h · 19h30-22h30", price: "28-42€", flag: "trattoria de village · pasta maison", gmaps: "https://www.google.com/maps/search/?api=1&query=Osteria+Cyclopis+Forza+d+Agro+Sicilia" }
         ] },
-        { name: "Retour Taormina", category: "transport", time: "18h30", coords: [37.8518, 15.2894], description: "1h15 de route. Arrivée hôtel pour douche et repos, jambes en compote après l'Etna.", meta: "" },
-        { name: "Pizza Mania", category: "resto", time: "20h30", coords: [37.8519, 15.2888], description: "4.5/5 sur TripAdvisor. Meilleure pizza casual de Taormina. Pâte fine croustillante au bon goût de levain, toppings généreux, ambiance familiale. Après l'Etna, tu veux du chill et du fromage, c'est pile ça.", meta: "Via Francesco Crispi 17" , options: [
-          { name: "Time Out Taormina", rating: 4.4, hours: "12h-23h", price: "12-20€", flag: "pizza + burgers · ambiance jeune", gmaps: "https://www.google.com/maps/search/?api=1&query=Time+Out+Taormina+Sicilia" },
-          { name: "Vecchia Taormina", rating: 4.4, hours: "12h-15h · 18h30-23h", price: "15-25€", flag: "four à bois · institution du Corso", gmaps: "https://www.google.com/maps/search/?api=1&query=Vecchia+Taormina+pizzeria+Sicilia" }
+        { name: "Retour hôtel", category: "hotel", time: "15h00", coords: [37.8518, 15.2894], description: "Sieste obligatoire, piscine, livre à l'ombre. Journée douce.", meta: "" },
+        { name: "Castelmola", category: "insta", time: "17h30", coords: [37.8637, 15.2745], description: "Village perché à 529m au-dessus de Taormina, 15 min de route en lacets. Vue 360° sur la baie, l'Etna, la Calabre au loin. Spot insta de fou au soleil couchant.", meta: "Parking à l'entrée du village" },
+        { name: "Bar Turrisi", category: "bar", sunset: true, time: "18h30", coords: [37.8636, 15.2747], description: "Célèbre pour sa déco phallique assumée kitsch. Vino alla mandorla (vin d'amande), spécialité de Castelmola depuis 1947. Vue incroyable depuis la terrasse.", meta: "Piazza del Duomo 19" , options: [
+          { name: "Caffè San Giorgio Castelmola", rating: 4.4, hours: "9h-22h", price: "5-10€", flag: "terrasse vue Etna · vino alla mandorla", gmaps: "https://www.google.com/maps/search/?api=1&query=Caffe+San+Giorgio+Castelmola+Sicilia" },
+          { name: "Bar Turrisi terrasse haute", rating: 4.4, hours: "10h-minuit", price: "6-12€", flag: "monter au dernier étage pour la vue", gmaps: "https://www.google.com/maps/search/?api=1&query=Bar+Turrisi+Castelmola+Sicilia" }
+        ] },
+        { name: "Trattoria da Nino", category: "resto", sunset: true, time: "20h30", coords: [37.8490, 15.2894], description: "Institution familiale depuis 3 générations (années 70). Terrasse panoramique sur la côte nord et la Calabre. Tagliatelle au gambero rosso, pasta fresca maison, pesce del giorno, carte de vins siciliens top. Prix raisonnables (35 à 45€/pers), réservation obligatoire.", meta: "Via Luigi Pirandello 37" , options: [
+          { name: "Ristorante Villa Antonio", rating: 4.5, hours: "19h-23h", price: "35-50€", flag: "terrasse panoramique · poisson", gmaps: "https://www.google.com/maps/search/?api=1&query=Ristorante+Villa+Antonio+Taormina+Sicilia" },
+          { name: "Trattoria Rosmarino", rating: 4.4, hours: "12h-15h · 19h-22h30", price: "28-40€", flag: "cuisine maison · prix doux", gmaps: "https://www.google.com/maps/search/?api=1&query=Trattoria+Rosmarino+Taormina+Sicilia" }
         ] }
       ]
     },
@@ -2253,7 +2267,9 @@
     "La Caravella":                     { hours: "12h-15h · 19h-22h30 lun-dim", booking: "recommended", lead: "2 à 3 jours", rating: 4.5 },
     "Spiaggia di Spisone":              { hours: "24h/24 gratuit", booking: "none" },
     "Rifugio Sapienza":                 { hours: "téléphérique 09h-16h30", booking: "none" },
-    "Cratères sommitaux":               { hours: "excursions départs 09h-14h", booking: "required", lead: "2 semaines", price: "75 à 90€/pers", bookingUrl: "https://www.etnaexperience.com/" },
+    "Cratères sommitaux":               { hours: "tour 5h · départ le matin (heure exacte sur ta confirmation)", booking: "required", lead: "annulation gratuite jusqu'à 24h avant", price: "~65€/pers + 65€ téléphérique/4x4 sur place", rating: 4.7, bookingUrl: "https://www.getyourguide.com/fr-fr/belpasso-l152489/randonnee-au-cratere-du-sommet-de-l-etna-avec-telepherique-t401753/" },
+    "Déjeuner Etna Sud":                { hours: "12h-15h30", booking: "none" },
+    "Benanti Viticoltori":              { hours: "10h-18h sur réservation (fermé lun)", booking: "required", lead: "48h", price: "30 à 60€ dégustation", rating: 4.6, bookingUrl: "https://www.benanti.it/en/hospitality/" },
     "Cave Ox":                          { hours: "12h-15h30 · 19h-23h (fermé mar)", booking: "recommended", lead: "1 semaine", rating: 4.4 },
     "Planeta Feudo di Mezzo":           { hours: "10h-18h sur rendez-vous", booking: "required", lead: "48h", price: "25 à 35€ dégustation", bookingUrl: "https://planeta.it/en/" },
     "Pizza Mania":                      { hours: "12h-15h · 19h-00h", booking: "recommended", rating: 4.5 },
@@ -2377,6 +2393,7 @@
     [/andrea.*pizza|pizza/i, 'pizza,italian'],
     [/morgana|bar turrisi/i, 'cocktail,italian,bar'],
     [/spisone|mazzeo|letojanni|perla rosa/i, 'sicily,beach,mediterranean'],
+    [/déjeuner/i, 'sicilian,food,restaurant'],
     [/rifugio sapienza|cratère|etna/i, 'etna,volcano,crater'],
     [/cave ox|planeta|feudo/i, 'sicily,vineyard,wine'],
     [/ortigia|aréthuse|apollon/i, 'ortigia,syracuse,cathedral'],
@@ -2682,6 +2699,42 @@
     openModal("📤 Partager avec ta copine", html);
   };
 
+  // ======== CHECKLIST RÉSAS ========
+  window.openBookings = function() {
+    const resvs = getReservations();
+    const rows = { required: [], recommended: [] };
+    days.forEach(d => {
+      (d.spots || []).forEach(sp => {
+        const info = SPOT_METADATA[sp.name];
+        if (!info || !info.booking || info.booking === 'none') return;
+        rows[info.booking].push({ day: d, spot: sp, info });
+      });
+    });
+    const section = (title, list) => {
+      if (!list.length) return '';
+      let h = `<div class="kit-section"><div class="kit-section-title">${title}</div>`;
+      list.forEach(({ day, spot, info }) => {
+        const resv = resvs[spot.name];
+        const state = resv
+          ? `<span class="bk-state done">✓ ${resv.date}${resv.time ? ' · ' + resv.time : ''}</span>`
+          : `<span class="bk-state todo">à réserver</span>`;
+        const link = info.bookingUrl ? `<a class="bk-link" href="${info.bookingUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">réserver ↗</a>` : '';
+        h += `<div class="bk-row" onclick="promptReservation('${spot.name.replace(/'/g, "\\'")}')">
+          <div class="bk-main">
+            <div class="bk-name">${spot.name}</div>
+            <div class="bk-meta">${day.shortDate} · ${spot.time}${info.lead ? ' · ' + info.lead : ''}${info.price ? ' · ' + info.price : ''}</div>
+          </div>
+          <div class="bk-side">${state}${link}</div>
+        </div>`;
+      });
+      return h + `</div>`;
+    };
+    let html = `<div class="bk-help">Tout ce qui se réserve avant ou pendant le voyage, dans l'ordre du séjour. Tape une ligne pour noter ta résa (date, heure, nom), « réserver ↗ » ouvre le site.</div>`;
+    html += section('🔴 Réservation obligatoire', rows.required);
+    html += section('🟡 Réservation recommandée', rows.recommended);
+    openModal('📋 Résas à faire', html);
+  };
+
   // ======== MODE AUJOURD'HUI ========
   function getCurrentTripDayIdx() {
     const tripStart = new Date('2026-08-23T00:00:00');
@@ -2689,7 +2742,7 @@
     const diffMs = now - tripStart;
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     if (diffDays < 0) return -1;
-    if (diffDays > 4) return -1;
+    if (diffDays >= days.length) return -1;
     return diffDays;
   }
 
