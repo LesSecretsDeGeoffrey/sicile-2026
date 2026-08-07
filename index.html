@@ -1916,6 +1916,25 @@
   .bk-state.done { color: #0E7D7D; }
   .bk-state.todo { color: #C2410C; }
   .bk-link { font-size: 11px; font-weight: 700; color: var(--gold); text-decoration: none; white-space: nowrap; background: rgba(255,154,61,0.14); padding: 3px 8px; border-radius: 999px; }
+
+  /* ===== CHECKLIST VALISE ===== */
+  .pk-progress { height: 6px; background: rgba(192,122,30,0.14); border-radius: 999px; overflow: hidden; margin-bottom: 10px; }
+  .pk-progress-fill { height: 100%; background: var(--sun-grad); border-radius: 999px; transition: width 0.3s ease; }
+  .pk-row { display: flex; align-items: flex-start; gap: 10px; padding: 9px 10px; border: 1px solid var(--hair); border-radius: 10px; margin-bottom: 6px; cursor: pointer; background: var(--bg-3); }
+  .pk-row.done { opacity: 0.55; }
+  .pk-row.done .pk-label { text-decoration: line-through; }
+  .pk-box { width: 20px; height: 20px; border: 2px solid var(--border-strong); border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #0E7D7D; background: #fff; }
+  .pk-row.done .pk-box { background: rgba(31,182,182,0.15); border-color: #1FB6B6; }
+  .pk-label { font-size: 13px; line-height: 1.45; color: var(--text); }
+
+  /* ===== PÉPITES BONUS ===== */
+  .bn-group-title { font-size: 12px; font-weight: 800; letter-spacing: 0.4px; margin: 12px 2px 8px; }
+  .bn-item { border: 1px solid var(--hair); border-radius: 14px; padding: 11px 12px; margin-bottom: 8px; background: var(--bg-3); box-shadow: var(--sh-card); cursor: pointer; }
+  .bn-item:active { transform: scale(0.99); }
+  .bn-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .bn-name { font-weight: 700; font-size: 13.5px; color: var(--cream); }
+  .bn-dist { font-size: 10.5px; font-weight: 700; color: var(--gold); white-space: nowrap; flex-shrink: 0; }
+  .bn-desc { font-size: 12px; line-height: 1.5; color: var(--text-dim); margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -1933,6 +1952,7 @@
       <button class="header-action-btn" onclick="openSurvivalKit()" title="Kit de survie italien">🆘</button>
       <button class="header-action-btn" onclick="openShareQR()" title="Partager l'app">📤</button>
       <button class="header-action-btn" onclick="openBookings()" title="Résas à faire">📋</button>
+      <button class="header-action-btn" onclick="openPacking()" title="Checklist valise">🧳</button>
     </div>
     <div class="week-budget">
       <div class="week-budget-label">Budget/pers</div>
@@ -2256,6 +2276,9 @@
     }
   ];
 
+  // Coucher du soleil à Taormina (NOAA, ±2 min) · clé = day.number
+  const SUNSET_TIMES = { 1: "19h42", 2: "19h40", 3: "19h39", 4: "19h38", 5: "19h36", 6: "19h35", 7: "19h33", 8: "19h32" };
+
   const SPOT_METADATA = {
     "BAM Bar":                          { hours: "07h-01h tous les jours", booking: "none", rating: 4.5 },
     "Trattoria Tiramisù":               { hours: "12h-15h · 19h-23h tous les jours", booking: "recommended", lead: "2 à 3 jours", rating: 4.5, bookingUrl: "https://trattoriatiramisu.it/" },
@@ -2267,7 +2290,7 @@
     "La Caravella":                     { hours: "12h-15h · 19h-22h30 lun-dim", booking: "recommended", lead: "2 à 3 jours", rating: 4.5 },
     "Spiaggia di Spisone":              { hours: "24h/24 gratuit", booking: "none" },
     "Rifugio Sapienza":                 { hours: "téléphérique 09h-16h30", booking: "none" },
-    "Cratères sommitaux":               { hours: "tour 5h · départ le matin (heure exacte sur ta confirmation)", booking: "required", lead: "annulation gratuite jusqu'à 24h avant", price: "~65€/pers + 65€ téléphérique/4x4 sur place", rating: 4.7, bookingUrl: "https://www.getyourguide.com/fr-fr/belpasso-l152489/randonnee-au-cratere-du-sommet-de-l-etna-avec-telepherique-t401753/" },
+    "Cratères sommitaux":               { hours: "tour 5h · départ le matin (heure exacte sur ta confirmation)", booking: "required", booked: true, lead: "réservé ✓ · annulation gratuite jusqu'à 24h avant", price: "~65€/pers + 65€ téléphérique/4x4 sur place", rating: 4.7, bookingUrl: "https://www.getyourguide.com/fr-fr/belpasso-l152489/randonnee-au-cratere-du-sommet-de-l-etna-avec-telepherique-t401753/" },
     "Déjeuner Etna Sud":                { hours: "12h-15h30", booking: "none" },
     "Benanti Viticoltori":              { hours: "10h-18h sur réservation (fermé lun)", booking: "required", lead: "48h", price: "30 à 60€ dégustation", rating: 4.6, bookingUrl: "https://www.benanti.it/en/hospitality/" },
     "Cave Ox":                          { hours: "12h-15h30 · 19h-23h (fermé mar)", booking: "recommended", lead: "1 semaine", rating: 4.4 },
@@ -2717,6 +2740,8 @@
         const resv = resvs[spot.name];
         const state = resv
           ? `<span class="bk-state done">✓ ${resv.date}${resv.time ? ' · ' + resv.time : ''}</span>`
+          : info.booked
+          ? `<span class="bk-state done">✓ réservé</span>`
           : `<span class="bk-state todo">à réserver</span>`;
         const link = info.bookingUrl ? `<a class="bk-link" href="${info.bookingUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">réserver ↗</a>` : '';
         h += `<div class="bk-row" onclick="promptReservation('${spot.name.replace(/'/g, "\\'")}')">
@@ -2734,6 +2759,99 @@
     html += section('🟡 Réservation recommandée', rows.recommended);
     openModal('📋 Résas à faire', html);
   };
+
+  // ======== CHECKLIST VALISE ========
+  const PACKING_KEY = 'sicile-2026-packing';
+  const PACKING_LIST = [
+    { section: "🗂️ Essentiels", items: [
+      "Cartes d'identité / passeports ×2",
+      "Permis de conduire ×2 (les deux conducteurs)",
+      "CB + un peu de cash (Borderi et Ritrovo Ingrid = cash only)",
+      "Confirmations : vol, hôtel, voiture, tour Etna (mail GetYourGuide)",
+      "Chargeurs téléphone + batterie externe (grosses journées photos)",
+      "Chargeur voiture + câble (GPS toute la journée)",
+      "Petite pharmacie : doliprane, anti-diarrhée, pansements, anti-moustique",
+      "Lunettes de soleil ×2 + casquettes"
+    ]},
+    { section: "🏖️ Plage & criques", items: [
+      "Masques-tubas ×2 (Isola Bella et Calamosche, non négociable)",
+      "Chaussures d'eau (galets à Isola Bella)",
+      "Serviettes microfibre (sèchent dans la voiture)",
+      "SPF50 visage + corps (le soleil sicilien ne rigole pas)",
+      "Sac étanche pour téléphone + clés de voiture",
+      "Maillots ×2 chacun (un sec, un mouillé)"
+    ]},
+    { section: "🌋 Etna 3300m (mardi 25)", items: [
+      "Baskets fermées ou chaussures de rando (sable volcanique abrasif)",
+      "Polaire + coupe-vent (10-15°C là-haut, même en août)",
+      "Pantalon long (le short à 3300m, tu vas le regretter)",
+      "1,5L d'eau par personne + barres céréales",
+      "65€/pers en CB ou cash pour le téléphérique + 4x4 sur place"
+    ]},
+    { section: "🌋 Stromboli (samedi 29)", items: [
+      "Frontale (retour de nuit, indispensable)",
+      "Veste chaude pour la navigation retour (minuit en mer)",
+      "Comprimés mal de mer (2h30 de bateau)",
+      "Baskets pour l'île (chemins volcaniques)"
+    ]},
+    { section: "🧳 Malin", items: [
+      "Valise à moitié vide : pistaches de Bronte, vins de l'Etna, céramiques au retour",
+      "Tenue épaules/genoux couverts (églises, Duomo d'Ortigia)",
+      "Adaptateur si grosses fiches Schuko (les petites fiches rondes passent partout)",
+      "Tongs + une tenue correcte pour les dîners Taormina"
+    ]}
+  ];
+  function getPacking() {
+    try { return JSON.parse(localStorage.getItem(PACKING_KEY) || '{}'); } catch { return {}; }
+  }
+  window.togglePacking = function(id) {
+    const p = getPacking();
+    if (p[id]) delete p[id]; else p[id] = 1;
+    localStorage.setItem(PACKING_KEY, JSON.stringify(p));
+    openPacking(true);
+  };
+  window.openPacking = function(keepScroll) {
+    const p = getPacking();
+    const total = PACKING_LIST.reduce((n, g) => n + g.items.length, 0);
+    const done = Object.keys(p).length;
+    const body = document.getElementById('modal-body');
+    const prevScroll = keepScroll && document.getElementById('modal-backdrop').classList.contains('open') ? body.scrollTop : 0;
+    let html = `<div class="pk-progress"><div class="pk-progress-fill" style="width:${total ? Math.round(done / total * 100) : 0}%"></div></div>
+      <div class="bk-help">${done}/${total} dans la valise. Tape une ligne pour cocher, c'est sauvegardé sur ce téléphone.</div>`;
+    PACKING_LIST.forEach((g, gi) => {
+      html += `<div class="kit-section"><div class="kit-section-title">${g.section}</div>`;
+      g.items.forEach((it, ii) => {
+        const id = gi + '-' + ii;
+        const ck = p[id];
+        html += `<div class="pk-row ${ck ? 'done' : ''}" onclick="togglePacking('${id}')">
+          <span class="pk-box">${ck ? '✓' : ''}</span>
+          <span class="pk-label">${it}</span>
+        </div>`;
+      });
+      html += `</div>`;
+    });
+    openModal('🧳 Checklist valise', html);
+    if (prevScroll) body.scrollTop = prevScroll;
+  };
+
+  // ======== PÉPITES HORS PROGRAMME (criques · cascades · sunsets) ========
+  const BONUS_SPOTS = [
+    { group: "🏝️ Criques", color: "#4DC3E0", items: [
+      { name: "Grotta Azzurra · Capo Sant'Andrea", dist: "5 min · kayak 2h ~30€", desc: "La grotte bleue de Taormina, juste derrière Isola Bella. En kayak ou tour snorkeling depuis Mazzarò, eau translucide, parois bleu électrique. Le complément parfait du lundi 24.", gmaps: "https://www.google.com/maps/search/?api=1&query=Grotta+Azzurra+Capo+Sant+Andrea+Taormina+Sicilia" },
+      { name: "Santa Maria La Scala (La Timpa)", dist: "40 min · gratuit", desc: "Borgo de pêcheurs au pied de la falaise verte de La Timpa, à Acireale : criques de galets, eau limpide, trattorias de poisson sur le port minuscule. Quasi zéro touriste, la Sicile d'avant. Parfait en plan B plage ou en fin d'aprem.", gmaps: "https://www.google.com/maps/search/?api=1&query=Santa+Maria+La+Scala+Acireale+Sicilia" },
+      { name: "Aci Trezza · Faraglioni des Cyclopes", dist: "50 min · gratuit", desc: "Les rochers de lave que Polyphème aurait balancés sur Ulysse, plantés dans une mer cristalline. Snorkeling autour de l'Isola Lachea (aire marine protégée), granita sur le port en sortant.", gmaps: "https://www.google.com/maps/search/?api=1&query=Faraglioni+Aci+Trezza+Sicilia" },
+      { name: "La Praiola (Giarre)", dist: "30 min · gratuit", desc: "Crique sauvage de galets noirs face à l'Etna, souvent quasi déserte même en août. Aucun service : eau, parasol et pique-nique dans le coffre. Le spot anti-foule absolu.", gmaps: "https://www.google.com/maps/search/?api=1&query=Spiaggia+La+Praiola+Giarre+Sicilia" },
+      { name: "Marianelli (Vendicari)", dist: "voisine de Calamosche", desc: "L'autre merveille de Vendicari : sable doré, dunes, tortues marines qui pondent, 20 min de marche depuis le parking. À coupler avec Calamosche le mercredi 26 pour doubler la dose. Fréquentation en partie naturiste, ambiance très libre.", gmaps: "https://www.google.com/maps/search/?api=1&query=Spiaggia+Marianelli+Vendicari+Sicilia" }
+    ]},
+    { group: "💦 Cascades & piscines naturelles", color: "#1FB6B6", items: [
+      { name: "Gurne dell'Alcantara", dist: "déjà au programme J6", desc: "Les vasques émeraude et petites cascades de l'Alcantara, en eau même fin août. C'est ton vendredi 28 à 11h, avec la Catafurco (LA plus belle de Sicile, 1h45 de route) en option journée dédiée.", gmaps: "https://www.google.com/maps/search/?api=1&query=Gurne+dell+Alcantara+Francavilla+di+Sicilia" },
+      { name: "Cavagrande del Cassibile", dist: "1h40 · gratuit", desc: "Le canyon aux piscines naturelles turquoise en enfilade, le plus beau spot d'eau douce du sud-est. Au-delà de la règle 1h30 et descente raide de 30-40 min (remontée qui pique) : si vous le faites, c'est À LA PLACE de Vendicari le mercredi, même direction. Vérifier que le sentier Scala Cruci est ouvert avant d'y aller.", gmaps: "https://www.google.com/maps/search/?api=1&query=Cavagrande+del+Cassibile+laghetti+Avola+Sicilia" }
+    ]},
+    { group: "🌅 Couchers de soleil", color: "#FF7E5F", items: [
+      { name: "Madonna della Rocca", dist: "15 min à pied · gratuit", desc: "La chapelle taillée dans le rocher au-dessus de Taormina. LA vue coucher de soleil : la baie, le Teatro Antico et l'Etna qui rosit, pendant que les terrasses du centre sont pleines. Montée depuis Porta Messina, ou 5 min en voiture direction Castelmola. Casable n'importe quel soir avant l'apéro.", gmaps: "https://www.google.com/maps/search/?api=1&query=Chiesa+Madonna+della+Rocca+Taormina+Sicilia" },
+      { name: "Le bon réflexe côte Est", dist: "à savoir", desc: "Ici le soleil se couche derrière les terres, pas dans la mer : les plus beaux sunsets se prennent en hauteur (Castelmola le jeudi 27, Madonna della Rocca) avec l'heure exacte affichée sur les spots 🌅 de chaque jour. Le seul vrai coucher de soleil EN MER du séjour : samedi 29 en navigation vers Stromboli, côté gauche du bateau." }
+    ]}
+  ];
 
   // ======== MODE AUJOURD'HUI ========
   function getCurrentTripDayIdx() {
@@ -3155,9 +3273,9 @@ ${name}`);
       const isCurrent = i === currentSpotIdx;
       const badges = [];
       if (isCurrent) badges.push('<span class="spot-now-badge">MAINTENANT</span>');
-      if (s.sunset) badges.push('<span class="spot-badge sunset">🌅 Sunset</span>');
+      if (s.sunset) { const st = SUNSET_TIMES[d.number]; badges.push('<span class="spot-badge sunset">🌅 ' + (st ? 'coucher ' + st : 'Sunset') + '</span>'); }
       if (isVisited) badges.push('<span class="spot-badge visited">✓ Vu</span>');
-      if (booked) badges.push('<span class="spot-badge booked">✓ Réservé</span>');
+      if (booked || info?.booked) badges.push('<span class="spot-badge booked">✓ Réservé</span>');
       else if (info?.booking === 'required' && !isVisited) badges.push('<span class="spot-badge required">À réserver</span>');
       const badgesHtml = badges.length ? `<span class="spot-badges">${badges.join('')}</span>` : '';
       return (i > 0 ? hopBetween(d.spots[i - 1], s) : '') + `
@@ -3332,6 +3450,22 @@ ${name}`);
       });
       html += `</div>`;
     });
+    if (overviewFilter === 'all') {
+      html += `<div class="ov-group">
+        <div class="ov-group-title"><span class="ov-dot" style="background:#C8A04A"></span>💎 Les pépites en plus<span class="ov-count">${BONUS_SPOTS.reduce((n, g) => n + g.items.length, 0)}</span></div>
+        <div class="ov-intro" style="margin:2px 0 10px">Hors programme, à caser selon l'envie et la météo. Tape une carte pour ouvrir Google Maps.</div>`;
+      BONUS_SPOTS.forEach(g => {
+        html += `<div class="bn-group-title" style="color:${g.color}">${g.group}</div>`;
+        g.items.forEach(b => {
+          const click = b.gmaps ? ` onclick="window.open('${b.gmaps}', '_blank')"` : '';
+          html += `<div class="bn-item"${click}>
+            <div class="bn-head"><span class="bn-name">${b.name}</span><span class="bn-dist">${b.dist}</span></div>
+            <div class="bn-desc">${b.desc}</div>
+          </div>`;
+        });
+      });
+      html += `</div>`;
+    }
     html += `</div>`;
     const list = document.getElementById('spots-list');
     list.innerHTML = html;
