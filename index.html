@@ -1935,6 +1935,10 @@
   .bn-name { font-weight: 700; font-size: 13.5px; color: var(--cream); }
   .bn-dist { font-size: 10.5px; font-weight: 700; color: var(--gold); white-space: nowrap; flex-shrink: 0; }
   .bn-desc { font-size: 12px; line-height: 1.5; color: var(--text-dim); margin-top: 4px; }
+
+  /* ===== MÉTÉO SOMMET ETNA ===== */
+  .etna-weather { background: rgba(255,107,92,0.10); border-color: rgba(255,107,92,0.30); margin-top: 6px; }
+  .etna-weather a { color: var(--gold); font-weight: 700; text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -2039,7 +2043,7 @@
           { name: "Osteria Nero d'Avola", rating: 4.6, hours: "12h30-14h30 · 19h-22h30, fermé mar", price: "35-50€", flag: "cave à vins top · chef Turi Siligato · réserve", gmaps: "https://www.google.com/maps/search/?api=1&query=Osteria+Nero+d+Avola+Taormina+Sicilia" },
           { name: "Vineria Modì", rating: 4.5, hours: "12h-15h · 19h-23h", price: "30-45€", flag: "bistrot moderne · produits de l'Etna", gmaps: "https://www.google.com/maps/search/?api=1&query=Vineria+Modi+Taormina+Sicilia" }
         ] },
-        { name: "Teatro Antico", category: "culture", time: "17h00", coords: [37.8524, 15.2923], description: "Théâtre grec du IIIe siècle avant J.-C. avec l'Etna en toile de fond. La lumière dorée de fin d'aprem sublime les pierres.", meta: "14€ · ouvert 9h-19h" },
+        { name: "Villa Comunale", category: "culture", time: "17h00", coords: [37.8496, 15.2867], description: "Les jardins de Lady Florence Trevelyan, l'Anglaise de Taormina : pavillons victoriens, allées fleuries, vue plongeante sur la baie et l'Etna. Gratuit, ouvert jusqu'à minuit l'été. Le Teatro Antico attendra demain : ce dimanche soir Roberto Bolle y danse (Taormina Arte), la visite ferme plus tôt les soirs de spectacle.", meta: "Via Bagnoli Croce · gratuit" },
         { name: "Bar Morgana", category: "bar", sunset: true, time: "19h30", coords: [37.8516, 15.2884], description: "Apéro dans le patio fleuri. Aperol spritz ou negroni, playlist bossa, ambiance chic sans être coincée.", meta: "Scesa Morgana 4" , options: [
           { name: "Daiquiri Lounge Bar", rating: 4.5, hours: "18h-2h", price: "10-15€/cocktail", flag: "mixologie · terrasse · ambiance lounge", gmaps: "https://www.google.com/maps/search/?api=1&query=Daiquiri+Lounge+Bar+Taormina+Sicilia" },
           { name: "Wunderbar Caffè", rating: 4.3, hours: "9h-1h", price: "12-16€/cocktail", flag: "institution Piazza IX Aprile · vue baie", gmaps: "https://www.google.com/maps/search/?api=1&query=Wunderbar+Caffe+Taormina+Sicilia" }
@@ -2074,7 +2078,8 @@
           { name: "Da Giovanni Mazzarò", rating: 4.4, hours: "12h-22h", price: "30-45€", flag: "pieds dans l'eau · fritto misto", gmaps: "https://www.google.com/maps/search/?api=1&query=Da+Giovanni+Mazzaro+Taormina+Sicilia" }
         ] },
         { name: "Spiaggia di Spisone", category: "plage", time: "15h30", coords: [37.8610, 15.3085], description: "15 min de marche le long du littoral depuis Isola Bella, ou 10 min en voiture par la SP10. Plage libre de 800m, sable noir volcanique et galets, eau transparente, bien moins peuplée que Isola Bella. Les bords restent gratuits, quelques lidos au milieu. Spot local authentique.", meta: "Plage libre · 5 km de Taormina centre" },
-        { name: "Retour hôtel", category: "hotel", time: "18h00", coords: [37.8518, 15.2894], description: "Douche, apéro sur la terrasse panoramique au coucher du soleil.", meta: "" },
+        { name: "Teatro Antico", category: "culture", time: "17h30", coords: [37.8524, 15.2923], description: "Théâtre grec du IIIe siècle avant J.-C. avec l'Etna en toile de fond, dans la lumière dorée de fin de journée. Déplacé du dimanche : les soirs de spectacle Taormina Arte la visite ferme plus tôt, et ce lundi 24 le calendrier est vide. 14€.", meta: "⚠️ soirs de spectacle : fermeture anticipée" },
+        { name: "Retour hôtel", category: "hotel", time: "18h45", coords: [37.8518, 15.2894], description: "Douche, apéro sur la terrasse panoramique au coucher du soleil.", meta: "" },
         { name: "Trattoria Tiramisù", category: "resto", time: "20h30", coords: [37.8511, 15.2876], description: "4.5/5 sur 2611 avis. On y retourne pour le dîner : cette fois on teste les frutti di mare, l'involtino di pesce spada, ou les antipasti au pistache. Excellent rapport qualité-prix pour Taormina.", meta: "Via Apollo Arcageta 9" , options: [
           { name: "Trattoria Don Ciccio", rating: 4.5, hours: "12h-15h · 19h-23h", price: "30-45€", flag: "cuisine sicilienne généreuse · locaux", gmaps: "https://www.google.com/maps/search/?api=1&query=Trattoria+Don+Ciccio+Taormina+Sicilia" },
           { name: "Osteria da Rita", rating: 4.4, hours: "19h-23h", price: "28-40€", flag: "ruelle calme · pasta fraîche", gmaps: "https://www.google.com/maps/search/?api=1&query=Osteria+da+Rita+Taormina+Sicilia" }
@@ -2173,9 +2178,9 @@
           { name: "Antico Caffè Savoca", rating: 4.3, hours: "8h-20h", price: "3-5€", flag: "au cœur du village du Parrain", gmaps: "https://www.google.com/maps/search/?api=1&query=Antico+Caffe+Savoca+Sicilia" }
         ] },
         { name: "Forza d'Agrò", category: "culture", time: "12h00", coords: [37.9371, 15.3552], description: "Autre village du Parrain, perché à 420m. Vue à 360°, ruelles médiévales, Chiesa Madre Santissima Annunziata.", meta: "" },
-        { name: "Trattoria Anni 60", category: "resto", time: "13h00", coords: [37.9373, 15.3555], description: "4.5/5 sur 3048 avis. LA trattoria de Forza d'Agrò, ambiance vintage années 60. Pasta al ragù, fruits de mer, cannoli maison. Portions généreuses, prix doux, service chaleureux.", meta: "Via Santissima Annunziata 31" , options: [
-          { name: "Ristorante La Terrazza Forza d'Agrò", rating: 4.4, hours: "12h-15h · 19h-22h", price: "30-45€", flag: "vue 360° · poisson frais", gmaps: "https://www.google.com/maps/search/?api=1&query=La+Terrazza+Forza+d+Agro+Sicilia" },
-          { name: "Osteria Cyclopis", rating: 4.5, hours: "12h30-15h · 19h30-22h30", price: "28-42€", flag: "trattoria de village · pasta maison", gmaps: "https://www.google.com/maps/search/?api=1&query=Osteria+Cyclopis+Forza+d+Agro+Sicilia" }
+        { name: "'O Dammuseddu", category: "resto", time: "13h00", coords: [37.9370, 15.3550], description: "4.6/5 sur 719 avis. La trattoria familiale de Forza d'Agrò : petite salle rustique, terrasse vue mer, antipasti siciliens, poisson du jour, pasta maison. 30 à 40€/pers, ouverte midi et soir tous les jours. La mythique Anni 60 ne sert pas le midi le jeudi, celle-ci est au niveau.", meta: "Via Dante Alighieri 2 · réserve" , options: [
+          { name: "Antichi Muri", hours: "10h-23h30, fermé mer", price: "35-50€", flag: "pizzeria sicilienne · pizzas thème Le Parrain", gmaps: "https://www.google.com/maps/search/?api=1&query=Antichi+Muri+Forza+d+Agro+Sicilia" },
+          { name: "Trattoria Anni 60", rating: 4.5, hours: "⚠️ jeudi : 17h30-23h30, soir uniquement", price: "30-45€", flag: "la mythique du village · pour un autre jour", gmaps: "https://www.google.com/maps/search/?api=1&query=Trattoria+Anni+60+Forza+d+Agro+Sicilia" }
         ] },
         { name: "Retour hôtel", category: "hotel", time: "15h00", coords: [37.8518, 15.2894], description: "Sieste obligatoire, piscine, livre à l'ombre. Journée douce.", meta: "" },
         { name: "Castelmola", category: "insta", time: "17h30", coords: [37.8637, 15.2745], description: "Village perché à 529m au-dessus de Taormina, 15 min de route en lacets. Vue 360° sur la baie, l'Etna, la Calabre au loin. Spot insta de fou au soleil couchant.", meta: "Parking à l'entrée du village" },
@@ -2282,7 +2287,8 @@
   const SPOT_METADATA = {
     "BAM Bar":                          { hours: "07h-01h tous les jours", booking: "none", rating: 4.5 },
     "Trattoria Tiramisù":               { hours: "12h-15h · 19h-23h tous les jours", booking: "recommended", lead: "2 à 3 jours", rating: 4.5, bookingUrl: "https://trattoriatiramisu.it/" },
-    "Teatro Antico":                    { hours: "09h-19h · dernière entrée 18h", booking: "recommended", lead: "la veille", price: "14€", bookingUrl: "https://www.parconaxostaormina.com/" },
+    "Teatro Antico":                    { hours: "09h-19h · soirs de spectacle : fermeture anticipée", booking: "recommended", lead: "la veille", price: "14€", bookingUrl: "https://www.parconaxostaormina.com/" },
+    "Villa Comunale":                   { hours: "09h-minuit l'été", booking: "none" },
     "Bar Morgana":                      { hours: "19h-02h", booking: "recommended" },
     "Osteria Rossodivino":              { hours: "12h-14h30 · 19h-22h30 (fermé mar)", booking: "required", lead: "1 à 2 semaines", rating: 4.5, bookingUrl: "https://osteriarossodivinotaormina.com/index.php/prenota-tavolo/?lang=fr" },
     "Téléphérique":                     { hours: "08h-01h · toutes les 15 min", booking: "none", price: "3€/trajet" },
@@ -2295,7 +2301,7 @@
     "Benanti Viticoltori":              { hours: "10h-18h sur réservation (fermé lun)", booking: "required", lead: "48h", price: "30 à 60€ dégustation", rating: 4.6, bookingUrl: "https://www.benanti.it/en/hospitality/" },
     "Cave Ox":                          { hours: "12h-15h30 · 19h-23h (fermé mar)", booking: "recommended", lead: "1 semaine", rating: 4.4 },
     "Planeta Feudo di Mezzo":           { hours: "10h-18h sur rendez-vous", booking: "required", lead: "48h", price: "25 à 35€ dégustation", bookingUrl: "https://planeta.it/en/" },
-    "Pizza Mania":                      { hours: "12h-15h · 19h-00h", booking: "recommended", rating: 4.5 },
+    "Pizza Mania":                      { hours: "12h-23h (fermé lun)", booking: "recommended", rating: 4.6 },
     "Temple d'Apollon":                 { hours: "24h/24 · extérieur libre", booking: "none" },
     "Piazza Duomo Ortigia":             { hours: "place 24h/24 · cathédrale 08h-19h", booking: "none" },
     "Fontaine d'Aréthuse":              { hours: "24h/24", booking: "none" },
@@ -2306,7 +2312,8 @@
     "Savoca":                           { hours: "24h/24 village", booking: "none" },
     "Bar Vitelli":                      { hours: "09h-21h", booking: "none" },
     "Forza d'Agrò":                     { hours: "24h/24", booking: "none" },
-    "Trattoria Anni 60":                { hours: "12h-15h · 19h-23h", booking: "recommended", rating: 4.5 },
+    "Trattoria Anni 60":                { hours: "jeu : soir uniquement 17h30-23h30 · sinon midi + soir", booking: "recommended", rating: 4.5 },
+    "'O Dammuseddu":                    { hours: "12h-23h30 tous les jours", booking: "recommended", lead: "2 à 3 jours", rating: 4.6 },
     "Castelmola":                       { hours: "24h/24", booking: "none" },
     "Bar Turrisi":                      { hours: "10h-02h", booking: "none" },
     "Trattoria da Nino":                { hours: "12h-15h · 18h30-23h (fermé lun)", booking: "required", lead: "1 à 2 semaines", rating: 4.4, bookingUrl: "https://trattoriadaninotaormina.com/en/" },
@@ -2416,6 +2423,7 @@
     [/andrea.*pizza|pizza/i, 'pizza,italian'],
     [/morgana|bar turrisi/i, 'cocktail,italian,bar'],
     [/spisone|mazzeo|letojanni|perla rosa/i, 'sicily,beach,mediterranean'],
+    [/villa comunale/i, 'taormina,garden,italy'],
     [/déjeuner/i, 'sicilian,food,restaurant'],
     [/rifugio sapienza|cratère|etna/i, 'etna,volcano,crater'],
     [/cave ox|planeta|feudo/i, 'sicily,vineyard,wine'],
@@ -3089,6 +3097,25 @@ ${name}`);
     return 'Variable';
   }
 
+  async function fetchEtnaWeather() {
+    const url = 'https://api.open-meteo.com/v1/forecast?latitude=37.751&longitude=14.994&elevation=2900&daily=temperature_2m_max,temperature_2m_min,windspeed_10m_max,windgusts_10m_max&timezone=Europe%2FRome&forecast_days=16';
+    try {
+      const resp = await fetch(url);
+      const data = await resp.json();
+      const idx = data.daily.time.indexOf('2026-08-25');
+      if (idx >= 0) {
+        const etnaDay = days.find(d => d.number === 3);
+        etnaDay.etnaWeather = {
+          max: Math.round(data.daily.temperature_2m_max[idx]),
+          min: Math.round(data.daily.temperature_2m_min[idx]),
+          wind: Math.round(data.daily.windspeed_10m_max[idx]),
+          gusts: Math.round(data.daily.windgusts_10m_max[idx])
+        };
+        if (!overviewMode && days[currentDay]?.number === 3) renderDayHeader();
+      }
+    } catch (e) { console.warn('Etna weather fetch failed:', e); }
+  }
+
   async function fetchWeather() {
     const url = 'https://api.open-meteo.com/v1/forecast?latitude=37.85&longitude=15.29&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_max&timezone=Europe%2FRome&forecast_days=16';
     try {
@@ -3162,6 +3189,20 @@ ${name}`);
       weatherLine = `<div class="day-weather-pending">⏳ Météo dispo ~14 jours avant le voyage</div>`;
     }
 
+    let etnaLine = '';
+    if (d.number === 3) {
+      const ew = d.etnaWeather;
+      const warn = ew && ew.gusts >= 50 ? ' · ⚠️ vent fort, tour modifiable' : '';
+      const tempTxt = ew ? `${ew.min}° / ${ew.max}° · rafales ${ew.gusts} km/h${warn}` : 'prévisions ~14 jours avant';
+      etnaLine = `<div class="day-weather etna-weather">
+          <span class="day-weather-icon">🌋</span>
+          <div class="day-weather-text">
+            <span class="day-weather-temp">Sommet 2900m : ${tempTxt}</span>
+            <span class="day-weather-detail">Volcan en direct : <a href="https://www.skylinewebcams.com/fr/webcam/italia/sicilia/catania/vulcano-etna-sud.html" target="_blank" rel="noopener">webcam</a> · <a href="https://www.ct.ingv.it/" target="_blank" rel="noopener">bulletin INGV</a></span>
+          </div>
+        </div>`;
+    }
+
     const gpsUrl = buildDayRouteUrl(d);
     const gpsBtn = gpsUrl
       ? `<a class="gps-day-btn" href="${gpsUrl}" target="_blank">🗺️ GPS du jour · Itinéraire complet</a>`
@@ -3208,7 +3249,7 @@ ${name}`);
         ${catCount.insta ? `<div class="day-stat"><strong>${catCount.insta}</strong> spots insta</div>` : ''}
       </div>
       ${budgetLine}
-      ${weatherLine}
+      ${weatherLine}${etnaLine}
       ${journalLine}
       ${gpsBtn}
       ${planBHtml}
@@ -3585,10 +3626,11 @@ ${name}`);
   renderMapMarkers();
 
   fetchWeather();
+  fetchEtnaWeather();
 
   // Refresh countdown every hour + weather every 6h + "MAINTENANT" every 10 min
   setInterval(updateCountdown, 1000 * 60 * 60);
-  setInterval(fetchWeather, 1000 * 60 * 60 * 6);
+  setInterval(() => { fetchWeather(); fetchEtnaWeather(); }, 1000 * 60 * 60 * 6);
   setInterval(() => {
     if (getCurrentTripDayIdx() === currentDay) {
       renderSpots();
