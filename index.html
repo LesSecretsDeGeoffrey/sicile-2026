@@ -1939,6 +1939,65 @@
   /* ===== MÉTÉO SOMMET ETNA ===== */
   .etna-weather { background: rgba(255,107,92,0.10); border-color: rgba(255,107,92,0.30); margin-top: 6px; }
   .etna-weather a { color: var(--gold); font-weight: 700; text-decoration: underline; }
+
+  /* ===== BARRE OUTILS : recherche + mes modifs ===== */
+  .tools-bar { display: flex; gap: 8px; padding: 10px 12px 0; align-items: center; flex-shrink: 0; }
+  .search-pill { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--hair-str); background: var(--bg-3); color: var(--text-dim); font-family: var(--sans); font-size: 13px; cursor: pointer; text-align: left; box-shadow: var(--sh-card); }
+  .search-pill:active { transform: scale(0.99); }
+  .search-pill .ph { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .tools-btn { position: relative; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--hair-str); background: var(--bg-3); color: var(--coral); font-size: 17px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--sh-card); flex-shrink: 0; }
+  .tools-btn:active { transform: scale(0.96); }
+  .tools-n { position: absolute; top: -5px; right: -5px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: var(--sun-grad); color: #fff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(255,107,92,0.4); }
+
+  /* ===== RECHERCHE ===== */
+  .sr-input { width: 100%; height: 48px; border-radius: 14px; border: 1.5px solid var(--hair-str); background: var(--bg-3); color: var(--cream); font-family: var(--sans); font-size: 16px; padding: 0 14px; outline: none; -webkit-appearance: none; appearance: none; }
+  .sr-input:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,107,92,0.18); }
+  .sr-hint { font-size: 12px; color: var(--text-dim); margin: 12px 2px 4px; line-height: 1.5; }
+  .sr-section { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin: 16px 2px 8px; font-weight: 700; }
+  .sr-item { display: flex; align-items: center; gap: 11px; padding: 10px 11px; border: 1px solid var(--hair); border-radius: 14px; margin-bottom: 7px; background: var(--bg-3); box-shadow: var(--sh-card); cursor: pointer; }
+  .sr-item:active { transform: scale(0.99); }
+  .sr-ic { width: 36px; height: 36px; min-width: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+  .sr-body { flex: 1; min-width: 0; }
+  .sr-name { font-family: var(--serif); font-weight: 700; font-size: 14.5px; color: var(--cream); line-height: 1.2; }
+  .sr-name mark { background: rgba(255,154,61,0.35); color: inherit; border-radius: 3px; padding: 0 1px; }
+  .sr-sub { font-size: 11.5px; color: var(--text-dim); margin-top: 3px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .sr-day { flex-shrink: 0; text-align: center; min-width: 54px; padding: 5px 7px; border-radius: 10px; background: var(--sun-grad); color: #fff; box-shadow: var(--glow-gold); }
+  .sr-day b { display: block; font-size: 14px; font-weight: 900; line-height: 1; }
+  .sr-day small { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: 0.5px; margin-top: 2px; opacity: 0.95; white-space: nowrap; }
+  .sr-day.muted { background: var(--bg); color: var(--text-dim); box-shadow: none; border: 1px solid var(--hair); }
+  .sr-empty { text-align: center; padding: 26px 10px; color: var(--text-dim); font-size: 13px; line-height: 1.6; }
+
+  /* ===== ÉDITION DU PROGRAMME ===== */
+  .spot-edit { position: absolute; top: 9px; right: 9px; width: 30px; height: 30px; border-radius: 999px; border: 1px solid var(--hair); background: var(--bg); color: var(--text-dim); font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
+  .spot-edit:active { transform: scale(0.92); }
+  .spot-content { padding-right: 26px; }
+  .spot-badge.edited { background: rgba(31,182,182,0.14); color: #0E7D7D; border: 1px solid rgba(31,182,182,0.35); }
+  .spot-badge.custom { background: rgba(255,154,61,0.16); color: #B45309; border: 1px solid rgba(255,154,61,0.4); }
+  .spot-maps-link { display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 700; color: var(--gold); text-decoration: none; background: rgba(255,154,61,0.14); padding: 3px 9px; border-radius: 999px; }
+  .day-edit-footer { padding-bottom: 8px; }
+  @media (max-width: 900px) { .day-edit-footer { padding-bottom: 96px; } }
+  .add-spot-btn { width: 100%; margin: 6px 0 4px; height: 46px; border-radius: 14px; border: 1.5px dashed var(--hair-str); background: transparent; color: var(--gold); font-family: var(--sans); font-weight: 700; font-size: 13.5px; cursor: pointer; }
+  .add-spot-btn:active { background: rgba(255,154,61,0.10); }
+  .removed-box { margin-top: 10px; padding: 10px 12px; border-radius: 12px; border: 1px dashed var(--hair); background: rgba(138,126,112,0.06); font-size: 12px; color: var(--text-dim); }
+  .removed-box b { color: var(--text); }
+  .removed-line { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px; }
+  .link-btn { background: none; border: none; color: var(--coral); font-weight: 700; font-family: var(--sans); font-size: 12px; cursor: pointer; padding: 4px 6px; white-space: nowrap; }
+  .ed-field { margin-bottom: 12px; }
+  .ed-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 5px; display: block; }
+  .ed-input, .ed-select, .ed-textarea { width: 100%; border-radius: 12px; border: 1.5px solid var(--hair-str); background: var(--bg-3); color: var(--cream); font-family: var(--sans); font-size: 16px; padding: 10px 12px; outline: none; }
+  .ed-input:not([type=time]), .ed-textarea { -webkit-appearance: none; appearance: none; }
+  .ed-input:focus, .ed-select:focus, .ed-textarea:focus { border-color: var(--coral); box-shadow: 0 0 0 3px rgba(255,107,92,0.18); }
+  .ed-textarea { min-height: 84px; resize: vertical; line-height: 1.45; }
+  .ed-two { display: grid; grid-template-columns: 1fr 1.5fr; gap: 10px; }
+  .ed-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ed-btn { height: 46px; border-radius: 14px; border: 1px solid var(--hair-str); background: var(--bg-3); color: var(--cream); font-family: var(--sans); font-weight: 700; font-size: 14px; cursor: pointer; }
+  .ed-btn.primary { background: var(--sun-grad); color: #fff; border: none; box-shadow: var(--glow-gold); }
+  .ed-btn.danger { color: #C2410C; border-color: rgba(194,65,12,0.35); background: rgba(194,65,12,0.06); }
+  .ed-btn:active { transform: scale(0.99); }
+  .ed-note { font-size: 12px; color: var(--text-dim); line-height: 1.5; margin-top: 10px; }
+  .ed-cat { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ed-cat button { border-radius: 999px; border: 1px solid var(--hair-str); background: var(--bg-3); padding: 7px 11px; font-size: 12.5px; font-family: var(--sans); color: var(--text); cursor: pointer; }
+  .ed-cat button.on { background: var(--sun-grad); color: #fff; border-color: transparent; }
 </style>
 </head>
 <body>
@@ -1982,6 +2041,10 @@
 <div class="main">
   <aside class="sidebar" id="sidebar">
     <nav class="day-tabs" id="day-tabs"></nav>
+    <div class="tools-bar">
+      <button class="search-pill" onclick="openSearch()"><span>🔍</span><span class="ph">Rechercher une activité, un resto, une plage…</span></button>
+      <button class="tools-btn" id="edits-btn" onclick="openEditsOverview()" title="Mes modifications">✎<span class="tools-n" id="edits-n" style="display:none">0</span></button>
+    </div>
     <div class="day-header" id="day-header"></div>
     <div class="spots-list" id="spots-list"></div>
   </aside>
@@ -3045,6 +3108,7 @@ ${name}`);
   // ======== GPS DU JOUR ========
   function buildDayRouteUrl(day) {
     const spots = day.spots.filter(s => {
+      if (!s.coords) return false;
       const name = s.name.toLowerCase();
       if (name.startsWith('route ') || name.startsWith('retour ') || name.startsWith('réveil') || name.startsWith('départ ')) return false;
       if (s.category === 'transport' && !name.includes('aéroport') && !name.includes('rendu voiture') && !name.includes('parking')) return false;
@@ -3160,6 +3224,8 @@ ${name}`);
         ${w}
       </button>`;
     }).join('');
+    const act = el.querySelector('.day-tab.active');
+    if (act && act.scrollIntoView) act.scrollIntoView({ block: 'nearest', inline: 'center' });
   }
 
   function renderDayHeader() {
@@ -3318,21 +3384,27 @@ ${name}`);
       if (isVisited) badges.push('<span class="spot-badge visited">✓ Vu</span>');
       if (booked || info?.booked) badges.push('<span class="spot-badge booked">✓ Réservé</span>');
       else if (info?.booking === 'required' && !isVisited) badges.push('<span class="spot-badge required">À réserver</span>');
+      if (s._custom) badges.push('<span class="spot-badge custom">＋ ajouté</span>');
+      else if (s._movedFrom != null) badges.push(`<span class="spot-badge edited">↪ déplacé de J${days[s._movedFrom].number}</span>`);
+      else if (s._edited) badges.push('<span class="spot-badge edited">✎ modifié</span>');
       const badgesHtml = badges.length ? `<span class="spot-badges">${badges.join('')}</span>` : '';
+      const mapsLink = s.coords ? '' : `<a class="spot-maps-link" href="${buildMapsUrl(s)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">📍 Ouvrir dans Google Maps</a>`;
       return (i > 0 ? hopBetween(d.spots[i - 1], s) : '') + `
         <div class="spot ${isVisited ? 'visited' : ''} ${isCurrent ? 'current-now' : ''}" onclick="focusSpot(${i})" data-idx="${i}">
+          <button class="spot-edit" onclick="event.stopPropagation();openEditSpot(${i})" title="Modifier cette étape" aria-label="Modifier">✎</button>
           <div class="spot-icon" style="background:${meta.color}">${meta.icon}</div>
           <div class="spot-content">
-            <div class="spot-time">${s.time}</div>
-            <div class="spot-name">${s.name}${badgesHtml}</div>
-            <div class="spot-desc">${s.description}</div>
-            ${s.meta ? `<div class="spot-meta">${s.meta}</div>` : ''}
+            <div class="spot-time">${s.time || '—'}</div>
+            <div class="spot-name">${escHtml(s.name)}${badgesHtml}</div>
+            <div class="spot-desc">${escHtml(s.description)}</div>
+            ${s.meta ? `<div class="spot-meta">${escHtml(s.meta)}</div>` : ''}
+            ${mapsLink}
             ${buildOptionsCard(s)}
             ${entry?.note ? `<div class="spot-meta" style="color:#2EC4B6;font-style:italic;margin-top:6px">« ${entry.note} »</div>` : ''}
           </div>
         </div>
       `;
-    }).join('');
+    }).join('') + renderDayEditFooter(currentDay);
     if (currentSpotIdx >= 0) {
       const el = list.querySelector(`.spot[data-idx="${currentSpotIdx}"]`);
       if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
@@ -3342,7 +3414,7 @@ ${name}`);
   }
 
   function renderMapMarkers() {
-    markers.forEach(m => map.removeLayer(m));
+    markers.forEach(m => m && map.removeLayer(m));
     markers = [];
     if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
 
@@ -3350,6 +3422,7 @@ ${name}`);
       const allCoords = [];
       days.forEach((d, di) => {
         d.spots.forEach((s, i) => {
+          if (!s.coords) return;
           if (overviewMode && !spotMatchesFilter(s)) return;
           const marker = L.marker(s.coords, { icon: createMarker(s, i, false) }).addTo(map);
           marker.bindPopup(buildPopup(s, d.number), { maxWidth: 300 });
@@ -3364,6 +3437,7 @@ ${name}`);
       const d = days[currentDay];
       const coords = [];
       d.spots.forEach((s, i) => {
+        if (!s.coords) { markers.push(null); return; }
         const marker = L.marker(s.coords, { icon: createMarker(s, i, true) }).addTo(map);
         marker.bindPopup(buildPopup(s, d.number), { maxWidth: 300 });
         marker.on('click', () => highlightSpot(i));
@@ -3560,6 +3634,8 @@ ${name}`);
 
   function focusSpot(i) {
     const s = days[currentDay].spots[i];
+    if (!s) return;
+    if (!s.coords) { highlightSpot(i); return; }
     map.flyTo(s.coords, 14, { duration: 1 });
     setTimeout(() => markers[i] && markers[i].openPopup(), 900);
     highlightSpot(i);
@@ -3603,7 +3679,7 @@ ${name}`);
     if (diff > 0) {
       num.textContent = diff;
       label.textContent = diff === 1 ? 'jour restant' : 'jours restants';
-    } else if (diff >= -4) {
+    } else if (diff >= -(days.length - 1)) {
       num.textContent = `J${Math.abs(diff) + 1}`;
       label.textContent = 'en Sicile';
     } else {
@@ -3612,7 +3688,387 @@ ${name}`);
     }
   }
 
+  // ======== MODIFS DU PROGRAMME (persistées sur le téléphone, par-dessus les données d'origine) ========
+  // Principe : `days[i].baseSpots` = programme d'origine, `days[i].spots` = programme effectif recalculé
+  // à partir de localStorage `sicile-2026-edits` ({ mods: { id: {day,time,name,description,meta,deleted} }, added: [...] }).
+  // Les ids des étapes d'origine = jour + hash du nom : une mise à jour de l'app ne perd pas les modifs.
+  const EDITS_KEY = 'sicile-2026-edits';
+  function escHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function catLabel(c) { return (categoryMeta[c] && categoryMeta[c].label) || c; }
+  function timeToInput(t) { const m = String(t || '').match(/(\d{1,2})h(\d{0,2})/); if (!m) return ''; return String(parseInt(m[1])).padStart(2, '0') + ':' + String(parseInt(m[2] || '0')).padStart(2, '0'); }
+  function inputToTime(v) { const m = String(v || '').match(/^(\d{1,2}):(\d{2})/); if (!m) return ''; return m[1].padStart(2, '0') + 'h' + m[2]; }
+  function getEdits() {
+    try { const e = JSON.parse(localStorage.getItem(EDITS_KEY) || '{}'); return { mods: (e && e.mods) || {}, added: (e && Array.isArray(e.added)) ? e.added : [] }; }
+    catch { return { mods: {}, added: [] }; }
+  }
+  function saveEdits(e) { localStorage.setItem(EDITS_KEY, JSON.stringify(e)); }
+  function editsCount(e) { e = e || getEdits(); return Object.keys(e.mods).length + e.added.length; }
+  function findBaseSpot(id) { for (const d of days) { const sp = d.baseSpots.find(x => x._id === id); if (sp) return sp; } return null; }
+  function assignBaseIds() {
+    days.forEach((d, di) => {
+      d.baseSpots = d.spots.slice();
+      d.baseSpots.forEach(sp => { sp._id = 'b' + di + '-' + hashString(sp.name); sp._baseDay = di; });
+    });
+  }
+  function applyEdits() {
+    const e = getEdits();
+    days.forEach(d => { d.spots = []; });
+    days.forEach(d => d.baseSpots.forEach(sp => {
+      const mod = e.mods[sp._id];
+      if (mod && mod.deleted) return;
+      let eff = sp;
+      if (mod) {
+        eff = Object.assign({}, sp);
+        ['name', 'time', 'description', 'meta'].forEach(k => { if (mod[k] != null) eff[k] = mod[k]; });
+        eff._edited = true;
+        if (mod.day != null && days[mod.day] && mod.day !== sp._baseDay) eff._movedFrom = sp._baseDay;
+      }
+      const target = (mod && mod.day != null && days[mod.day]) ? mod.day : sp._baseDay;
+      days[target].spots.push(eff);
+    }));
+    e.added.forEach(a => {
+      if (!days[a.day]) return;
+      days[a.day].spots.push({ name: a.name, category: categoryMeta[a.category] ? a.category : 'culture', time: a.time || '', description: a.description || '', meta: a.meta || '', coords: Array.isArray(a.coords) ? a.coords : null, _id: a.id, _custom: true });
+    });
+    days.forEach(d => {
+      d.spots = d.spots.map((s, i) => ({ s, i, t: parseSpotTime(s.time || '') }))
+        .sort((a, b) => ((a.t == null ? 1e9 : a.t) - (b.t == null ? 1e9 : b.t)) || (a.i - b.i))
+        .map(x => x.s);
+    });
+    updateEditsBadge();
+  }
+  function updateEditsBadge() {
+    const n = editsCount();
+    const el = document.getElementById('edits-n');
+    if (el) { el.textContent = n; el.style.display = n ? 'flex' : 'none'; }
+  }
+  function refreshAfterEdit(day, focusName) {
+    applyEdits();
+    if (day != null && day !== currentDay && !overviewMode) selectDay(day);
+    else { renderTabs(); renderDayHeader(); renderSpots(); renderMapMarkers(); }
+    if (focusName && !overviewMode) {
+      const idx = days[currentDay].spots.findIndex(s => s.name === focusName);
+      if (idx >= 0) setTimeout(() => highlightSpot(idx), 120);
+    }
+  }
+  function dayOptionsHtml(sel) { return days.map((d, i) => `<option value="${i}"${i === sel ? ' selected' : ''}>J${d.number} · ${d.shortDate} · ${escHtml(d.title)}</option>`).join(''); }
+  function renderDayEditFooter(di) {
+    const e = getEdits();
+    const removed = days[di].baseSpots.filter(sp => e.mods[sp._id] && e.mods[sp._id].deleted);
+    let html = `<div class="day-edit-footer"><button class="add-spot-btn" onclick="openAddSpot(${di})">＋ Ajouter une étape ce jour-là</button>`;
+    if (removed.length) {
+      const pl = removed.length > 1 ? 's' : '';
+      html += `<div class="removed-box"><b>${removed.length} étape${pl} retirée${pl}</b> de cette journée` +
+        removed.map(sp => `<div class="removed-line"><span>${escHtml(sp.time)} · ${escHtml(sp.name)}</span><button class="link-btn" onclick="resetSpot('${sp._id}')">Rétablir</button></div>`).join('') + `</div>`;
+    }
+    return html + '</div>';
+  }
+
+  window.openEditSpot = function(i) {
+    const s = days[currentDay].spots[i];
+    if (!s) return;
+    const isCustom = !!s._custom;
+    const html = `
+      <div class="ed-field"><label class="ed-label" for="ed-name">Nom</label><input class="ed-input" id="ed-name" value="${escHtml(s.name)}"></div>
+      <div class="ed-two">
+        <div class="ed-field"><label class="ed-label" for="ed-time">Heure</label><input class="ed-input" id="ed-time" type="time" value="${timeToInput(s.time)}"></div>
+        <div class="ed-field"><label class="ed-label" for="ed-day">Jour</label><select class="ed-select" id="ed-day">${dayOptionsHtml(currentDay)}</select></div>
+      </div>
+      <div class="ed-field"><label class="ed-label" for="ed-desc">Description</label><textarea class="ed-textarea" id="ed-desc">${escHtml(s.description)}</textarea></div>
+      <div class="ed-field"><label class="ed-label" for="ed-meta">Infos (adresse, prix, horaires)</label><input class="ed-input" id="ed-meta" value="${escHtml(s.meta)}"></div>
+      <div class="ed-actions">
+        <button class="ed-btn primary" onclick="saveEditSpot('${s._id}', ${isCustom})">Enregistrer</button>
+        ${isCustom
+          ? `<button class="ed-btn danger" onclick="deleteCustomSpot('${s._id}')">Supprimer cette étape</button>`
+          : `<button class="ed-btn danger" onclick="removeSpot('${s._id}')">Retirer du programme</button>` +
+            (s._edited ? `<button class="ed-btn" onclick="resetSpot('${s._id}')">Rétablir la version d'origine</button>` : '')}
+      </div>
+      <div class="ed-note">Enregistré sur ce téléphone, même hors ligne. Une étape retirée se rétablit en bas de sa journée d'origine.</div>`;
+    openModal(isCustom ? 'Modifier mon étape' : 'Modifier l’étape', html);
+  };
+  window.saveEditSpot = function(id, isCustom) {
+    const e = getEdits();
+    const name = document.getElementById('ed-name').value.trim();
+    const time = inputToTime(document.getElementById('ed-time').value);
+    const day = parseInt(document.getElementById('ed-day').value, 10);
+    const description = document.getElementById('ed-desc').value.trim();
+    const meta = document.getElementById('ed-meta').value.trim();
+    if (!name) { alert('Il faut un nom pour cette étape'); return; }
+    if (isCustom) {
+      const a = e.added.find(x => x.id === id); if (!a) return;
+      Object.assign(a, { name, time, day, description, meta });
+    } else {
+      const base = findBaseSpot(id); if (!base) return;
+      const mod = {};
+      if (name !== base.name) mod.name = name;
+      if (time && time !== base.time) mod.time = time;
+      if (day !== base._baseDay) mod.day = day;
+      if (description !== (base.description || '')) mod.description = description;
+      if (meta !== (base.meta || '')) mod.meta = meta;
+      if (Object.keys(mod).length) e.mods[id] = mod; else delete e.mods[id];
+    }
+    saveEdits(e);
+    closeModal();
+    refreshAfterEdit(day, name);
+  };
+  window.removeSpot = function(id) {
+    const base = findBaseSpot(id); if (!base) return;
+    if (!confirm(`Retirer « ${base.name} » du programme ?\nTu pourras la rétablir en bas de la journée J${days[base._baseDay].number}.`)) return;
+    const e = getEdits(); e.mods[id] = { deleted: true }; saveEdits(e);
+    closeModal(); refreshAfterEdit(null);
+  };
+  window.resetSpot = function(id, stayInOverview) {
+    const e = getEdits(); delete e.mods[id]; saveEdits(e);
+    closeModal(); refreshAfterEdit(null);
+    if (stayInOverview) openEditsOverview();
+  };
+  window.deleteCustomSpot = function(id, stayInOverview) {
+    const e = getEdits(); const a = e.added.find(x => x.id === id);
+    if (a && !confirm(`Supprimer « ${a.name} » ?`)) return;
+    e.added = e.added.filter(x => x.id !== id); saveEdits(e);
+    closeModal(); refreshAfterEdit(null);
+    if (stayInOverview) openEditsOverview();
+  };
+
+  window.openAddSpot = function(dayIdx) {
+    const di = (dayIdx == null || !days[dayIdx]) ? (overviewMode ? 0 : currentDay) : dayIdx;
+    const cats = Object.keys(categoryMeta);
+    const html = `
+      <div class="ed-field"><label class="ed-label" for="ed-name">Nom</label><input class="ed-input" id="ed-name" placeholder="Ex : Trattoria da Nino, plage d’Isola Bella…"></div>
+      <div class="ed-field"><span class="ed-label">Type</span><div class="ed-cat" id="ed-cat">${cats.map(c => `<button type="button" data-cat="${c}" class="${c === 'resto' ? 'on' : ''}" onclick="pickCat(this)">${categoryMeta[c].icon} ${catLabel(c)}</button>`).join('')}</div></div>
+      <div class="ed-two">
+        <div class="ed-field"><label class="ed-label" for="ed-time">Heure</label><input class="ed-input" id="ed-time" type="time"></div>
+        <div class="ed-field"><label class="ed-label" for="ed-day">Jour</label><select class="ed-select" id="ed-day">${dayOptionsHtml(di)}</select></div>
+      </div>
+      <div class="ed-field"><label class="ed-label" for="ed-desc">Description (facultatif)</label><textarea class="ed-textarea" id="ed-desc" placeholder="Pourquoi, quoi commander, qui a conseillé…"></textarea></div>
+      <div class="ed-field"><label class="ed-label" for="ed-meta">Adresse ou ville (pour la carte et Google Maps)</label><input class="ed-input" id="ed-meta" placeholder="Ex : Via Roma 12, Taormina"></div>
+      <div class="ed-actions"><button class="ed-btn primary" onclick="saveNewSpot()">Ajouter au programme</button></div>
+      <div class="ed-note">L’étape se range à son heure dans la journée, avec un lien Google Maps. Si l’adresse est trouvée, elle a aussi son point sur la carte.</div>`;
+    openModal('Ajouter une étape', html);
+    setTimeout(() => { const el = document.getElementById('ed-name'); if (el) el.focus(); }, 60);
+  };
+  window.pickCat = function(btn) { btn.parentElement.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === btn)); };
+  window.saveNewSpot = function() {
+    const name = document.getElementById('ed-name').value.trim();
+    if (!name) { alert('Il faut un nom pour cette étape'); document.getElementById('ed-name').focus(); return; }
+    const catBtn = document.querySelector('#ed-cat button.on');
+    const a = {
+      id: 'c' + Date.now(),
+      name,
+      category: catBtn ? catBtn.dataset.cat : 'culture',
+      time: inputToTime(document.getElementById('ed-time').value),
+      day: parseInt(document.getElementById('ed-day').value, 10),
+      description: document.getElementById('ed-desc').value.trim(),
+      meta: document.getElementById('ed-meta').value.trim(),
+      coords: null
+    };
+    const e = getEdits(); e.added.push(a); saveEdits(e);
+    closeModal();
+    refreshAfterEdit(a.day, a.name);
+    geocodeCustomSpot(a.id);
+  };
+  // Géocodage best-effort (Nominatim, borné à la Sicile) pour donner un point de carte à une étape ajoutée
+  async function geocodeCustomSpot(id) {
+    const e = getEdits(); const a = e.added.find(x => x.id === id);
+    if (!a || a.coords) return;
+    // Cascade : nom + adresse, puis nom seul, puis adresse seule (Nominatim digère mal les combinaisons)
+    const queries = [];
+    if (a.meta) queries.push(a.name + ', ' + a.meta);
+    queries.push(a.name);
+    if (a.meta) queries.push(a.meta);
+    try {
+      let hit = null;
+      for (let k = 0; k < queries.length && !hit; k++) {
+        if (k > 0) await new Promise(r => setTimeout(r, 1100));
+        const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&viewbox=12.0,38.5,15.8,36.4&bounded=1&q=' + encodeURIComponent(queries[k] + ', Sicilia');
+        const resp = await fetch(url, { headers: { 'Accept': 'application/json' } });
+        const data = await resp.json();
+        hit = (Array.isArray(data) && data[0]) || null;
+      }
+      if (!hit) return;
+      const lat = parseFloat(hit.lat), lon = parseFloat(hit.lon);
+      if (!(lat > 36.4 && lat < 38.5 && lon > 12 && lon < 15.8)) return;
+      const e2 = getEdits(); const a2 = e2.added.find(x => x.id === id);
+      if (!a2 || a2.coords) return;
+      a2.coords = [Math.round(lat * 1e5) / 1e5, Math.round(lon * 1e5) / 1e5];
+      saveEdits(e2);
+      applyEdits();
+      if (!overviewMode && currentDay === a2.day) { renderSpots(); renderMapMarkers(); }
+    } catch (err) { console.warn('geocode KO', err); }
+  }
+
+  window.goToEditedSpot = function(id) {
+    for (let di = 0; di < days.length; di++) {
+      const si = days[di].spots.findIndex(s => s._id === id);
+      if (si >= 0) { closeModal(); goToSpot(di, si); return; }
+    }
+    const base = findBaseSpot(id);
+    if (base) { closeModal(); selectDay(base._baseDay); }
+  };
+  window.openEditsOverview = function() {
+    const e = getEdits();
+    const rows = [];
+    Object.entries(e.mods).forEach(([id, mod]) => {
+      const base = findBaseSpot(id); if (!base) return;
+      const from = 'J' + days[base._baseDay].number;
+      let what;
+      if (mod.deleted) what = `retirée du programme (${from})`;
+      else {
+        const bits = [];
+        if (mod.day != null && days[mod.day]) bits.push(`déplacée ${from} → J${days[mod.day].number}`);
+        if (mod.time) bits.push(`${base.time} → ${mod.time}`);
+        if (mod.name) bits.push(`renommée « ${escHtml(mod.name)} »`);
+        if (mod.description != null) bits.push('description modifiée');
+        if (mod.meta != null) bits.push('infos modifiées');
+        what = bits.join(' · ') || 'modifiée';
+      }
+      rows.push(`<div class="bk-row" onclick="goToEditedSpot('${id}')"><div class="bk-main"><div class="bk-name">${escHtml(base.name)}</div><div class="bk-meta">${what}</div></div><div class="bk-side"><button class="link-btn" onclick="event.stopPropagation();resetSpot('${id}', true)">Annuler</button></div></div>`);
+    });
+    e.added.forEach(a => {
+      const d = days[a.day];
+      rows.push(`<div class="bk-row" onclick="goToEditedSpot('${a.id}')"><div class="bk-main"><div class="bk-name">${escHtml(a.name)}</div><div class="bk-meta">ajoutée · ${d ? 'J' + d.number + ' · ' + d.shortDate : '?'} · ${a.time || 'sans heure'}${a.coords ? '' : ' · pas de point carte'}</div></div><div class="bk-side"><button class="link-btn" onclick="event.stopPropagation();deleteCustomSpot('${a.id}', true)">Supprimer</button></div></div>`);
+    });
+    const html = `<div class="bk-help">Tes changements sont enregistrés sur ce téléphone (même hors ligne) et survivent aux mises à jour de l’app. Pour modifier une étape : le crayon ✎ sur sa carte. Pour en ajouter une : le bouton en bas de chaque journée. Tape une ligne pour y aller.</div>
+      ${rows.length ? rows.join('') : '<div class="sr-empty">Aucune modification pour l’instant.<br>Le programme affiché est celui d’origine.</div>'}
+      <div class="ed-actions">
+        <button class="ed-btn primary" onclick="closeModal();openAddSpot()">＋ Ajouter une étape</button>
+        <button class="ed-btn" onclick="exportEdits()">Copier une sauvegarde de mes modifs</button>
+        <button class="ed-btn" onclick="importEdits()">Coller une sauvegarde</button>
+        ${rows.length ? `<button class="ed-btn danger" onclick="resetAllEdits()">Tout remettre comme à l’origine</button>` : ''}
+      </div>`;
+    openModal('Mes modifications', html);
+  };
+  window.exportEdits = async function() {
+    const txt = JSON.stringify(getEdits());
+    try {
+      if (navigator.share) { await navigator.share({ title: 'Sauvegarde programme Sicile', text: txt }); return; }
+      await navigator.clipboard.writeText(txt);
+      alert('Sauvegarde copiée. Colle-la dans une note ou un message pour la garder.');
+    } catch { prompt('Copie ce texte pour garder ta sauvegarde :', txt); }
+  };
+  window.importEdits = function() {
+    const txt = prompt('Colle ici une sauvegarde de tes modifs :');
+    if (!txt) return;
+    try {
+      const e = JSON.parse(txt);
+      if (!e || typeof e !== 'object' || (!e.mods && !e.added)) throw new Error('format');
+      saveEdits({ mods: e.mods || {}, added: Array.isArray(e.added) ? e.added : [] });
+      closeModal(); refreshAfterEdit(null);
+      alert('Sauvegarde restaurée : ' + editsCount() + ' modification(s).');
+    } catch { alert('Ce texte n’est pas une sauvegarde valide.'); }
+  };
+  window.resetAllEdits = function() {
+    if (!confirm('Tout remettre comme à l’origine ? Toutes tes modifications et étapes ajoutées seront effacées.')) return;
+    localStorage.removeItem(EDITS_KEY);
+    closeModal(); refreshAfterEdit(null);
+  };
+
+  // ======== RECHERCHE ========
+  function normTxt(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  function hiTxt(text, q) {
+    text = String(text || '');
+    const n = normTxt(text); const i = n.indexOf(q);
+    if (i < 0 || n.length !== text.length) return escHtml(text);
+    return escHtml(text.slice(0, i)) + '<mark>' + escHtml(text.slice(i, i + q.length)) + '</mark>' + escHtml(text.slice(i + q.length));
+  }
+  window.openSearch = function() {
+    openModal('Rechercher', `<input class="sr-input" id="sr-q" type="search" placeholder="Un lieu, un resto, une plage, un plat…" autocomplete="off" autocorrect="off" autocapitalize="off" oninput="runSearch(this.value)"><div id="sr-results"></div>`);
+    runSearch('');
+    const inp = document.getElementById('sr-q');
+    if (inp) { inp.focus(); setTimeout(() => inp.focus(), 80); }
+  };
+  window.goToPlanB = function(di) {
+    closeModal(); selectDay(di);
+    setTimeout(() => {
+      const c = document.getElementById('planB-content');
+      if (c && !c.classList.contains('open')) togglePlanB();
+      const btn = document.querySelector('.planB-toggle');
+      if (btn) btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 120);
+  };
+  window.runSearch = function(raw) {
+    const q = normTxt(raw).trim();
+    const box = document.getElementById('sr-results'); if (!box) return;
+    const flat = allSpotsFlat();
+    if (q.length < 2) {
+      box.innerHTML = `<div class="sr-hint">Tape au moins 2 lettres : ça cherche dans les ${flat.length} étapes du programme, les options de restos, les pépites hors programme et les plans B pluie.</div>
+        <div class="sr-section">Ou saute à une journée</div>` +
+        days.map((d, i) => `<div class="sr-item" onclick="closeModal();selectDay(${i})"><div class="sr-day"><b>J${d.number}</b><small>${escHtml(d.shortDate)}</small></div><div class="sr-body"><div class="sr-name">${escHtml(d.title)}</div><div class="sr-sub">${d.spots.length} étapes</div></div></div>`).join('');
+      return;
+    }
+    const res = [];
+    flat.forEach(({ s, di, si, dayNum }) => {
+      const d = days[di];
+      const info = SPOT_METADATA[s.name] || {};
+      const fields = [s.meta, s.description, catLabel(s.category), d.title, d.shortDate, d.fullDate, info.hours, info.price, info.address];
+      const nn = normTxt(s.name);
+      let score = 0;
+      if (nn === q) score = 100; else if (nn.startsWith(q)) score = 80; else if (nn.includes(q)) score = 60;
+      else if (fields.some(f => normTxt(f).includes(q))) score = 30;
+      if (score) res.push({ type: 'spot', score, s, di, si, dayNum });
+      (s.options || []).forEach(o => {
+        if ([o.name, o.flag, o.hours].some(f => normTxt(f).includes(q))) res.push({ type: 'option', score: normTxt(o.name).includes(q) ? 50 : 20, s, o, di, si, dayNum });
+      });
+    });
+    BONUS_SPOTS.forEach(g => g.items.forEach(b => {
+      if ([b.name, b.desc, g.group].some(f => normTxt(f).includes(q))) res.push({ type: 'bonus', score: normTxt(b.name).includes(q) ? 40 : 15, b, g });
+    }));
+    days.forEach((d, di) => ((d.planB && d.planB.alternatives) || []).forEach(a => {
+      if ([a.name, a.desc].some(f => normTxt(f).includes(q))) res.push({ type: 'planb', score: 10, a, di, dayNum: d.number });
+    }));
+    res.sort((a, b) => b.score - a.score);
+    if (!res.length) {
+      box.innerHTML = `<div class="sr-empty">Rien pour « ${escHtml(raw)} ».<br>Essaie un mot plus court, une ville (Noto, Ortigia, Savoca…) ou un type (plage, granita, vin, cascade).</div>`;
+      return;
+    }
+    const spots = res.filter(r => r.type === 'spot');
+    const others = res.filter(r => r.type !== 'spot');
+    let html = '';
+    if (spots.length) {
+      html += `<div class="sr-section">Au programme · ${spots.length}</div>` + spots.slice(0, 40).map(r => {
+        const cm = categoryMeta[r.s.category] || { color: '#8A99B5', icon: '📍' };
+        const d = days[r.di];
+        return `<div class="sr-item" onclick="closeModal();goToSpot(${r.di},${r.si})">
+          <div class="sr-ic" style="background:${cm.color}">${cm.icon}</div>
+          <div class="sr-body"><div class="sr-name">${hiTxt(r.s.name, q)}</div><div class="sr-sub">${escHtml(r.s.time || '—')} · ${escHtml(d.title)}${r.s.meta ? ' · ' + escHtml(r.s.meta) : ''}</div></div>
+          <div class="sr-day"><b>J${r.dayNum}</b><small>${escHtml(d.shortDate)}</small></div>
+        </div>`;
+      }).join('');
+    }
+    if (others.length) {
+      html += `<div class="sr-section">Options, pépites et plans B · ${others.length}</div>` + others.slice(0, 30).map(r => {
+        if (r.type === 'option') {
+          const d = days[r.di];
+          return `<div class="sr-item" onclick="closeModal();goToSpot(${r.di},${r.si})">
+            <div class="sr-ic" style="background:rgba(255,154,61,0.18)">🔁</div>
+            <div class="sr-body"><div class="sr-name">${hiTxt(r.o.name, q)}</div><div class="sr-sub">Option de « ${escHtml(r.s.name)} » · ${escHtml(r.s.time)}${r.o.rating ? ' · ⭐ ' + r.o.rating : ''}</div></div>
+            <div class="sr-day"><b>J${r.dayNum}</b><small>${escHtml(d.shortDate)}</small></div>
+          </div>`;
+        }
+        if (r.type === 'bonus') {
+          const click = r.b.gmaps ? ` onclick="window.open('${r.b.gmaps}', '_blank')"` : '';
+          return `<div class="sr-item"${click}>
+            <div class="sr-ic" style="background:rgba(200,160,74,0.18)">💎</div>
+            <div class="sr-body"><div class="sr-name">${hiTxt(r.b.name, q)}</div><div class="sr-sub">Pépite hors programme · ${escHtml(r.g.group)}${r.b.dist ? ' · ' + escHtml(r.b.dist) : ''}</div></div>
+            <div class="sr-day muted"><b>Maps</b><small>↗</small></div>
+          </div>`;
+        }
+        const d = days[r.di];
+        return `<div class="sr-item" onclick="goToPlanB(${r.di})">
+          <div class="sr-ic" style="background:rgba(31,182,182,0.16)">☔</div>
+          <div class="sr-body"><div class="sr-name">${hiTxt(r.a.name, q)}</div><div class="sr-sub">Plan B pluie · ${escHtml(d.title)}</div></div>
+          <div class="sr-day"><b>J${r.dayNum}</b><small>${escHtml(d.shortDate)}</small></div>
+        </div>`;
+      }).join('');
+    }
+    box.innerHTML = html;
+  };
+
   // ========= INIT =========
+  // Programme effectif = données d'origine + modifs enregistrées sur ce téléphone
+  assignBaseIds();
+  applyEdits();
+
   // Mode Aujourd'hui : si on est pendant le voyage, auto-select le jour courant
   const todayIdx = getCurrentTripDayIdx();
   if (todayIdx >= 0) currentDay = todayIdx;
