@@ -1998,6 +1998,25 @@
   .ed-cat { display: flex; flex-wrap: wrap; gap: 6px; }
   .ed-cat button { border-radius: 999px; border: 1px solid var(--hair-str); background: var(--bg-3); padding: 7px 11px; font-size: 12.5px; font-family: var(--sans); color: var(--text); cursor: pointer; }
   .ed-cat button.on { background: var(--sun-grad); color: #fff; border-color: transparent; }
+
+  /* ===== FLUIDITÉ MOBILE : tout scrolle d'un bloc, le programme arrive vite ===== */
+  @media (max-width: 900px) {
+    .sidebar { overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+    .day-tabs { position: sticky; top: 0; z-index: 40; flex-shrink: 0; background: rgba(255,251,244,0.94); }
+    .tools-bar, .day-header { flex-shrink: 0; }
+    .spots-list { flex: none; overflow: visible; padding-bottom: 100px; }
+    .day-hero, .day-hero.has-cover::after { animation: none; background-size: cover; }
+  }
+  @media (max-width: 480px) {
+    .day-header { padding: 12px 16px 10px; }
+    .day-hero { padding: 14px 16px; margin-bottom: 12px; gap: 12px; border-radius: 18px; }
+    .day-hero-num { font-size: 40px; }
+    .day-hero .day-header-title { font-size: 19px; }
+    .day-hero .day-header-overline { margin-bottom: 3px; }
+    .day-stats { margin-top: 10px; gap: 10px; }
+    .day-weather { margin-top: 10px; padding: 8px 12px; }
+    .gps-day-btn { margin-top: 10px; padding: 10px 14px; }
+  }
 </style>
 </head>
 <body>
@@ -2082,8 +2101,8 @@
       number: 1,
       shortDate: "DIM 23",
       fullDate: "Dimanche 23 août 2026",
-      title: "Arrivée et découverte de Taormina",
-      budget: { low: 55, typical: 85, high: 125 },
+      title: "Arrivée tranquille et crique de Mazzarò",
+      budget: { low: 55, typical: 100, high: 145 },
       planB: {
         intro: "Orage en août à Taormina c'est rare mais possible. Les alternatives couvertes sont nombreuses en centre-ville.",
         alternatives: [
@@ -2106,7 +2125,8 @@
           { name: "Osteria Nero d'Avola", rating: 4.6, hours: "12h30-14h30 · 19h-22h30, fermé mar", price: "35-50€", flag: "cave à vins top · chef Turi Siligato · réserve", gmaps: "https://www.google.com/maps/search/?api=1&query=Osteria+Nero+d+Avola+Taormina+Sicilia" },
           { name: "Vineria Modì", rating: 4.5, hours: "12h-15h · 19h-23h", price: "30-45€", flag: "bistrot moderne · produits de l'Etna", gmaps: "https://www.google.com/maps/search/?api=1&query=Vineria+Modi+Taormina+Sicilia" }
         ] },
-        { name: "Villa Comunale", category: "culture", time: "17h00", coords: [37.8496, 15.2867], description: "Les jardins de Lady Florence Trevelyan, l'Anglaise de Taormina : pavillons victoriens, allées fleuries, vue plongeante sur la baie et l'Etna. Gratuit, ouvert jusqu'à minuit l'été. Le Teatro Antico attendra demain : ce dimanche soir Roberto Bolle y danse (Taormina Arte), la visite ferme plus tôt les soirs de spectacle.", meta: "Via Bagnoli Croce · gratuit" },
+        { name: "Spiaggia di Mazzarò", category: "plage", time: "15h00", coords: [37.8532, 15.3025], description: "L'aprem farniente du jour d'arrivée : la belle crique de galets juste sous Taormina, eau limpide, baie protégée. Descente en téléphérique en 3 min (3€, toutes les 15 min) ou 5 min en voiture. Deux transats + parasol dans un lido (~25-30€) ou serviette sur le coin libre, et tu ne bouges plus jusqu'à la douche. Isola Bella est juste derrière le cap : tu la gardes pour demain.", meta: "Baie de Mazzarò · à 10 min de l'hôtel" },
+        { name: "Villa Comunale", category: "culture", time: "18h00", coords: [37.8496, 15.2867], description: "Les jardins de Lady Florence Trevelyan, l'Anglaise de Taormina : pavillons victoriens, allées fleuries, vue plongeante sur la baie et l'Etna. Gratuit, ouvert jusqu'à minuit l'été. Le Teatro Antico attendra demain : ce dimanche soir Roberto Bolle y danse (Taormina Arte), la visite ferme plus tôt les soirs de spectacle.", meta: "Via Bagnoli Croce · gratuit" },
         { name: "Bar Morgana", category: "bar", sunset: true, time: "19h30", coords: [37.8516, 15.2884], description: "Apéro dans le patio fleuri. Aperol spritz ou negroni, playlist bossa, ambiance chic sans être coincée.", meta: "Scesa Morgana 4" , options: [
           { name: "Daiquiri Lounge Bar", rating: 4.5, hours: "18h-2h", price: "10-15€/cocktail", flag: "mixologie · terrasse · ambiance lounge", gmaps: "https://www.google.com/maps/search/?api=1&query=Daiquiri+Lounge+Bar+Taormina+Sicilia" },
           { name: "Wunderbar Caffè", rating: 4.3, hours: "9h-1h", price: "12-16€/cocktail", flag: "institution Piazza IX Aprile · vue baie", gmaps: "https://www.google.com/maps/search/?api=1&query=Wunderbar+Caffe+Taormina+Sicilia" }
@@ -2351,6 +2371,7 @@
     "BAM Bar":                          { hours: "07h-01h tous les jours", booking: "none", rating: 4.5 },
     "Trattoria Tiramisù":               { hours: "12h-15h · 19h-23h tous les jours", booking: "recommended", lead: "2 à 3 jours", rating: 4.5, bookingUrl: "https://trattoriatiramisu.it/" },
     "Teatro Antico":                    { hours: "09h-19h · soirs de spectacle : fermeture anticipée", booking: "recommended", lead: "la veille", price: "14€", bookingUrl: "https://www.parconaxostaormina.com/" },
+    "Spiaggia di Mazzarò":              { hours: "lidos ~09h-19h · coin libre 24h/24", booking: "none", price: "coin libre gratuit · lido ~25-30€ (2 transats + parasol)" },
     "Villa Comunale":                   { hours: "09h-minuit l'été", booking: "none" },
     "Bar Morgana":                      { hours: "19h-02h", booking: "recommended" },
     "Osteria Rossodivino":              { hours: "12h-14h30 · 19h-22h30 (fermé mar)", booking: "required", lead: "1 à 2 semaines", rating: 4.5, bookingUrl: "https://osteriarossodivinotaormina.com/index.php/prenota-tavolo/?lang=fr" },
