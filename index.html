@@ -1917,15 +1917,46 @@
   .bk-state.todo { color: #C2410C; }
   .bk-link { font-size: 11px; font-weight: 700; color: var(--gold); text-decoration: none; white-space: nowrap; background: rgba(255,154,61,0.14); padding: 3px 8px; border-radius: 999px; }
 
-  /* ===== CHECKLIST VALISE ===== */
-  .pk-progress { height: 6px; background: rgba(192,122,30,0.14); border-radius: 999px; overflow: hidden; margin-bottom: 10px; }
+  /* ===== VALISE ===== */
+  .pk-top { margin-bottom: 12px; }
+  .pk-count { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--cream); letter-spacing: -0.5px; line-height: 1; margin-bottom: 8px; }
+  .pk-count b { color: var(--coral); }
+  .pk-count span { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text-dim); letter-spacing: 0; }
+  .pk-progress { height: 7px; background: rgba(192,122,30,0.14); border-radius: 999px; overflow: hidden; margin-bottom: 10px; }
   .pk-progress-fill { height: 100%; background: var(--sun-grad); border-radius: 999px; transition: width 0.3s ease; }
-  .pk-row { display: flex; align-items: flex-start; gap: 10px; padding: 9px 10px; border: 1px solid var(--hair); border-radius: 10px; margin-bottom: 6px; cursor: pointer; background: var(--bg-3); }
+  .pk-weather { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+  .pk-acts { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .pk-act { border-radius: 999px; border: 1px solid var(--hair-str); background: var(--bg-3); padding: 7px 11px; font-size: 12.5px; font-family: var(--sans); color: var(--text); cursor: pointer; }
+  .pk-act.on { background: var(--sun-grad); color: #fff; border-color: transparent; box-shadow: var(--glow-gold); }
+  .pk-tools { display: flex; gap: 6px; margin-bottom: 14px; }
+  .pk-tool { flex: 1; height: 38px; border-radius: 12px; border: 1px solid var(--hair-str); background: var(--bg-3); color: var(--text); font-family: var(--sans); font-size: 12.5px; font-weight: 700; cursor: pointer; }
+  .pk-tool.on { background: rgba(31,182,182,0.14); color: #0E7D7D; border-color: rgba(31,182,182,0.35); }
+  .pk-sec { margin-bottom: 16px; }
+  .pk-sec-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; cursor: pointer; }
+  .pk-sec-head .kit-section-title { flex: 1; }
+  .pk-sec-n { font-size: 11px; font-weight: 800; color: var(--text-dim); background: var(--bg); border: 1px solid var(--hair); border-radius: 999px; padding: 2px 8px; }
+  .pk-sec-n.full { color: #0E7D7D; background: rgba(31,182,182,0.12); border-color: rgba(31,182,182,0.35); }
+  .pk-caret { color: var(--text-faint); font-size: 12px; width: 14px; text-align: center; }
+  .pk-row { display: flex; align-items: center; gap: 10px; padding: 9px 6px 9px 10px; border: 1px solid var(--hair); border-radius: 12px; margin-bottom: 6px; cursor: pointer; background: var(--bg-3); }
   .pk-row.done { opacity: 0.55; }
   .pk-row.done .pk-label { text-decoration: line-through; }
-  .pk-box { width: 20px; height: 20px; border: 2px solid var(--border-strong); border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #0E7D7D; background: #fff; }
+  .pk-box { width: 22px; height: 22px; border: 2px solid var(--border-strong); border-radius: 7px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #0E7D7D; background: #fff; }
   .pk-row.done .pk-box { background: rgba(31,182,182,0.15); border-color: #1FB6B6; }
-  .pk-label { font-size: 13px; line-height: 1.45; color: var(--text); }
+  .pk-label { flex: 1; min-width: 0; font-size: 13px; line-height: 1.4; color: var(--text); }
+  .pk-tag { display: inline-block; margin-left: 6px; font-size: 9.5px; font-weight: 800; letter-spacing: 0.3px; padding: 1px 6px; border-radius: 999px; background: rgba(255,154,61,0.16); color: #B45309; vertical-align: 1px; white-space: nowrap; }
+  .pk-tag.custom { background: rgba(31,182,182,0.14); color: #0E7D7D; }
+  .pk-qty { display: inline-flex; align-items: center; gap: 2px; flex-shrink: 0; background: var(--bg); border: 1px solid var(--hair); border-radius: 999px; padding: 2px; }
+  .pk-qty button { width: 26px; height: 26px; border: none; border-radius: 999px; background: transparent; color: var(--coral); font-size: 16px; font-weight: 800; cursor: pointer; line-height: 1; }
+  .pk-qty b { min-width: 18px; text-align: center; font-size: 12.5px; color: var(--cream); }
+  .pk-x { width: 28px; height: 28px; border: none; background: transparent; color: var(--text-faint); font-size: 18px; cursor: pointer; flex-shrink: 0; border-radius: 999px; }
+  .pk-x:active { background: rgba(194,65,12,0.08); color: #C2410C; }
+  .pk-sec-foot { display: flex; gap: 6px; align-items: center; margin: 2px 0 0 4px; }
+  .link-btn.dim { color: var(--text-dim); font-weight: 600; }
+  .pk-add-form { display: flex; gap: 6px; align-items: center; margin-top: 4px; }
+  .pk-add-form .ed-input { padding: 9px 12px; }
+  .pk-add-qty { width: 64px; flex-shrink: 0; text-align: center; }
+  .pk-alldone { font-size: 12px; color: #0E7D7D; font-weight: 700; padding: 4px 4px 2px; }
+  .pk-foot { text-align: center; margin-top: 8px; padding-top: 10px; border-top: 1px solid var(--hair); }
 
   /* ===== PÉPITES BONUS ===== */
   .bn-group-title { font-size: 12px; font-weight: 800; letter-spacing: 0.4px; margin: 12px 2px 8px; }
@@ -2852,77 +2883,272 @@
     openModal('📋 Résas à faire', html);
   };
 
-  // ======== CHECKLIST VALISE ========
-  const PACKING_KEY = 'sicile-2026-packing';
-  const PACKING_LIST = [
-    { section: "🗂️ Essentiels", items: [
-      "Cartes d'identité / passeports ×2",
-      "Permis de conduire ×2 (les deux conducteurs)",
-      "CB + un peu de cash (Borderi et Ritrovo Ingrid = cash only)",
-      "Confirmations : vol, hôtel, voiture, tour Etna (mail GetYourGuide)",
-      "Chargeurs téléphone + batterie externe (grosses journées photos)",
-      "Chargeur voiture + câble (GPS toute la journée)",
-      "Petite pharmacie : doliprane, anti-diarrhée, pansements, anti-moustique",
-      "Lunettes de soleil ×2 + casquettes"
-    ]},
-    { section: "🏖️ Plage & criques", items: [
-      "Masques-tubas ×2 (Isola Bella et Calamosche, non négociable)",
-      "Chaussures d'eau (galets à Isola Bella)",
-      "Serviettes microfibre (sèchent dans la voiture)",
-      "SPF50 visage + corps (le soleil sicilien ne rigole pas)",
-      "Sac étanche pour téléphone + clés de voiture",
-      "Maillots ×2 chacun (un sec, un mouillé)"
-    ]},
-    { section: "🌋 Etna 3300m (mardi 25)", items: [
-      "Baskets fermées ou chaussures de rando (sable volcanique abrasif)",
-      "Polaire + coupe-vent (10-15°C là-haut, même en août)",
-      "Pantalon long (le short à 3300m, tu vas le regretter)",
-      "1,5L d'eau par personne + barres céréales",
-      "65€/pers en CB ou cash pour le téléphérique + 4x4 sur place"
-    ]},
-    { section: "🌋 Stromboli (samedi 29)", items: [
-      "Frontale (retour de nuit, indispensable)",
-      "Veste chaude pour la navigation retour (minuit en mer)",
-      "Comprimés mal de mer (2h30 de bateau)",
-      "Baskets pour l'île (chemins volcaniques)"
-    ]},
-    { section: "🧳 Malin", items: [
-      "Valise à moitié vide : pistaches de Bronte, vins de l'Etna, céramiques au retour",
-      "Tenue épaules/genoux couverts (églises, Duomo d'Ortigia)",
-      "Adaptateur si grosses fiches Schuko (les petites fiches rondes passent partout)",
-      "Tongs + une tenue correcte pour les dîners Taormina"
-    ]}
+  // ======== VALISE (générateur type Packr : activités → articles → quantités selon la durée) ========
+  const PACKING_KEY = 'sicile-2026-packing';    // v1 : cases cochées par index, migrée une fois vers la v2
+  const PACK_KEY = 'sicile-2026-packing-v2';
+  const PACK_ACTS = [
+    { key: 'plage', icon: '🏖️', label: 'Plage', on: true },
+    { key: 'etna', icon: '🌋', label: 'Etna', on: true },
+    { key: 'stromboli', icon: '⛵', label: 'Stromboli', on: true },
+    { key: 'chic', icon: '🍽️', label: 'Dîners chics', on: true },
+    { key: 'rando', icon: '🥾', label: 'Rando', on: false },
+    { key: 'sport', icon: '🏃', label: 'Sport', on: false },
+    { key: 'laptop', icon: '💻', label: 'Ordi', on: false },
+    { key: 'lessive', icon: '🧺', label: 'Lessive sur place', on: false }
   ];
-  function getPacking() {
-    try { return JSON.parse(localStorage.getItem(PACKING_KEY) || '{}'); } catch { return {}; }
+  const PACK_SECTIONS = [
+    { key: 'papiers', title: '🗂️ Papiers & argent' },
+    { key: 'vetements', title: '👕 Vêtements' },
+    { key: 'chaussures', title: '👟 Chaussures' },
+    { key: 'plage', title: '🏖️ Plage & criques', act: 'plage' },
+    { key: 'etna', title: '🌋 Etna 3 300 m (mardi 25)', act: 'etna' },
+    { key: 'stromboli', title: '⛵ Stromboli (samedi 29)', act: 'stromboli' },
+    { key: 'rando', title: '🥾 Rando', act: 'rando' },
+    { key: 'sport', title: '🏃 Sport', act: 'sport' },
+    { key: 'laptop', title: '💻 Ordi / boulot', act: 'laptop' },
+    { key: 'toilette', title: '🧴 Toilette & pharmacie' },
+    { key: 'tech', title: '🔌 Tech' },
+    { key: 'voiture', title: '🚗 Voiture & route' },
+    { key: 'malin', title: '🧳 Malin' },
+    { key: 'depart', title: '⏰ Le matin du départ' }
+  ];
+  // qty : nombre fixe ou fonction (ctx) → nombre · act : présent seulement si l'activité est cochée ('a|b' = l'une des deux) · old : id(s) v1 pour migrer la case cochée
+  const PACK_ITEMS = [
+    { id: 'id', sec: 'papiers', label: "Cartes d'identité / passeports ×2", old: '0-0' },
+    { id: 'permis', sec: 'papiers', label: 'Permis de conduire ×2 (les deux conducteurs)', old: '0-1' },
+    { id: 'cb', sec: 'papiers', label: 'CB + cash (Borderi et Ritrovo Ingrid = cash only)', old: '0-2' },
+    { id: 'confs', sec: 'papiers', label: 'Confirmations : vol, hôtel, voiture, tour Etna (mail GetYourGuide)', old: '0-3' },
+    { id: 'assurance', sec: 'papiers', label: "Carte européenne d'assurance maladie + contrat assurance voiture" },
+    { id: 'etna-cash', sec: 'papiers', label: '65 € / pers en CB ou cash : téléphérique + 4x4 Etna, réglés sur place', act: 'etna', old: '2-4' },
+
+    { id: 'tshirts', sec: 'vetements', label: 'T-shirts / débardeurs', qty: c => c.lessive ? Math.ceil(c.days / 2) + 1 : c.days },
+    { id: 'sousv', sec: 'vetements', label: 'Sous-vêtements', qty: c => c.lessive ? Math.ceil(c.days / 2) + 1 : c.days + 1 },
+    { id: 'chaussettes', sec: 'vetements', label: 'Paires de chaussettes (baskets, Etna, Stromboli)', qty: c => 2 + (c.etna ? 1 : 0) + (c.stromboli ? 1 : 0) },
+    { id: 'shorts', sec: 'vetements', label: 'Shorts / bermudas', qty: 3 },
+    { id: 'pantalon', sec: 'vetements', label: 'Pantalon léger (Etna le mardi + soirées)', qty: 1 },
+    { id: 'chemises', sec: 'vetements', label: 'Chemises / tenues du soir pour Taormina', qty: c => c.chic ? 3 : 1, old: '4-3' },
+    { id: 'polaire', sec: 'vetements', label: 'Polaire ou pull chaud (10-15 °C au sommet, retour Stromboli de nuit)', qty: 1, act: 'etna|stromboli', old: '2-1' },
+    { id: 'coupevent', sec: 'vetements', label: 'Coupe-vent léger', qty: 1, act: 'etna|stromboli' },
+    { id: 'maillots', sec: 'vetements', label: 'Maillots de bain (un sec, un mouillé)', qty: 2, act: 'plage', old: '1-5' },
+    { id: 'pyjama', sec: 'vetements', label: 'Tenue de nuit', qty: 1 },
+    { id: 'eglise', sec: 'vetements', label: "Une tenue épaules et genoux couverts (Duomo d'Ortigia, églises)", old: '4-1' },
+    { id: 'casquette', sec: 'vetements', label: 'Casquette / chapeau', qty: 1 },
+    { id: 'lunettes', sec: 'vetements', label: 'Lunettes de soleil', qty: 1, old: '0-7' },
+    { id: 'ceinture', sec: 'vetements', label: 'Ceinture + montre' },
+
+    { id: 'baskets', sec: 'chaussures', label: 'Baskets fermées (sable volcanique abrasif sur l\'Etna, chemins de Stromboli)', qty: 1, old: ['2-0', '3-3'] },
+    { id: 'sandales', sec: 'chaussures', label: 'Sandales / tongs', qty: 1 },
+    { id: 'chauss-eau', sec: 'chaussures', label: "Chaussures d'eau (galets à Isola Bella)", qty: 1, act: 'plage', old: '1-1' },
+    { id: 'chauss-soir', sec: 'chaussures', label: 'Une paire correcte pour les dîners', qty: 1, act: 'chic' },
+
+    { id: 'masques', sec: 'plage', label: 'Masques-tubas ×2 (Isola Bella et Calamosche, non négociable)', act: 'plage', old: '1-0' },
+    { id: 'serviettes', sec: 'plage', label: 'Serviettes microfibre (sèchent dans la voiture)', qty: 2, act: 'plage', old: '1-2' },
+    { id: 'spf', sec: 'plage', label: 'SPF50 visage + corps (le soleil sicilien ne rigole pas)', act: 'plage', old: '1-3' },
+    { id: 'apres-soleil', sec: 'plage', label: 'Après-soleil / aloe vera', act: 'plage' },
+    { id: 'sac-etanche', sec: 'plage', label: 'Sac étanche pour téléphone + clés de voiture', act: 'plage', old: '1-4' },
+    { id: 'sac-plage', sec: 'plage', label: 'Sac de plage léger + paréo', act: 'plage' },
+
+    { id: 'etna-eau', sec: 'etna', label: "1,5 L d'eau par personne + barres céréales", act: 'etna', old: '2-3' },
+    { id: 'etna-pantalon', sec: 'etna', label: 'Pantalon long le mardi (le short à 3 300 m, tu vas le regretter)', act: 'etna', old: '2-2' },
+    { id: 'etna-buff', sec: 'etna', label: 'Bonnet léger ou buff (vent au sommet)', act: 'etna' },
+    { id: 'sac-jour', sec: 'etna', label: 'Petit sac à dos de journée', act: 'etna|rando|stromboli' },
+
+    { id: 'frontale', sec: 'stromboli', label: 'Frontale (retour de nuit, indispensable)', act: 'stromboli', old: '3-0' },
+    { id: 'veste-mer', sec: 'stromboli', label: 'Veste chaude pour la navigation retour (minuit en mer)', act: 'stromboli', old: '3-1' },
+    { id: 'mal-mer', sec: 'stromboli', label: 'Comprimés mal de mer (2h30 de bateau)', act: 'stromboli', old: '3-2' },
+
+    { id: 'rando-chauss', sec: 'rando', label: 'Chaussures de rando', act: 'rando' },
+    { id: 'rando-batons', sec: 'rando', label: 'Bâtons pliables (Catafurco, Cavagrande : ça descend raide)', act: 'rando' },
+    { id: 'rando-gourde', sec: 'rando', label: 'Gourde 1 L + en-cas', act: 'rando' },
+
+    { id: 'sport-tenue', sec: 'sport', label: 'Tenues de sport', qty: c => Math.ceil(c.days / 3), act: 'sport' },
+    { id: 'sport-chauss', sec: 'sport', label: 'Chaussures de running', qty: 1, act: 'sport' },
+
+    { id: 'laptop', sec: 'laptop', label: 'Ordi + chargeur', act: 'laptop' },
+    { id: 'laptop-data', sec: 'laptop', label: 'Vérifier le forfait data en Italie + partage de connexion', act: 'laptop' },
+
+    { id: 'trousse', sec: 'toilette', label: 'Trousse de toilette (brosse à dents, déo, rasoir…)' },
+    { id: 'pharma', sec: 'toilette', label: 'Petite pharmacie : doliprane, anti-diarrhée, pansements', old: '0-6' },
+    { id: 'moustique', sec: 'toilette', label: 'Anti-moustique (soirées en terrasse)' },
+    { id: 'levres', sec: 'toilette', label: 'Stick lèvres SPF' },
+    { id: 'meds', sec: 'toilette', label: 'Traitements perso (+ ordonnance)' },
+
+    { id: 'chargeurs', sec: 'tech', label: 'Chargeurs téléphone', qty: 2, old: '0-4' },
+    { id: 'batterie', sec: 'tech', label: 'Batterie externe (grosses journées photos)', qty: 1 },
+    { id: 'chargeur-voiture', sec: 'tech', label: 'Chargeur voiture + câble (GPS toute la journée)', old: '0-5' },
+    { id: 'ecouteurs', sec: 'tech', label: 'Écouteurs' },
+    { id: 'adaptateur', sec: 'tech', label: 'Adaptateur prises italiennes type L (les grosses fiches Schuko ne rentrent pas partout)', old: '4-2', tag: '🛒 à acheter' },
+    { id: 'appareil', sec: 'tech', label: 'Appareil photo / GoPro + cartes + chargeur' },
+
+    { id: 'gps', sec: 'voiture', label: 'Carte Google Maps de la Sicile en hors ligne (pas de réseau sur l\'Etna ni dans l\'Alcantara)' },
+    { id: 'support-tel', sec: 'voiture', label: 'Support téléphone voiture' },
+    { id: 'lingettes', sec: 'voiture', label: 'Lingettes + sacs pour serviettes mouillées et sable' },
+    { id: 'glaciere', sec: 'voiture', label: 'Glacière souple / gourdes (35 °C dans la voiture)' },
+
+    { id: 'valise-vide', sec: 'malin', label: "Valise à moitié vide : pistaches de Bronte, vins de l'Etna, céramiques au retour", old: '4-0' },
+    { id: 'sac-linge', sec: 'malin', label: 'Sac pour le linge sale' },
+    { id: 'lessive-kit', sec: 'malin', label: 'Mini lessive + fil à linge', act: 'lessive' },
+    { id: 'gourde', sec: 'malin', label: 'Gourde réutilisable (fontaines à Taormina et Ortigia)' },
+    { id: 'livre', sec: 'malin', label: 'Livre / liseuse pour la plage' },
+
+    { id: 'd-tel', sec: 'depart', label: 'Téléphones chargés, chargeurs débranchés et rangés', tag: '⏰' },
+    { id: 'd-brosse', sec: 'depart', label: 'Brosse à dents + trousse dans la valise', tag: '⏰' },
+    { id: 'd-checkin', sec: 'depart', label: "Check-in fait, cartes d'embarquement dans le wallet", tag: '⏰' },
+    { id: 'd-liquides', sec: 'depart', label: 'Liquides ≤ 100 mL en cabine, le reste en soute', tag: '⏰' },
+    { id: 'd-cles', sec: 'depart', label: 'Clés + papiers dans le sac cabine, jamais en soute', tag: '⏰' },
+    { id: 'd-maison', sec: 'depart', label: 'Frigo vidé, poubelles sorties, fenêtres, chauffe-eau', tag: '⏰' }
+  ];
+  const packCollapsed = {};
+  let packAddOpen = null;
+  function getPack() {
+    let p = null;
+    try { p = JSON.parse(localStorage.getItem(PACK_KEY) || 'null'); } catch { p = null; }
+    if (!p) {
+      p = { checked: {}, qty: {}, removed: [], custom: [], acts: {}, hideDone: false };
+      PACK_ACTS.forEach(a => { p.acts[a.key] = a.on; });
+      // migration v1 : les cases déjà cochées dans l'ancienne checklist restent cochées
+      let v1 = {}; try { v1 = JSON.parse(localStorage.getItem(PACKING_KEY) || '{}'); } catch { v1 = {}; }
+      PACK_ITEMS.forEach(it => { const olds = Array.isArray(it.old) ? it.old : (it.old ? [it.old] : []); if (olds.some(o => v1[o])) p.checked[it.id] = 1; });
+      savePack(p);
+    }
+    p.checked = p.checked || {}; p.qty = p.qty || {}; p.removed = p.removed || []; p.custom = p.custom || []; p.acts = p.acts || {};
+    return p;
+  }
+  function savePack(p) { localStorage.setItem(PACK_KEY, JSON.stringify(p)); }
+  function packCtx(p) { return Object.assign({ days: days.length }, p.acts); }
+  function packActive(it, ctx) { return !it.act || it.act.split('|').some(a => ctx[a]); }
+  function packQty(it, p, ctx) {
+    if (p.qty[it.id] != null) return p.qty[it.id];
+    if (typeof it.qty === 'function') return it.qty(ctx);
+    return it.qty || null;
+  }
+  function packVisibleItems(p) {
+    const ctx = packCtx(p);
+    const base = PACK_ITEMS.filter(it => packActive(it, ctx) && !p.removed.includes(it.id));
+    return base.concat(p.custom.map(c => ({ id: c.id, sec: c.sec, label: c.label, qty: c.qty || null, custom: true })));
+  }
+  function packWeatherHint() {
+    const w = days.map(d => d.weather).filter(Boolean);
+    if (!w.length) return 'Fin août à Taormina : 26 à 34 °C, sec. Léger partout, chaud uniquement pour le sommet de l\'Etna et le retour de Stromboli en mer.';
+    const max = Math.max(...w.map(x => x.max)), min = Math.min(...w.map(x => x.min));
+    const rain = Math.max(...w.map(x => x.precip || 0));
+    return `Prévu sur place : ${min} à ${max} °C${rain >= 40 ? `, jusqu'à ${rain} % de risque de pluie un jour (un coupe-vent suffit)` : ', quasi zéro pluie'}. Léger partout, chaud uniquement pour le sommet de l'Etna et le retour de Stromboli en mer.`;
   }
   window.togglePacking = function(id) {
-    const p = getPacking();
-    if (p[id]) delete p[id]; else p[id] = 1;
-    localStorage.setItem(PACKING_KEY, JSON.stringify(p));
+    const p = getPack();
+    if (p.checked[id]) delete p.checked[id]; else p.checked[id] = 1;
+    savePack(p); openPacking(true);
+  };
+  window.packToggleAct = function(key) {
+    const p = getPack(); p.acts[key] = !p.acts[key]; savePack(p); openPacking(true);
+  };
+  window.packToggleHide = function() { const p = getPack(); p.hideDone = !p.hideDone; savePack(p); openPacking(true); };
+  window.packToggleSection = function(key) { packCollapsed[key] = !packCollapsed[key]; openPacking(true); };
+  window.packQtyDelta = function(id, delta) {
+    const p = getPack(); const ctx = packCtx(p);
+    const it = PACK_ITEMS.find(x => x.id === id) || p.custom.find(x => x.id === id);
+    if (!it) return;
+    const cur = (p.qty[id] != null) ? p.qty[id] : (typeof it.qty === 'function' ? it.qty(ctx) : (it.qty || 1));
+    const next = Math.max(1, Math.min(30, cur + delta));
+    if (it.custom || p.custom.some(c => c.id === id)) { const c = p.custom.find(x => x.id === id); if (c) c.qty = next; }
+    else p.qty[id] = next;
+    savePack(p); openPacking(true);
+  };
+  window.packRemove = function(id) {
+    const p = getPack();
+    if (p.custom.some(c => c.id === id)) p.custom = p.custom.filter(c => c.id !== id);
+    else if (!p.removed.includes(id)) p.removed.push(id);
+    delete p.checked[id];
+    savePack(p); openPacking(true);
+  };
+  window.packRestoreSection = function(sec) {
+    const p = getPack();
+    const ids = PACK_ITEMS.filter(it => it.sec === sec).map(it => it.id);
+    p.removed = p.removed.filter(id => !ids.includes(id));
+    savePack(p); openPacking(true);
+  };
+  window.packOpenAdd = function(sec) { packAddOpen = packAddOpen === sec ? null : sec; openPacking(true); if (packAddOpen) setTimeout(() => { const el = document.getElementById('pk-add-input'); if (el) el.focus(); }, 60); };
+  window.packSubmitAdd = function(sec) {
+    const el = document.getElementById('pk-add-input'); if (!el) return;
+    const label = el.value.trim(); if (!label) { el.focus(); return; }
+    const qEl = document.getElementById('pk-add-qty');
+    const qty = qEl && parseInt(qEl.value, 10) > 1 ? parseInt(qEl.value, 10) : null;
+    const p = getPack(); p.custom.push({ id: 'p' + Date.now(), sec, label, qty }); savePack(p);
+    packAddOpen = null; openPacking(true);
+  };
+  window.packReset = function() {
+    if (!confirm('Remettre la valise à zéro ? Cases décochées, quantités et articles ajoutés effacés.')) return;
+    localStorage.removeItem(PACK_KEY); localStorage.removeItem(PACKING_KEY);
     openPacking(true);
   };
+  window.packShare = async function() {
+    const p = getPack();
+    const items = packVisibleItems(p); const ctx = packCtx(p);
+    let txt = 'Valise Sicile 23-30 août · reste à mettre :\n';
+    PACK_SECTIONS.forEach(sec => {
+      const list = items.filter(it => it.sec === sec.key && !p.checked[it.id]);
+      if (!list.length) return;
+      txt += `\n${sec.title}\n` + list.map(it => { const q = packQty(it, p, ctx); return `– ${it.label}${q ? ' ×' + q : ''}`; }).join('\n') + '\n';
+    });
+    try {
+      if (navigator.share) { await navigator.share({ title: 'Valise Sicile', text: txt }); return; }
+      await navigator.clipboard.writeText(txt); alert('Liste copiée, colle-la où tu veux.');
+    } catch { /* partage annulé */ }
+  };
   window.openPacking = function(keepScroll) {
-    const p = getPacking();
-    const total = PACKING_LIST.reduce((n, g) => n + g.items.length, 0);
-    const done = Object.keys(p).length;
+    const p = getPack();
+    const ctx = packCtx(p);
+    const items = packVisibleItems(p);
+    const total = items.length;
+    const done = items.filter(it => p.checked[it.id]).length;
+    const pct = total ? Math.round(done / total * 100) : 0;
     const body = document.getElementById('modal-body');
     const prevScroll = keepScroll && document.getElementById('modal-backdrop').classList.contains('open') ? body.scrollTop : 0;
-    let html = `<div class="pk-progress"><div class="pk-progress-fill" style="width:${total ? Math.round(done / total * 100) : 0}%"></div></div>
-      <div class="bk-help">${done}/${total} dans la valise. Tape une ligne pour cocher, c'est sauvegardé sur ce téléphone.</div>`;
-    PACKING_LIST.forEach((g, gi) => {
-      html += `<div class="kit-section"><div class="kit-section-title">${g.section}</div>`;
-      g.items.forEach((it, ii) => {
-        const id = gi + '-' + ii;
-        const ck = p[id];
-        html += `<div class="pk-row ${ck ? 'done' : ''}" onclick="togglePacking('${id}')">
-          <span class="pk-box">${ck ? '✓' : ''}</span>
-          <span class="pk-label">${it}</span>
-        </div>`;
-      });
+    let html = `
+      <div class="pk-top">
+        <div class="pk-count"><b>${done}</b> / ${total} <span>· ${pct} %</span></div>
+        <div class="pk-progress"><div class="pk-progress-fill" style="width:${pct}%"></div></div>
+        <div class="pk-weather">☀️ ${packWeatherHint()}</div>
+      </div>
+      <div class="pk-acts">${PACK_ACTS.map(a => `<button class="pk-act${p.acts[a.key] ? ' on' : ''}" onclick="packToggleAct('${a.key}')">${a.icon} ${a.label}</button>`).join('')}</div>
+      <div class="pk-tools">
+        <button class="pk-tool${p.hideDone ? ' on' : ''}" onclick="packToggleHide()">${p.hideDone ? '👁 Tout montrer' : '✓ Cacher les cochés'}</button>
+        <button class="pk-tool" onclick="packShare()">↗ Envoyer le reste</button>
+      </div>`;
+    PACK_SECTIONS.forEach(sec => {
+      if (sec.act && !ctx[sec.act]) return;
+      const list = items.filter(it => it.sec === sec.key);
+      const secDone = list.filter(it => p.checked[it.id]).length;
+      const removedHere = PACK_ITEMS.filter(it => it.sec === sec.key && p.removed.includes(it.id) && packActive(it, ctx)).length;
+      if (!list.length && !removedHere && packAddOpen !== sec.key) return;
+      const collapsed = !!packCollapsed[sec.key];
+      html += `<div class="pk-sec${collapsed ? ' collapsed' : ''}">
+        <div class="pk-sec-head" onclick="packToggleSection('${sec.key}')"><span class="kit-section-title" style="margin:0">${sec.title}</span><span class="pk-sec-n${secDone === list.length && list.length ? ' full' : ''}">${secDone}/${list.length}</span><span class="pk-caret">${collapsed ? '▸' : '▾'}</span></div>`;
+      if (!collapsed) {
+        list.forEach(it => {
+          const ck = !!p.checked[it.id];
+          if (p.hideDone && ck) return;
+          const q = packQty(it, p, ctx);
+          const qtyHtml = q ? `<span class="pk-qty"><button onclick="event.stopPropagation();packQtyDelta('${it.id}',-1)">−</button><b>${q}</b><button onclick="event.stopPropagation();packQtyDelta('${it.id}',1)">+</button></span>` : '';
+          const tag = it.tag ? `<span class="pk-tag">${it.tag}</span>` : (it.custom ? '<span class="pk-tag custom">perso</span>' : '');
+          html += `<div class="pk-row ${ck ? 'done' : ''}" onclick="togglePacking('${it.id}')">
+            <span class="pk-box">${ck ? '✓' : ''}</span>
+            <span class="pk-label">${escHtml(it.label)}${tag}</span>
+            ${qtyHtml}
+            <button class="pk-x" onclick="event.stopPropagation();packRemove('${it.id}')" title="Retirer de la liste">×</button>
+          </div>`;
+        });
+        if (p.hideDone && secDone === list.length && list.length) html += `<div class="pk-alldone">Tout est dans la valise ✓</div>`;
+        if (packAddOpen === sec.key) {
+          html += `<div class="pk-add-form"><input class="ed-input" id="pk-add-input" placeholder="Article à ajouter" onkeydown="if(event.key==='Enter')packSubmitAdd('${sec.key}')"><input class="ed-input pk-add-qty" id="pk-add-qty" type="number" min="1" max="30" placeholder="×"><button class="ed-btn primary" style="height:42px;padding:0 14px" onclick="packSubmitAdd('${sec.key}')">OK</button></div>`;
+        } else {
+          html += `<div class="pk-sec-foot"><button class="link-btn" onclick="packOpenAdd('${sec.key}')">＋ ajouter</button>${removedHere ? `<button class="link-btn dim" onclick="packRestoreSection('${sec.key}')">${removedHere} retiré${removedHere > 1 ? 's' : ''} · rétablir</button>` : ''}</div>`;
+        }
+      }
       html += `</div>`;
     });
-    openModal('🧳 Checklist valise', html);
+    html += `<div class="pk-foot"><button class="link-btn dim" onclick="packReset()">Remettre la valise à zéro</button></div>`;
+    openModal('🧳 Ma valise', html);
     if (prevScroll) body.scrollTop = prevScroll;
   };
 
