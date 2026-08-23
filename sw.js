@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sicile-2026-v13';
+const CACHE_NAME = 'sicile-2026-v14';
 const STATIC_ASSETS = [
   './',
   './index.html',
